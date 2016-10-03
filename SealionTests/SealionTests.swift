@@ -11,26 +11,21 @@ import XCTest
 
 class SealionTests: XCTestCase {
     
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
-    
     func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+        let e = self.expectation(description: "")
+        
+        let api = API(version: .v2, token: "a4b2f1b7e1f10dab178375189f2a285a18abee5f4e353dcfedae7087e9e25463")
+        api.account { (response: Response<Account>) in
+            switch response {
+            case .success(let account):
+                print("Account: \(account!)")
+            case .failure(let message):
+                print("Failure: \(message)")
+            }
+            
+            e.fulfill()
         }
+        
+        self.waitForExpectations(timeout: 10.0, handler: nil)
     }
-    
 }

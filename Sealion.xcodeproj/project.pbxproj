@@ -14,6 +14,8 @@
 		9A950B871DA1D2680068DFF8 /* API+Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A950B861DA1D2680068DFF8 /* API+Account.swift */; };
 		9A950B8A1DA1D3880068DFF8 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A950B891DA1D3880068DFF8 /* Account.swift */; };
 		9A950B8D1DA1D3D10068DFF8 /* JsonCreatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A950B8C1DA1D3D10068DFF8 /* JsonCreatable.swift */; };
+		9A950B901DA1D8610068DFF8 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A950B8F1DA1D8610068DFF8 /* Endpoint.swift */; };
+		9A950B921DA1D99A0068DFF8 /* Method.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A950B911DA1D99A0068DFF8 /* Method.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +39,8 @@
 		9A950B861DA1D2680068DFF8 /* API+Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "API+Account.swift"; sourceTree = "<group>"; };
 		9A950B891DA1D3880068DFF8 /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		9A950B8C1DA1D3D10068DFF8 /* JsonCreatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonCreatable.swift; sourceTree = "<group>"; };
+		9A950B8F1DA1D8610068DFF8 /* Endpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		9A950B911DA1D99A0068DFF8 /* Method.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Method.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				9A950B6C1DA05DC20068DFF8 /* Sealion.h */,
+				9A950B8E1DA1D8550068DFF8 /* Utilities */,
 				9A950B8B1DA1D3C40068DFF8 /* Protocols */,
 				9A950B881DA1D3800068DFF8 /* Models */,
 				9A950B831DA05E930068DFF8 /* API */,
@@ -120,6 +125,15 @@
 				9A950B8C1DA1D3D10068DFF8 /* JsonCreatable.swift */,
 			);
 			name = Protocols;
+			sourceTree = "<group>";
+		};
+		9A950B8E1DA1D8550068DFF8 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				9A950B8F1DA1D8610068DFF8 /* Endpoint.swift */,
+				9A950B911DA1D99A0068DFF8 /* Method.swift */,
+			);
+			name = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -235,8 +249,10 @@
 			files = (
 				9A950B871DA1D2680068DFF8 /* API+Account.swift in Sources */,
 				9A950B851DA1D1F30068DFF8 /* API.swift in Sources */,
+				9A950B921DA1D99A0068DFF8 /* Method.swift in Sources */,
 				9A950B8A1DA1D3880068DFF8 /* Account.swift in Sources */,
 				9A950B8D1DA1D3D10068DFF8 /* JsonCreatable.swift in Sources */,
+				9A950B901DA1D8610068DFF8 /* Endpoint.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

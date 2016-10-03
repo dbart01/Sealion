@@ -28,6 +28,6 @@ public struct Account: JsonCreatable {
         self.email           = json["email"]             as! String
         self.uuid            = json["uuid"]              as! String
         self.status          = json["status"]            as! String
-        self.message         = json["message"]           as! String
+        self.message         = json["status_message"]    as! String
     }
 }
