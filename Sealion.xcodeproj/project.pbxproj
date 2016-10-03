@@ -10,6 +10,10 @@
 		9A950B731DA05DC20068DFF8 /* Sealion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A950B691DA05DC20068DFF8 /* Sealion.framework */; };
 		9A950B781DA05DC20068DFF8 /* SealionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A950B771DA05DC20068DFF8 /* SealionTests.swift */; };
 		9A950B7A1DA05DC20068DFF8 /* Sealion.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A950B6C1DA05DC20068DFF8 /* Sealion.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9A950B851DA1D1F30068DFF8 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A950B841DA1D1F30068DFF8 /* API.swift */; };
+		9A950B871DA1D2680068DFF8 /* API+Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A950B861DA1D2680068DFF8 /* API+Account.swift */; };
+		9A950B8A1DA1D3880068DFF8 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A950B891DA1D3880068DFF8 /* Account.swift */; };
+		9A950B8D1DA1D3D10068DFF8 /* JsonCreatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A950B8C1DA1D3D10068DFF8 /* JsonCreatable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +33,10 @@
 		9A950B721DA05DC20068DFF8 /* SealionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SealionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A950B771DA05DC20068DFF8 /* SealionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SealionTests.swift; sourceTree = "<group>"; };
 		9A950B791DA05DC20068DFF8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9A950B841DA1D1F30068DFF8 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		9A950B861DA1D2680068DFF8 /* API+Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "API+Account.swift"; sourceTree = "<group>"; };
+		9A950B891DA1D3880068DFF8 /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		9A950B8C1DA1D3D10068DFF8 /* JsonCreatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonCreatable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +80,9 @@
 			isa = PBXGroup;
 			children = (
 				9A950B6C1DA05DC20068DFF8 /* Sealion.h */,
+				9A950B8B1DA1D3C40068DFF8 /* Protocols */,
+				9A950B881DA1D3800068DFF8 /* Models */,
+				9A950B831DA05E930068DFF8 /* API */,
 				9A950B6D1DA05DC20068DFF8 /* Info.plist */,
 			);
 			path = Sealion;
@@ -84,6 +95,31 @@
 				9A950B791DA05DC20068DFF8 /* Info.plist */,
 			);
 			path = SealionTests;
+			sourceTree = "<group>";
+		};
+		9A950B831DA05E930068DFF8 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				9A950B841DA1D1F30068DFF8 /* API.swift */,
+				9A950B861DA1D2680068DFF8 /* API+Account.swift */,
+			);
+			name = API;
+			sourceTree = "<group>";
+		};
+		9A950B881DA1D3800068DFF8 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				9A950B891DA1D3880068DFF8 /* Account.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		9A950B8B1DA1D3C40068DFF8 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				9A950B8C1DA1D3D10068DFF8 /* JsonCreatable.swift */,
+			);
+			name = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -148,6 +184,7 @@
 				TargetAttributes = {
 					9A950B681DA05DC20068DFF8 = {
 						CreatedOnToolsVersion = 8.0;
+						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 					};
 					9A950B711DA05DC20068DFF8 = {
@@ -196,6 +233,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A950B871DA1D2680068DFF8 /* API+Account.swift in Sources */,
+				9A950B851DA1D1F30068DFF8 /* API.swift in Sources */,
+				9A950B8A1DA1D3880068DFF8 /* Account.swift in Sources */,
+				9A950B8D1DA1D3D10068DFF8 /* JsonCreatable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -320,6 +361,7 @@
 		9A950B7E1DA05DC20068DFF8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -332,6 +374,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.dimabart.Sealion;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -339,6 +382,7 @@
 		9A950B7F1DA05DC20068DFF8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -358,6 +402,7 @@
 		9A950B811DA05DC20068DFF8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = SealionTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dimabart.SealionTests;
@@ -369,6 +414,7 @@
 		9A950B821DA05DC20068DFF8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = SealionTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dimabart.SealionTests;
