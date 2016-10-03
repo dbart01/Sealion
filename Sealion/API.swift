@@ -8,11 +8,6 @@
 
 import Foundation
 
-public enum Response<T> {
-    case success(T?)
-    case failure(String?)
-}
-
 public class API {
     
     public enum Version: String {
@@ -67,7 +62,7 @@ public class API {
     // ----------------------------------
     //  MARK: - Request Execution -
     //
-    internal func taskWith<T: JsonCreatable>(request: URLRequest, keyPath: String, completion: @escaping (Response<T>) -> Void) -> URLSessionDataTask {
+    internal func taskWith<T: JsonCreatable>(request: URLRequest, keyPath: String, completion: @escaping (Result<T>) -> Void) -> URLSessionDataTask {
         return self.session.dataTask(with: request) { (data, response, error) in
             
             /* ---------------------------------

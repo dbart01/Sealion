@@ -10,7 +10,23 @@ import Foundation
 
 class MockDataTask: URLSessionDataTask {
     
-    override func resume() {}
+    typealias ResumeHandler = () -> Void
+    
+    let resumeHandler: ResumeHandler?
+    
+    // ----------------------------------
+    //  MARK: - Init -
+    //
+    init(resumeHandler: ResumeHandler? = nil) {
+        self.resumeHandler = resumeHandler
+    }
+    
+    // ----------------------------------
+    //  MARK: - Overrides -
+    //
     override func cancel() {}
     override func suspend() {}
+    override func resume() {
+        self.resumeHandler?()
+    }
 }

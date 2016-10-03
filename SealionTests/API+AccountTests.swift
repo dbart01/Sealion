@@ -11,20 +11,34 @@ import XCTest
 
 class API_AccountTests: APITestCase {
     
-    func testSample() {
+    func testAccount() {
+        self.session.activateMockNamed(name: "accountSuccess")
         let e = self.expectation(description: "")
         
         self.api.account { result in
-            switch result {
-            case .success(let account):
-                print("Account: \(account!)")
-            case .failure(let message):
-                print("Failure: \(message)")
+            
+            if case .success(let account) = result {
+                guard let account = account else {
+                    XCTFail("Expecting a non-nil account.")
+                    return
+                }
+                
+                XCTAssertEqual(account.status, "active")
+                XCTAssertEqual(account.uuid, "b9831c92486271c9797ef5h77e234f882d7a3fc2")
+                XCTAssertEqual(account.floatingIPLimit, 3)
+                XCTAssertEqual(account.verified, true)
+                XCTAssertEqual(account.dropletLimit, 25)
+                XCTAssertEqual(account.message, "")
+                XCTAssertEqual(account.email, "john.smith@gmail.com")
+                
+            } else {
+                XCTFail("Expecting a successful request.")
             }
             
             e.fulfill()
         }
         
         self.waitForExpectations(timeout: 10.0, handler: nil)
+        self.session.deactiveMock()
     }
 }

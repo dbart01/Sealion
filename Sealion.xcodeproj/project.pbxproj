@@ -19,8 +19,9 @@
 		9A950B941DA2796B0068DFF8 /* APITestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A950B931DA2796B0068DFF8 /* APITestCase.swift */; };
 		9A950B971DA279C20068DFF8 /* MockSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A950B961DA279C20068DFF8 /* MockSession.swift */; };
 		9A950B991DA27CFA0068DFF8 /* MockDataTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A950B981DA27CFA0068DFF8 /* MockDataTask.swift */; };
-		9A950B9B1DA27D160068DFF8 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A950B9A1DA27D160068DFF8 /* Response.swift */; };
+		9A950B9B1DA27D160068DFF8 /* Stub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A950B9A1DA27D160068DFF8 /* Stub.swift */; };
 		9A950B9E1DA281F10068DFF8 /* mocks.json in Resources */ = {isa = PBXBuildFile; fileRef = 9A950B9D1DA281F10068DFF8 /* mocks.json */; };
+		9A950BE51DA2FFF80068DFF8 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A950BE41DA2FFF80068DFF8 /* Result.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,8 +50,9 @@
 		9A950B931DA2796B0068DFF8 /* APITestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APITestCase.swift; sourceTree = "<group>"; };
 		9A950B961DA279C20068DFF8 /* MockSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockSession.swift; sourceTree = "<group>"; };
 		9A950B981DA27CFA0068DFF8 /* MockDataTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockDataTask.swift; sourceTree = "<group>"; };
-		9A950B9A1DA27D160068DFF8 /* Response.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
+		9A950B9A1DA27D160068DFF8 /* Stub.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stub.swift; sourceTree = "<group>"; };
 		9A950B9D1DA281F10068DFF8 /* mocks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = mocks.json; sourceTree = "<group>"; };
+		9A950BE41DA2FFF80068DFF8 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +119,7 @@
 		9A950B831DA05E930068DFF8 /* API */ = {
 			isa = PBXGroup;
 			children = (
+				9A950BE41DA2FFF80068DFF8 /* Result.swift */,
 				9A950B841DA1D1F30068DFF8 /* API.swift */,
 				9A950B861DA1D2680068DFF8 /* API+Account.swift */,
 			);
@@ -162,7 +165,7 @@
 		9A950B9C1DA27D1B0068DFF8 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				9A950B9A1DA27D160068DFF8 /* Response.swift */,
+				9A950B9A1DA27D160068DFF8 /* Stub.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -283,6 +286,7 @@
 				9A950B851DA1D1F30068DFF8 /* API.swift in Sources */,
 				9A950B921DA1D99A0068DFF8 /* Method.swift in Sources */,
 				9A950B8A1DA1D3880068DFF8 /* Account.swift in Sources */,
+				9A950BE51DA2FFF80068DFF8 /* Result.swift in Sources */,
 				9A950B8D1DA1D3D10068DFF8 /* JsonCreatable.swift in Sources */,
 				9A950B901DA1D8610068DFF8 /* Endpoint.swift in Sources */,
 			);
@@ -296,7 +300,7 @@
 				9A950B971DA279C20068DFF8 /* MockSession.swift in Sources */,
 				9A950B941DA2796B0068DFF8 /* APITestCase.swift in Sources */,
 				9A950B781DA05DC20068DFF8 /* API+AccountTests.swift in Sources */,
-				9A950B9B1DA27D160068DFF8 /* Response.swift in Sources */,
+				9A950B9B1DA27D160068DFF8 /* Stub.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

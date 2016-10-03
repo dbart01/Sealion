@@ -1,5 +1,5 @@
 //
-//  Response.swift
+//  Stub.swift
 //  Sealion
 //
 //  Created by Dima Bart on 2016-10-03.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Response {
+struct Stub {
     
     let status:  Int
     let json:    [String : Any]?
