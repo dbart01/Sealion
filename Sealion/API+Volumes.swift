@@ -30,4 +30,15 @@ public extension API {
         
         task.resume()
     }
+    
+    public func volumeWith(filter: (name: String, regionSlug: String), completion: @escaping (_ result: Result<[Volume]>) -> Void) {
+        let parameters = [
+            "name"   : filter.name,
+            "region" : filter.regionSlug,
+        ]
+        let request = self.requestTo(endpoint: .volumes, method: .get, parameters: parameters)
+        let task    = self.taskWith(request: request, keyPath: "volumes", completion: completion)
+        
+        task.resume()
+    }
 }

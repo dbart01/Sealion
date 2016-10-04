@@ -10,6 +10,8 @@ import Foundation
 
 public class API {
     
+    typealias Parameters = [String : String]
+    
     public enum Version: String {
         case v2 = "https://api.digitalocean.com/v2/"
     }
@@ -42,15 +44,26 @@ public class API {
     // ----------------------------------
     //  MARK: - URL Generation -
     //
-    private func urlTo(endpoint: Endpoint) -> URL {
-        return URL(string: endpoint.path, relativeTo: self.apiRoot)!
+    private func urlTo(endpoint: Endpoint, parameters: Parameters? = nil) -> URL {
+        let url        = URL(string: endpoint.path, relativeTo: self.apiRoot)!
+        var components = URLComponents(url: url, resolvingAgainstBaseURL: true)!
+        
+        if let parameters = parameters {
+            var items = [URLQueryItem]()
+            for (name, value) in parameters {
+                items.append(URLQueryItem(name: name, value: value))
+            }
+            components.queryItems = items
+        }
+        
+        return components.url!
     }
     
     // ----------------------------------
     //  MARK: - Request Generation -
     //
-    internal func requestTo(endpoint: Endpoint, method: Method, payload: JsonConvertible? = nil) -> URLRequest {
-        var request        = URLRequest(url: self.urlTo(endpoint: endpoint))
+    internal func requestTo(endpoint: Endpoint, method: Method, parameters: Parameters? = nil, payload: JsonConvertible? = nil) -> URLRequest {
+        var request        = URLRequest(url: self.urlTo(endpoint: endpoint, parameters: parameters))
         request.httpMethod = method.rawValue
         
         if let payload = payload {
