@@ -18,14 +18,11 @@ class API_VolumesTests: APITestCase {
         self.api.volumes { result in
             
             if case .success(let volumes) = result {
-                guard let volumes = volumes else {
-                    XCTFail("Expecting a non-nil actions.")
-                    return
-                }
                 
-                XCTAssertEqual(volumes.count, 1)
+                XCTAssertNotNil(volumes)
+                XCTAssertEqual(volumes!.count, 1)
                 
-                let volume = volumes[0]
+                let volume = volumes![0]
                 
                 XCTAssertEqual(volume.id,          "506f78a4-e098-11e5-ad9f-000f53306ae1")
                 XCTAssertEqual(volume.name,        "example")
@@ -34,6 +31,36 @@ class API_VolumesTests: APITestCase {
                 XCTAssertEqual(volume.size,        10)
                 XCTAssertEqual(volume.createdAt,   Date(ISOString: "2016-03-02T17:00:49Z"))
                 XCTAssertNotNil(volume.region)
+                
+            } else {
+                XCTFail("Expecting a successful request.")
+            }
+            
+            e.fulfill()
+        }
+        
+        self.waitForExpectations(timeout: 10.0, handler: nil)
+        self.clearMock()
+    }
+    
+    func testVolumeCreate() {
+        self.mockUsing(name: "volumesCreate")
+        let e = self.expectation(description: "")
+        
+        let volume = Volume.CreateRequest(size: 1, name: "test", regionSlug: "nyc1", description: "Test volume created from tests.")
+        self.api.create(volume: volume) { result in
+            
+            if case .success(let volumes) = result {
+                
+                XCTAssertNotNil(volumes)
+                XCTAssertEqual(volumes!.count, 1)
+                
+                let createdVolume = volumes![0]
+                
+                XCTAssertEqual(volume.size,        createdVolume.size)
+                XCTAssertEqual(volume.name,        createdVolume.name)
+                XCTAssertEqual(volume.regionSlug,  createdVolume.region.slug)
+                XCTAssertEqual(volume.description, volume.description)
                 
             } else {
                 XCTFail("Expecting a successful request.")

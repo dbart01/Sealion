@@ -17,9 +17,9 @@ public extension API {
         task.resume()
     }
     
-    public func create(volume: Volume.CreateRequest, completion: @escaping (_ result: Result<Volume>) -> Void) {
+    public func create(volume: Volume.CreateRequest, completion: @escaping (_ result: Result<[Volume]>) -> Void) {
         let request = self.requestTo(endpoint: .volumes, method: .post, payload: volume)
-        let task    = self.taskWith(request: request, keyPath: "volume", completion: completion)
+        let task    = self.taskWith(request: request, keyPath: "volumes", completion: completion)
         
         task.resume()
     }

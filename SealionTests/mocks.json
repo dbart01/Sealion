@@ -68,6 +68,43 @@
          ]
       }
    }, 
+   "volumesCreate": {
+      "status": 200, 
+      "json": {
+         "volumes": [
+            {
+               "created_at": "2016-03-02T17:00:49Z", 
+               "size_gigabytes": 1, 
+               "region": {
+                  "available": true, 
+                  "sizes": [
+                     "512mb", 
+                     "1gb", 
+                     "2gb", 
+                     "4gb", 
+                     "8gb", 
+                     "16gb", 
+                     "32gb", 
+                     "48gb", 
+                     "64gb"
+                  ], 
+                  "features": [
+                     "private_networking", 
+                     "backups", 
+                     "ipv6", 
+                     "metadata"
+                  ], 
+                  "name": "New York 1", 
+                  "slug": "nyc1"
+               }, 
+               "name": "test", 
+               "droplet_ids": [], 
+               "id": "506f78a4-e098-11e5-ad9f-000f53306ae1", 
+               "description": "Test volume created from tests."
+            }
+         ]
+      }
+   },
    "actions": {
       "status": 200, 
       "json": {
