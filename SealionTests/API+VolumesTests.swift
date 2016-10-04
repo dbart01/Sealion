@@ -72,4 +72,24 @@ class API_VolumesTests: APITestCase {
         self.waitForExpectations(timeout: 10.0, handler: nil)
         self.clearMock()
     }
+    
+    func testVolumeWithID() {
+        self.mockUsing(name: "volumeWithID")
+        let e  = self.expectation(description: "")
+        let id = ""
+        
+        self.api.volumeWith(id: id) { result in
+            
+            if case .success(let volume) = result {
+                XCTAssertNotNil(volume)
+            } else {
+                XCTFail("Expecting a successful request.")
+            }
+            
+            e.fulfill()
+        }
+        
+        self.waitForExpectations(timeout: 10.0, handler: nil)
+        self.clearMock()
+    }
 }

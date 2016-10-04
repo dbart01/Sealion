@@ -23,4 +23,11 @@ public extension API {
         
         task.resume()
     }
+    
+    public func volumeWith(id: String, completion: @escaping (_ result: Result<Volume>) -> Void) {
+        let request = self.requestTo(endpoint: .volumeWith(id), method: .get)
+        let task    = self.taskWith(request: request, keyPath: "volume", completion: completion)
+        
+        task.resume()
+    }
 }

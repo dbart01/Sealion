@@ -13,6 +13,133 @@
          }
       }
    }, 
+   "volumesCreate": {
+      "status": 200, 
+      "json": {
+         "volumes": [
+            {
+               "size_gigabytes": 1, 
+               "region": {
+                  "available": true, 
+                  "slug": "nyc1", 
+                  "features": [
+                     "private_networking", 
+                     "backups", 
+                     "ipv6", 
+                     "metadata"
+                  ], 
+                  "name": "New York 1", 
+                  "sizes": [
+                     "512mb", 
+                     "1gb", 
+                     "2gb", 
+                     "4gb", 
+                     "8gb", 
+                     "16gb", 
+                     "32gb", 
+                     "48gb", 
+                     "64gb"
+                  ]
+               }, 
+               "description": "Test volume created from tests.", 
+               "id": "506f78a4-e098-11e5-ad9f-000f53306ae1", 
+               "droplet_ids": [], 
+               "created_at": "2016-03-02T17:00:49Z", 
+               "name": "test"
+            }
+         ]
+      }
+   }, 
+   "actions": {
+      "status": 200, 
+      "json": {
+         "actions": [
+            {
+               "status": "completed", 
+               "resource_id": 20123018, 
+               "region": {
+                  "available": true, 
+                  "features": [
+                     "private_networking", 
+                     "backups", 
+                     "ipv6", 
+                     "metadata"
+                  ], 
+                  "slug": "nyc3", 
+                  "name": "New York 3", 
+                  "sizes": [
+                     "512mb", 
+                     "1gb", 
+                     "2gb", 
+                     "4gb", 
+                     "8gb", 
+                     "16gb", 
+                     "m-16gb", 
+                     "32gb", 
+                     "m-32gb", 
+                     "48gb", 
+                     "m-64gb", 
+                     "64gb", 
+                     "m-128gb", 
+                     "m-224gb"
+                  ]
+               }, 
+               "region_slug": "nyc3", 
+               "completed_at": "2016-09-30T19:52:21Z", 
+               "started_at": "2016-09-30T19:52:21Z", 
+               "type": "snapshot", 
+               "id": 6466251, 
+               "resource_type": "droplet"
+            }, 
+            {
+               "status": "completed", 
+               "resource_id": 20001158, 
+               "region": null, 
+               "region_slug": null, 
+               "completed_at": "2016-09-30T19:52:01Z", 
+               "started_at": "2016-09-30T19:52:01Z", 
+               "type": "image_destroy", 
+               "id": 150675375, 
+               "resource_type": "image"
+            }
+         ]
+      }
+   }, 
+   "volumeWithID": {
+      "status": 200, 
+      "json": {
+         "volume": {
+            "size_gigabytes": 1, 
+            "region": {
+               "available": true, 
+               "slug": "nyc1", 
+               "features": [
+                  "private_networking", 
+                  "backups", 
+                  "ipv6", 
+                  "metadata"
+               ], 
+               "name": "New York 1", 
+               "sizes": [
+                  "512mb", 
+                  "1gb", 
+                  "2gb", 
+                  "4gb", 
+                  "8gb", 
+                  "16gb", 
+                  "32gb", 
+                  "48gb", 
+                  "64gb"
+               ]
+            }, 
+            "description": "Test volume created from tests.", 
+            "id": "506f78a4-e098-11e5-ad9f-000f53306ae1", 
+            "droplet_ids": [], 
+            "created_at": "2016-03-02T17:00:49Z", 
+            "name": "test"
+         }
+      }
+   }, 
    "actionWithID": {
       "status": 200, 
       "json": {
@@ -34,10 +161,17 @@
       "json": {
          "volumes": [
             {
-               "created_at": "2016-03-02T17:00:49Z", 
                "size_gigabytes": 10, 
                "region": {
                   "available": true, 
+                  "slug": "nyc1", 
+                  "features": [
+                     "private_networking", 
+                     "backups", 
+                     "ipv6", 
+                     "metadata"
+                  ], 
+                  "name": "New York 1", 
                   "sizes": [
                      "512mb", 
                      "1gb", 
@@ -48,114 +182,15 @@
                      "32gb", 
                      "48gb", 
                      "64gb"
-                  ], 
-                  "features": [
-                     "private_networking", 
-                     "backups", 
-                     "ipv6", 
-                     "metadata"
-                  ], 
-                  "name": "New York 1", 
-                  "slug": "nyc1"
+                  ]
                }, 
-               "name": "example", 
+               "description": "Block store for examples", 
+               "id": "506f78a4-e098-11e5-ad9f-000f53306ae1", 
                "droplet_ids": [
                   20123018
                ], 
-               "id": "506f78a4-e098-11e5-ad9f-000f53306ae1", 
-               "description": "Block store for examples"
-            }
-         ]
-      }
-   }, 
-   "volumesCreate": {
-      "status": 200, 
-      "json": {
-         "volumes": [
-            {
                "created_at": "2016-03-02T17:00:49Z", 
-               "size_gigabytes": 1, 
-               "region": {
-                  "available": true, 
-                  "sizes": [
-                     "512mb", 
-                     "1gb", 
-                     "2gb", 
-                     "4gb", 
-                     "8gb", 
-                     "16gb", 
-                     "32gb", 
-                     "48gb", 
-                     "64gb"
-                  ], 
-                  "features": [
-                     "private_networking", 
-                     "backups", 
-                     "ipv6", 
-                     "metadata"
-                  ], 
-                  "name": "New York 1", 
-                  "slug": "nyc1"
-               }, 
-               "name": "test", 
-               "droplet_ids": [], 
-               "id": "506f78a4-e098-11e5-ad9f-000f53306ae1", 
-               "description": "Test volume created from tests."
-            }
-         ]
-      }
-   },
-   "actions": {
-      "status": 200, 
-      "json": {
-         "actions": [
-            {
-               "status": "completed", 
-               "resource_id": 20123018, 
-               "region": {
-                  "available": true, 
-                  "sizes": [
-                     "512mb", 
-                     "1gb", 
-                     "2gb", 
-                     "4gb", 
-                     "8gb", 
-                     "16gb", 
-                     "m-16gb", 
-                     "32gb", 
-                     "m-32gb", 
-                     "48gb", 
-                     "m-64gb", 
-                     "64gb", 
-                     "m-128gb", 
-                     "m-224gb"
-                  ], 
-                  "slug": "nyc3", 
-                  "name": "New York 3", 
-                  "features": [
-                     "private_networking", 
-                     "backups", 
-                     "ipv6", 
-                     "metadata"
-                  ]
-               }, 
-               "region_slug": "nyc3", 
-               "completed_at": "2016-09-30T19:52:21Z", 
-               "started_at": "2016-09-30T19:52:21Z", 
-               "type": "snapshot", 
-               "id": 6466251, 
-               "resource_type": "droplet"
-            }, 
-            {
-               "status": "completed", 
-               "resource_id": 20001158, 
-               "region": null, 
-               "region_slug": null, 
-               "completed_at": "2016-09-30T19:52:01Z", 
-               "started_at": "2016-09-30T19:52:01Z", 
-               "type": "image_destroy", 
-               "id": 150675375, 
-               "resource_type": "image"
+               "name": "example"
             }
          ]
       }

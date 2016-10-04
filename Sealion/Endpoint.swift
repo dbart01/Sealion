@@ -13,6 +13,7 @@ internal enum Endpoint {
     case actions
     case actionWith(Int)
     case volumes
+    case volumeWith(String)
     
     internal var path: String {
         switch self {
@@ -20,6 +21,7 @@ internal enum Endpoint {
         case .actions: return "actions"
         case .actionWith(let id): return "actions/\(id)"
         case .volumes: return "volumes"
+        case .volumeWith(let id): return "volume/\(id)"
         }
     }
 }
