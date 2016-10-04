@@ -44,7 +44,7 @@ public class API {
     //  MARK: - URL Generation -
     //
     private func urlTo(endpoint: Endpoint) -> URL {
-        return URL(string: endpoint.rawValue, relativeTo: self.apiRoot)!
+        return URL(string: endpoint.path, relativeTo: self.apiRoot)!
     }
     
     // ----------------------------------

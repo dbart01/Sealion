@@ -47,4 +47,24 @@ class API_ActionsTests: APITestCase {
         self.waitForExpectations(timeout: 10.0, handler: nil)
         self.session.deactiveMock()
     }
+    
+    func testActionWithID() {
+        self.session.activateMockNamed(name: "actionWithIDSuccess")
+        let e  = self.expectation(description: "")
+        let id = 150675425
+        
+        self.api.actionWith(id: id) { result in
+            
+            if case .success(let action) = result {
+                XCTAssertNotNil(action)
+            } else {
+                XCTFail("Expecting a successful request.")
+            }
+            
+            e.fulfill()
+        }
+        
+        self.waitForExpectations(timeout: 10.0, handler: nil)
+        self.session.deactiveMock()
+    }
 }

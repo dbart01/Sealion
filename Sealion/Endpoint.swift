@@ -8,7 +8,16 @@
 
 import Foundation
 
-internal enum Endpoint: String {
-    case account = "account"
-    case actions = "actions"
+internal enum Endpoint {
+    case account
+    case actions
+    case actionWith(Int)
+    
+    internal var path: String {
+        switch self {
+        case .account: return "account"
+        case .actions: return "actions"
+        case .actionWith(let id): return "actions/\(id)"
+        }
+    }
 }

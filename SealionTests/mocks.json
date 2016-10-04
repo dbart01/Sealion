@@ -13,6 +13,22 @@
          }
       }
    }, 
+   "actionWithIDSuccess": {
+      "status": 200, 
+      "json": {
+         "action": {
+            "status": "completed", 
+            "resource_id": 20000018, 
+            "region": null, 
+            "region_slug": null, 
+            "completed_at": "2016-09-30T19:52:21Z", 
+            "started_at": "2016-09-30T19:52:21Z", 
+            "type": "image_destroy", 
+            "id": 150675425, 
+            "resource_type": "image"
+         }
+      }
+   }, 
    "actionsSuccess": {
       "status": 200, 
       "json": {
@@ -22,6 +38,14 @@
                "resource_id": 20123018, 
                "region": {
                   "available": true, 
+                  "slug": "nyc3", 
+                  "features": [
+                     "private_networking", 
+                     "backups", 
+                     "ipv6", 
+                     "metadata"
+                  ], 
+                  "name": "New York 3", 
                   "sizes": [
                      "512mb", 
                      "1gb", 
@@ -37,15 +61,7 @@
                      "64gb", 
                      "m-128gb", 
                      "m-224gb"
-                  ], 
-                  "features": [
-                     "private_networking", 
-                     "backups", 
-                     "ipv6", 
-                     "metadata"
-                  ], 
-                  "name": "New York 3", 
-                  "slug": "nyc3"
+                  ]
                }, 
                "region_slug": "nyc3", 
                "completed_at": "2016-09-30T19:52:21Z", 
