@@ -19,25 +19,24 @@ public class API {
     
     private let apiRoot: URL
     private let session: URLSession
-    private let queue:   OperationQueue
     
     // ----------------------------------
     //  MARK: - Init -
     //
     public convenience init(version: Version, token: String) {
-        
-        let queue   = OperationQueue()
-        let session = URLSession(configuration: URLSessionConfiguration.default, delegate: nil, delegateQueue: queue)
-        
-        self.init(version: version, token: token, session: session, queue: queue)
+        self.init(version: version, token: token)
     }
     
-    internal init(version: Version, token: String, session: URLSession, queue: OperationQueue) {
+    internal init(version: Version, token: String, session: URLSession? = nil) {
         self.version = version
         self.token   = token
-        self.session = session
-        self.queue   = queue
         self.apiRoot = URL(string: self.version.rawValue)!
+        
+        if let session = session {
+            self.session = session
+        } else {
+            self.session = URLSession(configuration: URLSessionConfiguration.default, delegate: nil, delegateQueue: OperationQueue())
+        }
     }
     
     // ----------------------------------

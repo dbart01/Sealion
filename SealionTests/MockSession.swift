@@ -10,7 +10,7 @@ import UIKit
 import Sealion
 
 class MockSession: URLSession {
-    
+
     private let stubs: [String: Stub]
     private var activeStub: Stub?
     
@@ -66,7 +66,7 @@ class MockSession: URLSession {
         if let activeStub = self.activeStub {
             return self.mockDataTaskWith(stub: activeStub, url: url, completionHandler: completionHandler)
         } else {
-            return super.dataTask(with: url, completionHandler: completionHandler)
+            fatalError("Failed to stub request. No active stub provided.")
         }
     }
     
@@ -75,7 +75,7 @@ class MockSession: URLSession {
         if let activeStub = self.activeStub {
             return self.mockDataTaskWith(stub: activeStub, url: request.url!, completionHandler: completionHandler)
         } else {
-            return super.dataTask(with: request, completionHandler: completionHandler)
+            fatalError("Failed to stub request. No active stub provided.")
         }
     }
     

@@ -27,6 +27,9 @@
 		9A950BEB1DA3433A0068DFF8 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A950BEA1DA3433A0068DFF8 /* DateFormatter.swift */; };
 		9A950BED1DA345FF0068DFF8 /* API+ActionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A950BEC1DA345FF0068DFF8 /* API+ActionsTests.swift */; };
 		9A950BEF1DA3CA5A0068DFF8 /* Region.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A950BEE1DA3CA5A0068DFF8 /* Region.swift */; };
+		9A950BF11DA3CFBE0068DFF8 /* API+Volumes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A950BF01DA3CFBE0068DFF8 /* API+Volumes.swift */; };
+		9A950BF31DA3CFF20068DFF8 /* Volume.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A950BF21DA3CFF20068DFF8 /* Volume.swift */; };
+		9A950BF51DA3D2000068DFF8 /* API+VolumesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A950BF41DA3D2000068DFF8 /* API+VolumesTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +66,9 @@
 		9A950BEA1DA3433A0068DFF8 /* DateFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		9A950BEC1DA345FF0068DFF8 /* API+ActionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "API+ActionsTests.swift"; sourceTree = "<group>"; };
 		9A950BEE1DA3CA5A0068DFF8 /* Region.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Region.swift; sourceTree = "<group>"; };
+		9A950BF01DA3CFBE0068DFF8 /* API+Volumes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "API+Volumes.swift"; sourceTree = "<group>"; };
+		9A950BF21DA3CFF20068DFF8 /* Volume.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Volume.swift; sourceTree = "<group>"; };
+		9A950BF41DA3D2000068DFF8 /* API+VolumesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "API+VolumesTests.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +128,7 @@
 				9A950B931DA2796B0068DFF8 /* APITestCase.swift */,
 				9A950B771DA05DC20068DFF8 /* API+AccountTests.swift */,
 				9A950BEC1DA345FF0068DFF8 /* API+ActionsTests.swift */,
+				9A950BF41DA3D2000068DFF8 /* API+VolumesTests.swift */,
 				9A950B791DA05DC20068DFF8 /* Info.plist */,
 			);
 			path = SealionTests;
@@ -134,6 +141,7 @@
 				9A950B841DA1D1F30068DFF8 /* API.swift */,
 				9A950B861DA1D2680068DFF8 /* API+Account.swift */,
 				9A950BE61DA3420E0068DFF8 /* API+Actions.swift */,
+				9A950BF01DA3CFBE0068DFF8 /* API+Volumes.swift */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -144,6 +152,7 @@
 				9A950B891DA1D3880068DFF8 /* Account.swift */,
 				9A950BE81DA342260068DFF8 /* Action.swift */,
 				9A950BEE1DA3CA5A0068DFF8 /* Region.swift */,
+				9A950BF21DA3CFF20068DFF8 /* Volume.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -301,8 +310,10 @@
 				9A950BE91DA342260068DFF8 /* Action.swift in Sources */,
 				9A950B851DA1D1F30068DFF8 /* API.swift in Sources */,
 				9A950BE71DA3420E0068DFF8 /* API+Actions.swift in Sources */,
+				9A950BF11DA3CFBE0068DFF8 /* API+Volumes.swift in Sources */,
 				9A950BEB1DA3433A0068DFF8 /* DateFormatter.swift in Sources */,
 				9A950B921DA1D99A0068DFF8 /* Method.swift in Sources */,
+				9A950BF31DA3CFF20068DFF8 /* Volume.swift in Sources */,
 				9A950B8A1DA1D3880068DFF8 /* Account.swift in Sources */,
 				9A950BEF1DA3CA5A0068DFF8 /* Region.swift in Sources */,
 				9A950BE51DA2FFF80068DFF8 /* Result.swift in Sources */,
@@ -317,6 +328,7 @@
 			files = (
 				9A950B991DA27CFA0068DFF8 /* MockDataTask.swift in Sources */,
 				9A950B971DA279C20068DFF8 /* MockSession.swift in Sources */,
+				9A950BF51DA3D2000068DFF8 /* API+VolumesTests.swift in Sources */,
 				9A950B941DA2796B0068DFF8 /* APITestCase.swift in Sources */,
 				9A950B781DA05DC20068DFF8 /* API+AccountTests.swift in Sources */,
 				9A950BED1DA345FF0068DFF8 /* API+ActionsTests.swift in Sources */,

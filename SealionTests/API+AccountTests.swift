@@ -12,7 +12,7 @@ import XCTest
 class API_AccountTests: APITestCase {
     
     func testAccount() {
-        self.session.activateMockNamed(name: "accountSuccess")
+        self.mockUsing(name: "accountSuccess")
         let e = self.expectation(description: "")
         
         self.api.account { result in
@@ -39,6 +39,6 @@ class API_AccountTests: APITestCase {
         }
         
         self.waitForExpectations(timeout: 10.0, handler: nil)
-        self.session.deactiveMock()
+        self.clearMock()
     }
 }
