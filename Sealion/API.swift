@@ -49,10 +49,13 @@ public class API {
     // ----------------------------------
     //  MARK: - Request Generation -
     //
-    internal func requestTo(endpoint: Endpoint, method: Method) -> URLRequest {
+    internal func requestTo(endpoint: Endpoint, method: Method, payload: JsonConvertible? = nil) -> URLRequest {
         var request        = URLRequest(url: self.urlTo(endpoint: endpoint))
         request.httpMethod = method.rawValue
         
+        if let payload = payload {
+            request.httpBody = try! JSONSerialization.data(withJSONObject: payload.json, options: [])
+        }
         request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         
         return request

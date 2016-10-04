@@ -41,3 +41,26 @@ public func ==(lhs: Volume, rhs: Volume) -> Bool {
         (lhs.createdAt   == rhs.createdAt) &&
         (lhs.region      == rhs.region)
 }
+
+// ----------------------------------
+//  MARK: - Creation -
+//
+public extension Volume {
+    
+    public struct CreateRequest: JsonConvertible {
+        
+        public let size:        Int
+        public let name:        String
+        public let regionSlug:  String
+        public let description: String
+        
+        public var json: Any {
+            return [
+                "size_gigabytes": self.size,
+                "name":           self.name,
+                "description":    self.description,
+                "region":         self.regionSlug,
+            ]
+        }
+    }
+}

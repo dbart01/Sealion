@@ -30,6 +30,7 @@
 		9A950BF11DA3CFBE0068DFF8 /* API+Volumes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A950BF01DA3CFBE0068DFF8 /* API+Volumes.swift */; };
 		9A950BF31DA3CFF20068DFF8 /* Volume.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A950BF21DA3CFF20068DFF8 /* Volume.swift */; };
 		9A950BF51DA3D2000068DFF8 /* API+VolumesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A950BF41DA3D2000068DFF8 /* API+VolumesTests.swift */; };
+		9AA5DD801DA43FC1003FEFCF /* JsonConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA5DD7F1DA43FC1003FEFCF /* JsonConvertible.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,7 @@
 		9A950BF01DA3CFBE0068DFF8 /* API+Volumes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "API+Volumes.swift"; sourceTree = "<group>"; };
 		9A950BF21DA3CFF20068DFF8 /* Volume.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Volume.swift; sourceTree = "<group>"; };
 		9A950BF41DA3D2000068DFF8 /* API+VolumesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "API+VolumesTests.swift"; sourceTree = "<group>"; };
+		9AA5DD7F1DA43FC1003FEFCF /* JsonConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonConvertible.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +151,7 @@
 		9A950B881DA1D3800068DFF8 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				9AA5DD811DA43FE3003FEFCF /* Requests */,
 				9A950B891DA1D3880068DFF8 /* Account.swift */,
 				9A950BE81DA342260068DFF8 /* Action.swift */,
 				9A950BEE1DA3CA5A0068DFF8 /* Region.swift */,
@@ -161,6 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				9A950B8C1DA1D3D10068DFF8 /* JsonCreatable.swift */,
+				9AA5DD7F1DA43FC1003FEFCF /* JsonConvertible.swift */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -192,6 +196,13 @@
 				9A950B9A1DA27D160068DFF8 /* Stub.swift */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		9AA5DD811DA43FE3003FEFCF /* Requests */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Requests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -317,6 +328,7 @@
 				9A950B8A1DA1D3880068DFF8 /* Account.swift in Sources */,
 				9A950BEF1DA3CA5A0068DFF8 /* Region.swift in Sources */,
 				9A950BE51DA2FFF80068DFF8 /* Result.swift in Sources */,
+				9AA5DD801DA43FC1003FEFCF /* JsonConvertible.swift in Sources */,
 				9A950B8D1DA1D3D10068DFF8 /* JsonCreatable.swift in Sources */,
 				9A950B901DA1D8610068DFF8 /* Endpoint.swift in Sources */,
 			);
@@ -530,6 +542,7 @@
 				9A950B7F1DA05DC20068DFF8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9A950B801DA05DC20068DFF8 /* Build configuration list for PBXNativeTarget "SealionTests" */ = {
 			isa = XCConfigurationList;
@@ -538,6 +551,7 @@
 				9A950B821DA05DC20068DFF8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
