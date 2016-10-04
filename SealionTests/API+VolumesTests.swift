@@ -12,7 +12,7 @@ import XCTest
 class API_VolumesTests: APITestCase {
     
     func testVolumesList() {
-        self.mockUsing(name: "volumesSuccess")
+        self.mockUsing(name: "volumes")
         let e = self.expectation(description: "")
         
         self.api.volumes { result in

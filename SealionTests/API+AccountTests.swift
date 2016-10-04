@@ -12,7 +12,7 @@ import XCTest
 class API_AccountTests: APITestCase {
     
     func testAccount() {
-        self.mockUsing(name: "accountSuccess")
+        self.mockUsing(name: "account")
         let e = self.expectation(description: "")
         
         self.api.account { result in

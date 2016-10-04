@@ -12,7 +12,7 @@ import XCTest
 class API_ActionsTests: APITestCase {
     
     func testActionsList() {
-        self.mockUsing(name: "actionsSuccess")
+        self.mockUsing(name: "actions")
         let e = self.expectation(description: "")
         
         self.api.actions { result in
@@ -49,7 +49,7 @@ class API_ActionsTests: APITestCase {
     }
     
     func testActionWithID() {
-        self.mockUsing(name: "actionWithIDSuccess")
+        self.mockUsing(name: "actionWithID")
         let e  = self.expectation(description: "")
         let id = 150675425
         

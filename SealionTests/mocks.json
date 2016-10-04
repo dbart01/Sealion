@@ -1,5 +1,5 @@
 {
-   "accountSuccess": {
+   "account": {
       "status": 200, 
       "json": {
          "account": {
@@ -13,7 +13,7 @@
          }
       }
    }, 
-   "actionWithIDSuccess": {
+   "actionWithID": {
       "status": 200, 
       "json": {
          "action": {
@@ -29,7 +29,7 @@
          }
       }
    }, 
-   "volumesSuccess": {
+   "volumes": {
       "status": 200, 
       "json": {
          "volumes": [
@@ -68,7 +68,7 @@
          ]
       }
    }, 
-   "actionsSuccess": {
+   "actions": {
       "status": 200, 
       "json": {
          "actions": [
