@@ -10,4 +10,5 @@ import Foundation
 
 internal enum Endpoint: String {
     case account = "account"
+    case actions = "actions"
 }

@@ -12,5 +12,34 @@
             "email": "john.smith@gmail.com"
          }
       }
+   }, 
+   "actionsSuccess": {
+      "status": 200, 
+      "json": {
+         "actions": [
+            {
+               "status": "completed", 
+               "resource_id": 20000018, 
+               "region": null, 
+               "region_slug": null, 
+               "completed_at": "2016-09-30T19:52:21Z", 
+               "started_at": "2016-09-30T19:52:21Z", 
+               "type": "image_destroy", 
+               "id": 150675425, 
+               "resource_type": "image"
+            }, 
+            {
+               "status": "completed", 
+               "resource_id": 20001158, 
+               "region": null, 
+               "region_slug": null, 
+               "completed_at": "2016-09-30T19:52:01Z", 
+               "started_at": "2016-09-30T19:52:01Z", 
+               "type": "image_destroy", 
+               "id": 150675375, 
+               "resource_type": "image"
+            }
+         ]
+      }
    }
 }
