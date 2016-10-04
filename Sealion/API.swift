@@ -8,8 +8,6 @@
 
 import Foundation
 
-public typealias JSON = [String : Any]
-
 public class API {
     
     public enum Version: String {

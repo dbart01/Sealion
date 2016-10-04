@@ -17,11 +17,12 @@ public struct Action: JsonCreatable, Equatable {
     public let startedAt:    Date
     public let finishedAt:   Date
     public let resourceType: String
+    public let region:       Region?
     
     // ----------------------------------
     //  MARK: - JsonCreatable -
     //
-    public init(json: [String : Any]) {
+    public init(json: JSON) {
         self.id           = json["id"]            as! Int
         self.resourceID   = json["resource_id"]   as! Int
         self.status       = json["status"]        as! String
@@ -29,6 +30,12 @@ public struct Action: JsonCreatable, Equatable {
         self.resourceType = json["resource_type"] as! String
         self.startedAt    = Date(ISOString: json["started_at"]   as! String)
         self.finishedAt   = Date(ISOString: json["completed_at"] as! String)
+        
+        if let regionJSON = json["region"] as? JSON {
+            self.region = Region(json: regionJSON)
+        } else {
+            self.region = nil
+        }
     }
 }
 

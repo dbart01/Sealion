@@ -26,6 +26,7 @@
 		9A950BE91DA342260068DFF8 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A950BE81DA342260068DFF8 /* Action.swift */; };
 		9A950BEB1DA3433A0068DFF8 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A950BEA1DA3433A0068DFF8 /* DateFormatter.swift */; };
 		9A950BED1DA345FF0068DFF8 /* API+ActionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A950BEC1DA345FF0068DFF8 /* API+ActionsTests.swift */; };
+		9A950BEF1DA3CA5A0068DFF8 /* Region.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A950BEE1DA3CA5A0068DFF8 /* Region.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		9A950BE81DA342260068DFF8 /* Action.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
 		9A950BEA1DA3433A0068DFF8 /* DateFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		9A950BEC1DA345FF0068DFF8 /* API+ActionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "API+ActionsTests.swift"; sourceTree = "<group>"; };
+		9A950BEE1DA3CA5A0068DFF8 /* Region.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Region.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +143,7 @@
 			children = (
 				9A950B891DA1D3880068DFF8 /* Account.swift */,
 				9A950BE81DA342260068DFF8 /* Action.swift */,
+				9A950BEE1DA3CA5A0068DFF8 /* Region.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -301,6 +304,7 @@
 				9A950BEB1DA3433A0068DFF8 /* DateFormatter.swift in Sources */,
 				9A950B921DA1D99A0068DFF8 /* Method.swift in Sources */,
 				9A950B8A1DA1D3880068DFF8 /* Account.swift in Sources */,
+				9A950BEF1DA3CA5A0068DFF8 /* Region.swift in Sources */,
 				9A950BE51DA2FFF80068DFF8 /* Result.swift in Sources */,
 				9A950B8D1DA1D3D10068DFF8 /* JsonCreatable.swift in Sources */,
 				9A950B901DA1D8610068DFF8 /* Endpoint.swift in Sources */,

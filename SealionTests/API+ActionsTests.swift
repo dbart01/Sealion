@@ -27,13 +27,15 @@ class API_ActionsTests: APITestCase {
                 
                 let action = actions[0]
                 
-                XCTAssertEqual(action.id,           150675425)
-                XCTAssertEqual(action.resourceID,   20000018)
-                XCTAssertEqual(action.resourceType, "image")
+                XCTAssertEqual(action.id,           6466251)
+                XCTAssertEqual(action.resourceID,   20123018)
+                XCTAssertEqual(action.resourceType, "droplet")
                 XCTAssertEqual(action.status,       "completed")
-                XCTAssertEqual(action.type,         "image_destroy")
+                XCTAssertEqual(action.type,         "snapshot")
                 XCTAssertEqual(action.finishedAt,   Date(ISOString: "2016-09-30T19:52:21Z"))
                 XCTAssertEqual(action.startedAt,    Date(ISOString: "2016-09-30T19:52:21Z"))
+                
+                XCTAssertNotNil(action.region)
                 
             } else {
                 XCTFail("Expecting a successful request.")

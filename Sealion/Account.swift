@@ -21,7 +21,7 @@ public struct Account: JsonCreatable, Equatable {
     // ----------------------------------
     //  MARK: - JsonCreatable -
     //
-    public init(json: [String : Any]) {
+    public init(json: JSON) {
         self.dropletLimit    = json["droplet_limit"]     as! Int
         self.floatingIPLimit = json["floating_ip_limit"] as! Int
         self.verified        = json["email_verified"]    as! Bool

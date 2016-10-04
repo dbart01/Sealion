@@ -7,11 +7,12 @@
 //
 
 import Foundation
+import Sealion
 
 struct Stub {
     
     let status:  Int
-    let json:    [String : Any]?
+    let json:    JSON?
     let headers: [String : String]?
     
     var jsonData: Data? {
@@ -23,11 +24,11 @@ struct Stub {
     //
     init(json: [String : Any]) {
         self.status  = json["status"]  as! Int
-        self.json    = json["json"]    as? [String : Any]
+        self.json    = json["json"]    as? JSON
         self.headers = json["headers"] as? [String : String]
     }
     
-    init(status: Int, json: [String : Any]? = nil) {
+    init(status: Int, json: JSON? = nil) {
         self.status  = status
         self.json    = json
         self.headers = nil

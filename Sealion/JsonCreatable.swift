@@ -8,6 +8,8 @@
 
 import Foundation
 
+public typealias JSON = [String : Any]
+
 public protocol JsonCreatable {
-    init(json: [String: Any])
+    init(json: JSON)
 }

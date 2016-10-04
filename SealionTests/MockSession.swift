@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Sealion
 
 class MockSession: URLSession {
     
@@ -27,11 +28,11 @@ class MockSession: URLSession {
         
         let stubsURL  = Bundle(for: MockSession.self).url(forResource: stubsName, withExtension: "json")!
         let stubsData = try! Data(contentsOf: stubsURL)
-        let stubsDict = try! JSONSerialization.jsonObject(with: stubsData, options: []) as! [String: Any]
+        let stubsDict = try! JSONSerialization.jsonObject(with: stubsData, options: []) as! JSON
         
         var responses = [String: Stub]()
         for (url, dictionary) in stubsDict {
-            responses[url] = Stub(json: dictionary as! [String : Any])
+            responses[url] = Stub(json: dictionary as! JSON)
         }
         return responses
     }
