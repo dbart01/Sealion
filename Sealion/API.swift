@@ -8,6 +8,8 @@
 
 import Foundation
 
+public typealias JSON = [String : Any]
+
 public class API {
     
     public enum Version: String {
@@ -63,6 +65,44 @@ public class API {
     //  MARK: - Request Execution -
     //
     internal func taskWith<T: JsonCreatable>(request: URLRequest, keyPath: String, completion: @escaping (Result<T>) -> Void) -> URLSessionDataTask {
+        
+        return self.taskWith(request: request, keyPath: keyPath) { result in
+            switch result {
+            case .success(let json):
+                
+                var object: T?
+                if let json = json {
+                    object = T(json: json as! JSON)
+                }
+                completion(.success(object))
+                
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    internal func taskWith<T: JsonCreatable>(request: URLRequest, keyPath: String, completion: @escaping (Result<[T]>) -> Void) -> URLSessionDataTask {
+        
+        return self.taskWith(request: request, keyPath: keyPath) { result in
+            switch result {
+            case .success(let json):
+                
+                var collection: [T]?
+                if let json = json as? [JSON] {
+                    collection = json.map {
+                        T(json: $0)
+                    }
+                }
+                completion(.success(collection))
+                
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    internal func taskWith(request: URLRequest, keyPath: String, completion: @escaping (Result<Any>) -> Void) -> URLSessionDataTask {
         return self.session.dataTask(with: request) { (data, response, error) in
             
             /* ---------------------------------
@@ -85,22 +125,18 @@ public class API {
                  ** Parse the body JSON if it is
                  ** not nil.
                  */
-                let value: T?
-                
                 if let data = data,
-                    var json = try! JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
+                    var json = try? JSONSerialization.jsonObject(with: data, options: []) {
                     
                     let components = keyPath.components(separatedBy: ".")
                     for component in components {
-                        json = json[component] as! [String: Any]
+                        json = (json as! JSON)[component]
                     }
                     
-                    value = T(json: json)
+                    completion(.success(json))
                 } else {
-                    value = nil
+                    completion(.success(nil))
                 }
-                
-                completion(.success(value))
                 
             } else {
                 completion(.failure(error?.localizedDescription))

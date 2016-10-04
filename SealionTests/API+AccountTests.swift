@@ -23,13 +23,13 @@ class API_AccountTests: APITestCase {
                     return
                 }
                 
-                XCTAssertEqual(account.status, "active")
-                XCTAssertEqual(account.uuid, "b9831c92486271c9797ef5h77e234f882d7a3fc2")
                 XCTAssertEqual(account.floatingIPLimit, 3)
-                XCTAssertEqual(account.verified, true)
-                XCTAssertEqual(account.dropletLimit, 25)
-                XCTAssertEqual(account.message, "")
-                XCTAssertEqual(account.email, "john.smith@gmail.com")
+                XCTAssertEqual(account.dropletLimit,    25)
+                XCTAssertEqual(account.status,          "active")
+                XCTAssertEqual(account.uuid,            "b9831c92486271c9797ef5h77e234f882d7a3fc2")
+                XCTAssertEqual(account.email,           "john.smith@gmail.com")
+                XCTAssertEqual(account.message,         "")
+                XCTAssertEqual(account.verified,        true)
                 
             } else {
                 XCTFail("Expecting a successful request.")
