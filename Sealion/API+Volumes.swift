@@ -10,6 +10,8 @@ import Foundation
 
 public extension API {
     
+    typealias VolumeFilter = (name: String, regionSlug: String)
+    
     public func volumes(completion: @escaping (_ result: Result<[Volume]>) -> Void) {
         let request = self.requestTo(endpoint: .volumes, method: .get)
         let task    = self.taskWith(request: request, keyPath: "volumes", completion: completion)
@@ -31,7 +33,7 @@ public extension API {
         task.resume()
     }
     
-    public func volumeWith(filter: (name: String, regionSlug: String), completion: @escaping (_ result: Result<[Volume]>) -> Void) {
+    public func volumeWith(filter: VolumeFilter, completion: @escaping (_ result: Result<[Volume]>) -> Void) {
         let parameters = [
             "name"   : filter.name,
             "region" : filter.regionSlug,
