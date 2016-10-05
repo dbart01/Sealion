@@ -43,4 +43,11 @@ public extension API {
         
         task.resume()
     }
+    
+    public func delete(volume id: String, completion: @escaping (_ result: Result<Volume>) -> Void) {
+        let request = self.requestTo(endpoint: .volumeWith(id), method: .delete)
+        let task    = self.taskWith(request: request, completion: completion)
+        
+        task.resume()
+    }
 }

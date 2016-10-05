@@ -16,7 +16,10 @@ struct Stub {
     let headers: [String : String]?
     
     var jsonData: Data? {
-        return try? JSONSerialization.data(withJSONObject: self.json ?? [], options: [])
+        if let json = self.json {
+            return try? JSONSerialization.data(withJSONObject: json, options: [])
+        }
+        return nil
     }
     
     // ----------------------------------

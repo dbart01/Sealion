@@ -77,7 +77,7 @@ public class API {
     // ----------------------------------
     //  MARK: - Request Execution -
     //
-    internal func taskWith<T: JsonCreatable>(request: URLRequest, keyPath: String, completion: @escaping (Result<T>) -> Void) -> URLSessionDataTask {
+    internal func taskWith<T: JsonCreatable>(request: URLRequest, keyPath: String? = nil, completion: @escaping (Result<T>) -> Void) -> URLSessionDataTask {
         
         return self.taskWith(request: request, keyPath: keyPath) { result in
             switch result {
@@ -95,7 +95,7 @@ public class API {
         }
     }
     
-    internal func taskWith<T: JsonCreatable>(request: URLRequest, keyPath: String, completion: @escaping (Result<[T]>) -> Void) -> URLSessionDataTask {
+    internal func taskWith<T: JsonCreatable>(request: URLRequest, keyPath: String? = nil, completion: @escaping (Result<[T]>) -> Void) -> URLSessionDataTask {
         
         return self.taskWith(request: request, keyPath: keyPath) { result in
             switch result {
@@ -115,7 +115,7 @@ public class API {
         }
     }
     
-    internal func taskWith(request: URLRequest, keyPath: String, completion: @escaping (Result<Any>) -> Void) -> URLSessionDataTask {
+    internal func taskWith(request: URLRequest, keyPath: String? = nil, completion: @escaping (Result<Any>) -> Void) -> URLSessionDataTask {
         return self.session.dataTask(with: request) { (data, response, error) in
             
             /* ---------------------------------
@@ -141,9 +141,15 @@ public class API {
                 if let data = data,
                     var json = try? JSONSerialization.jsonObject(with: data, options: []) {
                     
-                    let components = keyPath.components(separatedBy: ".")
-                    for component in components {
-                        json = (json as! JSON)[component]
+                    /* ---------------------------------
+                     ** If a keyPath was provided, we'll
+                     ** dig into the JSON object.
+                     */
+                    if let keyPath = keyPath {
+                        let components = keyPath.components(separatedBy: ".")
+                        for component in components {
+                            json = (json as! JSON)[component]
+                        }
                     }
                     
                     completion(.success(json))

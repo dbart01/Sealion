@@ -12,6 +12,10 @@
             "email": "john.smith@gmail.com"
          }
       }
+   },
+   "volumeDelete": {
+      "status": 204, 
+      "json": null
    }, 
    "volumes": {
       "status": 200, 
