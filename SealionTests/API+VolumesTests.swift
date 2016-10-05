@@ -112,12 +112,32 @@ class API_VolumesTests: APITestCase {
         self.clearMock()
     }
     
-    func testVolumeDelete() {
+    func testVolumeDeleteByID() {
         self.mockUsing(name: "volumeDelete")
         let e  = self.expectation(description: "")
         let id = ""
         
         self.api.delete(volume: id) { result in
+            
+            if case .success(let volume) = result {
+                XCTAssertNil(volume)
+            } else {
+                XCTFail("Expecting a successful request.")
+            }
+            
+            e.fulfill()
+        }
+        
+        self.waitForExpectations(timeout: 10.0, handler: nil)
+        self.clearMock()
+    }
+    
+    func testVolumeDeleteByName() {
+        self.mockUsing(name: "volumeDelete")
+        let e  = self.expectation(description: "")
+        
+        let filter: API.VolumeFilter = ("test", "nyc1")
+        self.api.delete(volume: filter) { result in
             
             if case .success(let volume) = result {
                 XCTAssertNil(volume)
