@@ -13,3 +13,11 @@ public typealias JSON = [String : Any]
 public protocol JsonCreatable {
     init(json: JSON)
 }
+
+public extension JsonCreatable {
+    static func collection(json: [JSON]) -> [Self] {
+        return json.map {
+            Self(json: $0)
+        }
+    }
+}

@@ -32,6 +32,12 @@
 		9A950BF51DA3D2000068DFF8 /* API+VolumesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A950BF41DA3D2000068DFF8 /* API+VolumesTests.swift */; };
 		9AA5DD801DA43FC1003FEFCF /* JsonConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA5DD7F1DA43FC1003FEFCF /* JsonConvertible.swift */; };
 		9AA5DD8C1DA49705003FEFCF /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA5DD8B1DA49705003FEFCF /* Error.swift */; };
+		9AA5DD8E1DA49EB2003FEFCF /* Droplet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA5DD8D1DA49EB2003FEFCF /* Droplet.swift */; };
+		9AA5DD901DA4A079003FEFCF /* Kernel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA5DD8F1DA4A079003FEFCF /* Kernel.swift */; };
+		9AA5DD921DA4A0D6003FEFCF /* BackupWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA5DD911DA4A0D6003FEFCF /* BackupWindow.swift */; };
+		9AA5DD941DA4A12F003FEFCF /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA5DD931DA4A12F003FEFCF /* Image.swift */; };
+		9AA5DD961DA51C04003FEFCF /* Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA5DD951DA51C04003FEFCF /* Size.swift */; };
+		9AA5DD981DA51D8D003FEFCF /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA5DD971DA51D8D003FEFCF /* Network.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +79,12 @@
 		9A950BF41DA3D2000068DFF8 /* API+VolumesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "API+VolumesTests.swift"; sourceTree = "<group>"; };
 		9AA5DD7F1DA43FC1003FEFCF /* JsonConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonConvertible.swift; sourceTree = "<group>"; };
 		9AA5DD8B1DA49705003FEFCF /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
+		9AA5DD8D1DA49EB2003FEFCF /* Droplet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Droplet.swift; sourceTree = "<group>"; };
+		9AA5DD8F1DA4A079003FEFCF /* Kernel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Kernel.swift; sourceTree = "<group>"; };
+		9AA5DD911DA4A0D6003FEFCF /* BackupWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackupWindow.swift; sourceTree = "<group>"; };
+		9AA5DD931DA4A12F003FEFCF /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
+		9AA5DD951DA51C04003FEFCF /* Size.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Size.swift; sourceTree = "<group>"; };
+		9AA5DD971DA51D8D003FEFCF /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +170,12 @@
 				9A950BE81DA342260068DFF8 /* Action.swift */,
 				9A950BEE1DA3CA5A0068DFF8 /* Region.swift */,
 				9A950BF21DA3CFF20068DFF8 /* Volume.swift */,
+				9AA5DD8D1DA49EB2003FEFCF /* Droplet.swift */,
+				9AA5DD8F1DA4A079003FEFCF /* Kernel.swift */,
+				9AA5DD911DA4A0D6003FEFCF /* BackupWindow.swift */,
+				9AA5DD931DA4A12F003FEFCF /* Image.swift */,
+				9AA5DD951DA51C04003FEFCF /* Size.swift */,
+				9AA5DD971DA51D8D003FEFCF /* Network.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -314,18 +332,24 @@
 			files = (
 				9A950B871DA1D2680068DFF8 /* API+Account.swift in Sources */,
 				9A950BE91DA342260068DFF8 /* Action.swift in Sources */,
+				9AA5DD8E1DA49EB2003FEFCF /* Droplet.swift in Sources */,
 				9A950B851DA1D1F30068DFF8 /* API.swift in Sources */,
 				9A950BE71DA3420E0068DFF8 /* API+Actions.swift in Sources */,
+				9AA5DD981DA51D8D003FEFCF /* Network.swift in Sources */,
 				9A950BF11DA3CFBE0068DFF8 /* API+Volumes.swift in Sources */,
 				9A950BEB1DA3433A0068DFF8 /* DateFormatter.swift in Sources */,
 				9A950B921DA1D99A0068DFF8 /* Method.swift in Sources */,
 				9A950BF31DA3CFF20068DFF8 /* Volume.swift in Sources */,
+				9AA5DD921DA4A0D6003FEFCF /* BackupWindow.swift in Sources */,
 				9A950B8A1DA1D3880068DFF8 /* Account.swift in Sources */,
 				9A950BEF1DA3CA5A0068DFF8 /* Region.swift in Sources */,
 				9A950BE51DA2FFF80068DFF8 /* Result.swift in Sources */,
+				9AA5DD941DA4A12F003FEFCF /* Image.swift in Sources */,
 				9AA5DD801DA43FC1003FEFCF /* JsonConvertible.swift in Sources */,
 				9A950B8D1DA1D3D10068DFF8 /* JsonCreatable.swift in Sources */,
+				9AA5DD961DA51C04003FEFCF /* Size.swift in Sources */,
 				9AA5DD8C1DA49705003FEFCF /* Error.swift in Sources */,
+				9AA5DD901DA4A079003FEFCF /* Kernel.swift in Sources */,
 				9A950B901DA1D8610068DFF8 /* Endpoint.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
