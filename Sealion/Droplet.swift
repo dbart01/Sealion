@@ -38,16 +38,18 @@ public struct Droplet: JsonCreatable, Equatable {
         self.status      = json["status"]      as! String
         self.features    = json["features"]    as! [String]
         self.tags        = json["tags"]        as! [String]
-        self.backupIDs   = json["backupIDs"]   as! [Int]
-        self.snapshotIDs = json["snapshotIDs"] as! [Int]
-        self.volumeIDs   = json["volumeIDs"]   as! [Int]
+        self.backupIDs   = json["backup_ids"]   as! [Int]
+        self.snapshotIDs = json["snapshot_ids"] as! [Int]
+        self.volumeIDs   = json["volume_ids"]   as! [Int]
         self.kernel      = Kernel(json:       json["kernel"]     as! JSON)
-        self.nextWindow  = BackupWindow(json: json["nextWindow"] as! JSON)
+        self.nextWindow  = BackupWindow(json: json["next_backup_window"] as! JSON)
         self.image       = Image(json:        json["image"]      as! JSON)
         self.size        = Size(json:         json["size"]       as! JSON)
         self.region      = Region(json:       json["region"]     as! JSON)
-        self.v4Networks  = Network.collection(json: json["v4Networks"] as! [JSON])
-        self.v6Networks  = Network.collection(json: json["v6Networks"] as! [JSON])
+        
+        let networksJSON = json["networks"] as! JSON
+        self.v4Networks  = Network.collection(json: networksJSON["v4"] as! [JSON])
+        self.v6Networks  = Network.collection(json: networksJSON["v6"] as! [JSON])
         self.createdAt   = Date(ISOString: json["created_at"] as! String)
     }
 }

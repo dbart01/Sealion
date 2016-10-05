@@ -19,10 +19,10 @@ public struct Network: JsonCreatable, Equatable {
     //  MARK: - JsonCreatable -
     //
     public init(json: JSON) {
-        self.ip      = json["ip"]      as! String
-        self.type    = json["type"]    as! String
-        self.netmask = json["netmask"] as! String
-        self.gateway = json["gateway"] as! String
+        self.ip      = json["ip_address"] as! String
+        self.type    = json["type"]       as! String
+        self.netmask = json["netmask"]    as! String
+        self.gateway = json["gateway"]    as! String
     }
 }
 
