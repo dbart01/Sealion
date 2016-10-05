@@ -128,37 +128,49 @@ public class API {
                 fatalError("Failed to parse API response. Response is not of class HTTPURLResponse.")
             }
             
-            /* ------------------------------------
-             ** Use the response codes to determine
-             ** whether the request succeeded or not.
+            var parsedError: RequestError?
+            var parsedJson:  Any?
+            
+            /* -----------------------------
+             ** Parse the body JSON if it is
+             ** not nil.
              */
-            if response.successful {
+            if let data = data,
+                var json = try? JSONSerialization.jsonObject(with: data, options: []) {
                 
-                /* -----------------------------
-                 ** Parse the body JSON if it is
-                 ** not nil.
+                /* ---------------------------------
+                 ** If a keyPath was provided, and
+                 ** the response was success, we'll
+                 ** unwrap the json object. Otherwise
+                 ** we assume the root is the error.
                  */
-                if let data = data,
-                    var json = try? JSONSerialization.jsonObject(with: data, options: []) {
+                if response.successful {
                     
-                    /* ---------------------------------
-                     ** If a keyPath was provided, we'll
-                     ** dig into the JSON object.
-                     */
                     if let keyPath = keyPath {
                         let components = keyPath.components(separatedBy: ".")
                         for component in components {
                             json = (json as! JSON)[component]
                         }
+                        parsedJson = json
                     }
                     
-                    completion(.success(json))
                 } else {
-                    completion(.success(nil))
+                    parsedError = RequestError(json: json as! JSON)
                 }
-                
+            }
+            
+            /* ------------------------------------
+             ** Use the response codes to determine
+             ** whether the request succeeded or not.
+             */
+            if response.successful {
+                completion(.success(parsedJson))
             } else {
-                completion(.failure(error?.localizedDescription))
+                
+                if let error = error, parsedError == nil {
+                    parsedError = RequestError(id: "", name: "network_error", description: error.localizedDescription)
+                }
+                completion(.failure(parsedError))
             }
         }
     }

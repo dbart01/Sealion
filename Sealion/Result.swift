@@ -10,7 +10,7 @@ import Foundation
 
 public enum Result<T> {
     case success(T?)
-    case failure(String?)
+    case failure(RequestError?)
 }
 
 public func ==<T: Equatable>(lhs: Result<T>, rhs: Result<T>) -> Bool {
