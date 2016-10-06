@@ -1,5 +1,5 @@
 //
-//  Error.swift
+//  RequestError.swift
 //  Sealion
 //
 //  Created by Dima Bart on 2016-10-04.
@@ -15,7 +15,7 @@ public struct RequestError: JsonCreatable, Equatable {
     public let description: String
     
     // ----------------------------------
-    //  MARK: - JsonCreatable -
+    //  MARK: - Init -
     //
     internal init(id: String, name: String, description: String) {
         self.id          = id
@@ -23,10 +23,13 @@ public struct RequestError: JsonCreatable, Equatable {
         self.description = description
     }
     
+    // ----------------------------------
+    //  MARK: - JsonCreatable -
+    //
     public init(json: JSON) {
-        self.id          = json["id"]             as! String
-        self.name        = json["name"]           as! String
-        self.description = json["description"]    as! String
+        self.id          = json["request_id"] as! String
+        self.name        = json["id"]         as! String
+        self.description = json["message"]    as! String
     }
 }
 

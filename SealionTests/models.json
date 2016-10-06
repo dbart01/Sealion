@@ -1,0 +1,7 @@
+{
+   "error": {
+      "message": "Error message", 
+      "id": "error_id", 
+      "request_id": "request_id"
+   }
+}
