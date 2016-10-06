@@ -15,15 +15,17 @@ internal enum Endpoint {
     case volumes
     case volumeWith(String)
     case droplets
+    case dropletWith(Int)
     
     internal var path: String {
         switch self {
-        case .account:            return "account"
-        case .actions:            return "actions"
-        case .actionWith(let id): return "actions/\(id)"
-        case .volumes:            return "volumes"
-        case .volumeWith(let id): return "volume/\(id)"
-        case .droplets:           return "droplets"
+        case .account:             return "account"
+        case .actions:             return "actions"
+        case .actionWith(let id):  return "actions/\(id)"
+        case .volumes:             return "volumes"
+        case .volumeWith(let id):  return "volume/\(id)"
+        case .droplets:            return "droplets"
+        case .dropletWith(let id): return "droplets/\(id)"
         }
     }
 }

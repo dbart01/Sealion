@@ -16,4 +16,10 @@ public extension API {
         
         task.resume()
     }
+    public func dropletWith(id: Int, completion: @escaping (_ result: Result<[Droplet]>) -> Void) {
+        let request = self.requestTo(endpoint: .dropletWith(id), method: .get)
+        let task    = self.taskWith(request: request, keyPath: "droplet", completion: completion)
+        
+        task.resume()
+    }
 }
