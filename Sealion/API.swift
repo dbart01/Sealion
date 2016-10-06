@@ -77,7 +77,7 @@ public class API {
     // ----------------------------------
     //  MARK: - Request Execution -
     //
-    internal func taskWith<T: JsonCreatable>(request: URLRequest, keyPath: String? = nil, completion: @escaping (Result<T>) -> Void) -> URLSessionDataTask {
+    internal func taskWith<T: JsonCreatable>(request: URLRequest, keyPath: String? = nil, completion: @escaping (Result<T>) -> Void) -> Handle {
         
         return self.taskWith(request: request, keyPath: keyPath) { result, respose in
             switch result {
@@ -95,7 +95,7 @@ public class API {
         }
     }
     
-    internal func taskWith<T: JsonCreatable>(request: URLRequest, keyPath: String? = nil, completion: @escaping (Result<[T]>) -> Void) -> URLSessionDataTask {
+    internal func taskWith<T: JsonCreatable>(request: URLRequest, keyPath: String? = nil, completion: @escaping (Result<[T]>) -> Void) -> Handle {
         
         return self.taskWith(request: request, keyPath: keyPath) { result, response in
             switch result {
@@ -115,8 +115,8 @@ public class API {
         }
     }
     
-    internal func taskWith(request: URLRequest, keyPath: String? = nil, completion: @escaping (Result<Any>, HTTPURLResponse) -> Void) -> URLSessionDataTask {
-        return self.session.dataTask(with: request) { (data, response, error) in
+    internal func taskWith(request: URLRequest, keyPath: String? = nil, completion: @escaping (Result<Any>, HTTPURLResponse) -> Void) -> Handle {
+        let task = self.session.dataTask(with: request) { (data, response, error) in
             
             /* ---------------------------------
              ** We always expect to get back an
@@ -171,6 +171,8 @@ public class API {
                 completion(.failure(parsedError), httpResponse)
             }
         }
+        
+        return Handle(task: task, keyPath: keyPath)
     }
 }
 

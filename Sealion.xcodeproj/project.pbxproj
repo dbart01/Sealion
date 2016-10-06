@@ -12,6 +12,7 @@
 		9A0586911DA5EE5300265B2A /* models.json in Resources */ = {isa = PBXBuildFile; fileRef = 9A0586901DA5EE5300265B2A /* models.json */; };
 		9A0586941DA5EED400265B2A /* JsonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0586931DA5EED400265B2A /* JsonManager.swift */; };
 		9A0586961DA5F17400265B2A /* ModelTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0586951DA5F17400265B2A /* ModelTestCase.swift */; };
+		9A0586B71DA715F300265B2A /* Handle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0586B61DA715F300265B2A /* Handle.swift */; };
 		9A950B731DA05DC20068DFF8 /* Sealion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A950B691DA05DC20068DFF8 /* Sealion.framework */; };
 		9A950B781DA05DC20068DFF8 /* API+AccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A950B771DA05DC20068DFF8 /* API+AccountTests.swift */; };
 		9A950B7A1DA05DC20068DFF8 /* Sealion.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A950B6C1DA05DC20068DFF8 /* Sealion.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -64,6 +65,7 @@
 		9A0586901DA5EE5300265B2A /* models.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = models.json; sourceTree = "<group>"; };
 		9A0586931DA5EED400265B2A /* JsonManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonManager.swift; sourceTree = "<group>"; };
 		9A0586951DA5F17400265B2A /* ModelTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelTestCase.swift; sourceTree = "<group>"; };
+		9A0586B61DA715F300265B2A /* Handle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Handle.swift; sourceTree = "<group>"; };
 		9A950B691DA05DC20068DFF8 /* Sealion.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Sealion.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A950B6C1DA05DC20068DFF8 /* Sealion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Sealion.h; sourceTree = "<group>"; };
 		9A950B6D1DA05DC20068DFF8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -217,6 +219,7 @@
 			isa = PBXGroup;
 			children = (
 				9A950BE41DA2FFF80068DFF8 /* Result.swift */,
+				9A0586B61DA715F300265B2A /* Handle.swift */,
 				9A950B841DA1D1F30068DFF8 /* API.swift */,
 				9A950B861DA1D2680068DFF8 /* API+Account.swift */,
 				9A950BE61DA3420E0068DFF8 /* API+Actions.swift */,
@@ -402,6 +405,7 @@
 				9A950B8A1DA1D3880068DFF8 /* Account.swift in Sources */,
 				9A950BEF1DA3CA5A0068DFF8 /* Region.swift in Sources */,
 				9A950BE51DA2FFF80068DFF8 /* Result.swift in Sources */,
+				9A0586B71DA715F300265B2A /* Handle.swift in Sources */,
 				9AA5DD941DA4A12F003FEFCF /* Image.swift in Sources */,
 				9AA5DD801DA43FC1003FEFCF /* JsonConvertible.swift in Sources */,
 				9A950B8D1DA1D3D10068DFF8 /* JsonCreatable.swift in Sources */,
