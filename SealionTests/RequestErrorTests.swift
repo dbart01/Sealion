@@ -9,17 +9,24 @@
 import XCTest
 @testable import Sealion
 
-class RequestErrorTests: XCTestCase {
+class RequestErrorTests: ModelTestCase {
     
     // ----------------------------------
     //  MARK: - JsonCreatable -
     //
     func testJsonCreation() {
-        let errorJSON = JsonManager(jsonNamed: "models").modelJsonFor(key: "error")
+        let errorJSON = self.jsonManager.modelJsonFor(key: "error")
         let error     = RequestError(json: errorJSON)
         
         XCTAssertEqual(error.id,          "request_id")
         XCTAssertEqual(error.name,        "error_id")
         XCTAssertEqual(error.description, "Error message")
+    }
+    
+    func testEquality() {
+        let model1 = RequestError(json: self.jsonManager.modelJsonFor(key: "error"))
+        let model2 = RequestError(id: model1.id, name: model1.name, description: model1.description)
+        
+        XCTAssertEqual(model1, model2)
     }
 }
