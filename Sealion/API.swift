@@ -26,7 +26,7 @@ public class API {
     //  MARK: - Init -
     //
     public convenience init(version: Version, token: String) {
-        self.init(version: version, token: token)
+        self.init(version: version, token: token, session: nil)
     }
     
     internal init(version: Version, token: String, session: URLSession? = nil) {
@@ -44,7 +44,7 @@ public class API {
     // ----------------------------------
     //  MARK: - URL Generation -
     //
-    private func urlTo(endpoint: Endpoint, parameters: Parameters? = nil) -> URL {
+    internal func urlTo(endpoint: Endpoint, parameters: Parameters? = nil) -> URL {
         let url        = URL(string: endpoint.path, relativeTo: self.apiRoot)!
         var components = URLComponents(url: url, resolvingAgainstBaseURL: true)!
         
@@ -79,7 +79,7 @@ public class API {
     //
     internal func taskWith<T: JsonCreatable>(request: URLRequest, keyPath: String? = nil, completion: @escaping (Result<T>) -> Void) -> URLSessionDataTask {
         
-        return self.taskWith(request: request, keyPath: keyPath) { result in
+        return self.taskWith(request: request, keyPath: keyPath) { result, respose in
             switch result {
             case .success(let json):
                 
@@ -97,7 +97,7 @@ public class API {
     
     internal func taskWith<T: JsonCreatable>(request: URLRequest, keyPath: String? = nil, completion: @escaping (Result<[T]>) -> Void) -> URLSessionDataTask {
         
-        return self.taskWith(request: request, keyPath: keyPath) { result in
+        return self.taskWith(request: request, keyPath: keyPath) { result, response in
             switch result {
             case .success(let json):
                 
@@ -115,7 +115,7 @@ public class API {
         }
     }
     
-    internal func taskWith(request: URLRequest, keyPath: String? = nil, completion: @escaping (Result<Any>) -> Void) -> URLSessionDataTask {
+    internal func taskWith(request: URLRequest, keyPath: String? = nil, completion: @escaping (Result<Any>, HTTPURLResponse) -> Void) -> URLSessionDataTask {
         return self.session.dataTask(with: request) { (data, response, error) in
             
             /* ---------------------------------
@@ -151,8 +151,8 @@ public class API {
                         for component in components {
                             json = (json as! JSON)[component]
                         }
-                        parsedJson = json
                     }
+                    parsedJson = json
                     
                 } else {
                     parsedError = RequestError(json: json as! JSON)
@@ -164,13 +164,13 @@ public class API {
              ** whether the request succeeded or not.
              */
             if response.successful {
-                completion(.success(parsedJson))
+                completion(.success(parsedJson), response)
             } else {
                 
                 if let error = error, parsedError == nil {
                     parsedError = RequestError(id: "", name: "network_error", description: error.localizedDescription)
                 }
-                completion(.failure(parsedError))
+                completion(.failure(parsedError), response)
             }
         }
     }

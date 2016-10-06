@@ -13,6 +13,7 @@ struct Stub {
     
     let status:  Int
     let json:    JSON?
+    let error:   String?
     let headers: [String : String]?
     
     var jsonData: Data? {
@@ -28,12 +29,14 @@ struct Stub {
     init(json: [String : Any]) {
         self.status  = json["status"]  as! Int
         self.json    = json["json"]    as? JSON
+        self.error   = json["error"]   as? String
         self.headers = json["headers"] as? [String : String]
     }
     
-    init(status: Int, json: JSON? = nil) {
+    init(status: Int, json: JSON? = nil, error: String? = nil, headers: [String : String]? = nil) {
         self.status  = status
         self.json    = json
-        self.headers = nil
+        self.error   = error
+        self.headers = headers
     }
 }

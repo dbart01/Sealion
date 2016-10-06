@@ -46,6 +46,10 @@ class MockSession: URLSession {
         }
     }
     
+    func activateStub(stub: Stub) {
+        self.activeStub = stub
+    }
+    
     func deactiveMock() {
         self.activeStub = nil
     }
@@ -85,15 +89,22 @@ class MockSession: URLSession {
     private func mockDataTaskWith(stub: Stub, url: URL, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> MockDataTask {
         let mock = self.mockResponseForStub(stub: stub, url: url)
         let task = MockDataTask {
-            completionHandler(mock.data, mock.response, nil)
+            completionHandler(mock.data, mock.response, mock.error)
         }
         return task
     }
     
-    private func mockResponseForStub(stub: Stub, url: URL) -> (response: URLResponse, data: Data?) {
+    private func mockResponseForStub(stub: Stub, url: URL) -> (response: URLResponse, data: Data?, error: Error?) {
         let httpResponse = HTTPURLResponse(url: url, statusCode: stub.status, httpVersion: "1.1", headerFields: stub.headers)!
         let httpData     = stub.jsonData
         
-        return (response: httpResponse, data: httpData)
+        var error: NSError?
+        if let stubError = stub.error{
+            error = NSError(domain: "MockDomain", code: 500, userInfo: [
+                NSLocalizedDescriptionKey : stubError
+            ])
+        }
+        
+        return (response: httpResponse, data: httpData, error: error)
     }
 }

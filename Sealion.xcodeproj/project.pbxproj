@@ -40,6 +40,7 @@
 		9AA5DD981DA51D8D003FEFCF /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA5DD971DA51D8D003FEFCF /* Network.swift */; };
 		9AA5DD9A1DA5216D003FEFCF /* API+Droplet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA5DD991DA5216D003FEFCF /* API+Droplet.swift */; };
 		9AA5DD9C1DA52292003FEFCF /* API+DropletsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA5DD9B1DA52292003FEFCF /* API+DropletsTests.swift */; };
+		9AA5DDAF1DA59CD9003FEFCF /* APITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA5DDAE1DA59CD9003FEFCF /* APITests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +90,7 @@
 		9AA5DD971DA51D8D003FEFCF /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		9AA5DD991DA5216D003FEFCF /* API+Droplet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "API+Droplet.swift"; sourceTree = "<group>"; };
 		9AA5DD9B1DA52292003FEFCF /* API+DropletsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "API+DropletsTests.swift"; sourceTree = "<group>"; };
+		9AA5DDAE1DA59CD9003FEFCF /* APITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APITests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +146,7 @@
 		9A950B761DA05DC20068DFF8 /* SealionTests */ = {
 			isa = PBXGroup;
 			children = (
+				9AA5DDAE1DA59CD9003FEFCF /* APITests.swift */,
 				9A950B951DA279A40068DFF8 /* Mocks */,
 				9A950B931DA2796B0068DFF8 /* APITestCase.swift */,
 				9A950B771DA05DC20068DFF8 /* API+AccountTests.swift */,
@@ -367,6 +370,7 @@
 			files = (
 				9A950B991DA27CFA0068DFF8 /* MockDataTask.swift in Sources */,
 				9A950B971DA279C20068DFF8 /* MockSession.swift in Sources */,
+				9AA5DDAF1DA59CD9003FEFCF /* APITests.swift in Sources */,
 				9A950BF51DA3D2000068DFF8 /* API+VolumesTests.swift in Sources */,
 				9A950B941DA2796B0068DFF8 /* APITestCase.swift in Sources */,
 				9A950B781DA05DC20068DFF8 /* API+AccountTests.swift in Sources */,
