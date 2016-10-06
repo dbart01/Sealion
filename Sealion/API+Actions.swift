@@ -10,17 +10,19 @@ import Foundation
 
 public extension API {
     
-    public func actions(completion: @escaping (_ result: Result<[Action]>) -> Void) {
+    public func actions(completion: @escaping (_ result: Result<[Action]>) -> Void) -> Handle {
         let request = self.requestTo(endpoint: .actions, method: .get)
-        let task    = self.taskWith(request: request, keyPath: "actions", completion: completion)
+        let handle  = self.taskWith(request: request, keyPath: "actions", completion: completion)
         
-        task.resume()
+        handle.resume()
+        return handle
     }
     
-    public func actionWith(id: Int, completion: @escaping (_ result: Result<Action>) -> Void) {
+    public func actionWith(id: Int, completion: @escaping (_ result: Result<Action>) -> Void) -> Handle {
         let request = self.requestTo(endpoint: .actionWith(id), method: .get)
-        let task    = self.taskWith(request: request, keyPath: "action", completion: completion)
+        let handle  = self.taskWith(request: request, keyPath: "action", completion: completion)
         
-        task.resume()
+        handle.resume()
+        return handle
     }
 }

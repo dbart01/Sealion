@@ -10,16 +10,18 @@ import Foundation
 
 public extension API {
     
-    public func droplets(completion: @escaping (_ result: Result<[Droplet]>) -> Void) {
+    public func droplets(completion: @escaping (_ result: Result<[Droplet]>) -> Void) -> Handle {
         let request = self.requestTo(endpoint: .droplets, method: .get)
-        let task    = self.taskWith(request: request, keyPath: "droplets", completion: completion)
+        let handle  = self.taskWith(request: request, keyPath: "droplets", completion: completion)
         
-        task.resume()
+        handle.resume()
+        return handle
     }
-    public func dropletWith(id: Int, completion: @escaping (_ result: Result<[Droplet]>) -> Void) {
+    public func dropletWith(id: Int, completion: @escaping (_ result: Result<[Droplet]>) -> Void) -> Handle {
         let request = self.requestTo(endpoint: .dropletWith(id), method: .get)
-        let task    = self.taskWith(request: request, keyPath: "droplet", completion: completion)
+        let handle  = self.taskWith(request: request, keyPath: "droplet", completion: completion)
         
-        task.resume()
+        handle.resume()
+        return handle
     }
 }

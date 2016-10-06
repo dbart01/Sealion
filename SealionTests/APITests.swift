@@ -194,9 +194,9 @@ class APITests: XCTestCase {
         let name        = "auth_error"
         let description = "You're not allowed in here"
         let payload = [
-            "id"          : id,
-            "name"        : name,
-            "description" : description
+            "request_id" : id,
+            "id"         : name,
+            "message"    : description
         ]
         
         self.session.activateStub(stub: Stub(status: 403, json: payload, error: "Something wen't wrong."))
