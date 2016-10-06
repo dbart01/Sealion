@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9A05868A1DA5E86200265B2A /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0586891DA5E86200265B2A /* Person.swift */; };
 		9A950B731DA05DC20068DFF8 /* Sealion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A950B691DA05DC20068DFF8 /* Sealion.framework */; };
 		9A950B781DA05DC20068DFF8 /* API+AccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A950B771DA05DC20068DFF8 /* API+AccountTests.swift */; };
 		9A950B7A1DA05DC20068DFF8 /* Sealion.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A950B6C1DA05DC20068DFF8 /* Sealion.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -54,6 +55,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9A0586891DA5E86200265B2A /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		9A950B691DA05DC20068DFF8 /* Sealion.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Sealion.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A950B6C1DA05DC20068DFF8 /* Sealion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Sealion.h; sourceTree = "<group>"; };
 		9A950B6D1DA05DC20068DFF8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -112,6 +114,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9A0586881DA5E85800265B2A /* Test Models */ = {
+			isa = PBXGroup;
+			children = (
+				9A0586891DA5E86200265B2A /* Person.swift */,
+			);
+			name = "Test Models";
+			sourceTree = "<group>";
+		};
 		9A950B5F1DA05DC20068DFF8 = {
 			isa = PBXGroup;
 			children = (
@@ -147,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				9AA5DDAE1DA59CD9003FEFCF /* APITests.swift */,
+				9A0586881DA5E85800265B2A /* Test Models */,
 				9A950B951DA279A40068DFF8 /* Mocks */,
 				9A950B931DA2796B0068DFF8 /* APITestCase.swift */,
 				9A950B771DA05DC20068DFF8 /* API+AccountTests.swift */,
@@ -368,6 +379,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A05868A1DA5E86200265B2A /* Person.swift in Sources */,
 				9A950B991DA27CFA0068DFF8 /* MockDataTask.swift in Sources */,
 				9A950B971DA279C20068DFF8 /* MockSession.swift in Sources */,
 				9AA5DDAF1DA59CD9003FEFCF /* APITests.swift in Sources */,

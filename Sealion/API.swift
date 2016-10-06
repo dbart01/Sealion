@@ -124,9 +124,7 @@ public class API {
              ** relying on the statusCode of the
              ** response.
              */
-            guard let response = response as? HTTPURLResponse else {
-                fatalError("Failed to parse API response. Response is not of class HTTPURLResponse.")
-            }
+            let httpResponse = response as! HTTPURLResponse
             
             var parsedError: RequestError?
             var parsedJson:  Any?
@@ -144,7 +142,7 @@ public class API {
                  ** unwrap the json object. Otherwise
                  ** we assume the root is the error.
                  */
-                if response.successful {
+                if httpResponse.successful {
                     
                     if let keyPath = keyPath {
                         let components = keyPath.components(separatedBy: ".")
@@ -163,14 +161,14 @@ public class API {
              ** Use the response codes to determine
              ** whether the request succeeded or not.
              */
-            if response.successful {
-                completion(.success(parsedJson), response)
+            if httpResponse.successful {
+                completion(.success(parsedJson), httpResponse)
             } else {
                 
                 if let error = error, parsedError == nil {
                     parsedError = RequestError(id: "", name: "network_error", description: error.localizedDescription)
                 }
-                completion(.failure(parsedError), response)
+                completion(.failure(parsedError), httpResponse)
             }
         }
     }

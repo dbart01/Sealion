@@ -238,8 +238,137 @@ class APITests: XCTestCase {
     }
     
     // ----------------------------------
+    //  MARK: - Model Serialization -
+    //
+    func testModelSingleResponse() {
+        
+        let payload = [
+            "firstName" : "John",
+            "lastName"  : "Smith",
+        ]
+        
+        self.session.activateStub(stub: Stub(status: 200, json: payload))
+        let result: Result<Person> = self.runObjectTask()
+        
+        switch result {
+        case .success(let person):
+            XCTAssertNotNil(person)
+            XCTAssertEqual(person!.firstName, "John")
+            XCTAssertEqual(person!.lastName,  "Smith")
+            
+        case .failure:
+            XCTFail("Expecting a success response.")
+        }
+        
+        self.session.deactiveMock()
+    }
+    
+    func testModelSingleError() {
+        
+        self.session.activateStub(stub: Stub(status: 404, json: nil))
+        let result: Result<Person> = self.runObjectTask()
+        
+        switch result {
+        case .success:
+            XCTFail("Expecting an error response.")
+        case .failure(let error):
+            XCTAssertNil(error)
+        }
+        
+        self.session.deactiveMock()
+    }
+    
+    func testModelArrayResponse() {
+        
+        let payload = [
+            "people": [
+                [
+                    "firstName" : "John",
+                    "lastName"  : "Smith",
+                ],
+                [
+                    "firstName" : "Walter",
+                    "lastName"  : "Appleseed",
+                ]
+            ]
+        ]
+        
+        self.session.activateStub(stub: Stub(status: 200, json: payload))
+        let result: Result<[Person]> = self.runObjectTask(keyPath: "people")
+        
+        switch result {
+        case .success(let people):
+            XCTAssertNotNil(people)
+            XCTAssertEqual(people!.count, 2)
+            
+            guard let people = people else { return }
+            
+            XCTAssertEqual(people[0].firstName, "John")
+            XCTAssertEqual(people[0].lastName,  "Smith")
+            XCTAssertEqual(people[1].firstName, "Walter")
+            XCTAssertEqual(people[1].lastName,  "Appleseed")
+            
+        case .failure:
+            XCTFail("Expecting a success response.")
+        }
+        
+        self.session.deactiveMock()
+    }
+    
+    func testModelArrayError() {
+        
+        self.session.activateStub(stub: Stub(status: 404, json: nil))
+        let result: Result<[Person]> = self.runObjectTask()
+        
+        switch result {
+        case .success:
+            XCTFail("Expecting an error response.")
+        case .failure(let error):
+            XCTAssertNil(error)
+        }
+        
+        self.session.deactiveMock()
+    }
+    
+    // ----------------------------------
     //  MARK: - Conveniences -
     //
+    private func runObjectTask(keyPath: String? = nil) -> Result<Person> {
+        let api = self.createAPI()
+        
+        var resultOut: Result<Person>!
+        
+        let e       = self.expectation(description: "")
+        let request = api.requestTo(endpoint: .account, method: .get) // overriden by mock
+        let task    = api.taskWith(request: request, keyPath: keyPath) { (result: Result<Person>) in
+            
+            resultOut = result
+            e.fulfill()
+        }
+        task.resume()
+        
+        self.waitForExpectations(timeout: 10.0, handler: nil)
+        return resultOut
+    }
+    
+    private func runObjectTask(keyPath: String? = nil) -> Result<[Person]> {
+        let api = self.createAPI()
+        
+        var resultOut: Result<[Person]>!
+        
+        let e       = self.expectation(description: "")
+        let request = api.requestTo(endpoint: .account, method: .get) // overriden by mock
+        let task    = api.taskWith(request: request, keyPath: keyPath) { (result: Result<[Person]>) in
+            
+            resultOut = result
+            e.fulfill()
+        }
+        task.resume()
+        
+        self.waitForExpectations(timeout: 10.0, handler: nil)
+        return resultOut
+    }
+    
     private func runTask(keyPath: String? = nil) -> (result: Result<Any>, response: HTTPURLResponse) {
         let api = self.createAPI()
         
