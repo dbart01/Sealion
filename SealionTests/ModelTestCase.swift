@@ -7,8 +7,26 @@
 //
 
 import XCTest
+import Sealion
 
 class ModelTestCase: APITestCase {
     
-    let jsonManager = JsonManager(jsonNamed: "models")
+    private let jsonManager = JsonManager(jsonNamed: "models")
+    
+    // ----------------------------------
+    //  MARK: - Json Models -
+    //
+    func modelNamed(name: String) -> JSON {
+        return self.jsonManager.modelJsonFor(key: name)
+    }
+    
+    // ----------------------------------
+    //  MARK: - Assertions -
+    //
+    func assertEqualityForModelNamed<T>(type: T.Type, name: String) where T: JsonCreatable, T: Equatable {
+        let model1 = T(json: self.modelNamed(name: "account"))
+        let model2 = T(json: self.modelNamed(name: "account"))
+        
+        XCTAssertEqual(model1, model2)
+    }
 }

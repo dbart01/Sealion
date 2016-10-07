@@ -15,18 +15,15 @@ class RequestErrorTests: ModelTestCase {
     //  MARK: - JsonCreatable -
     //
     func testJsonCreation() {
-        let errorJSON = self.jsonManager.modelJsonFor(key: "error")
-        let error     = RequestError(json: errorJSON)
+        let json  = self.modelNamed(name: "error")
+        let model = RequestError(json: json)
         
-        XCTAssertEqual(error.id,          "request_id")
-        XCTAssertEqual(error.name,        "error_id")
-        XCTAssertEqual(error.description, "Error message")
+        XCTAssertEqual(model.id,          "request_id")
+        XCTAssertEqual(model.name,        "error_id")
+        XCTAssertEqual(model.description, "Error message")
     }
     
     func testEquality() {
-        let model1 = RequestError(json: self.jsonManager.modelJsonFor(key: "error"))
-        let model2 = RequestError(id: model1.id, name: model1.name, description: model1.description)
-        
-        XCTAssertEqual(model1, model2)
+        self.assertEqualityForModelNamed(type: RequestError.self, name: "error")
     }
 }

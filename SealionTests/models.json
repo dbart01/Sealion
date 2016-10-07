@@ -1,4 +1,13 @@
 {
+   "account": {
+      "status": "active", 
+      "uuid": "123", 
+      "floating_ip_limit": 3, 
+      "email_verified": true, 
+      "droplet_limit": 25, 
+      "status_message": "Everything is okay", 
+      "email": "john.smith@gmail.com"
+   }, 
    "error": {
       "message": "Error message", 
       "id": "error_id", 
