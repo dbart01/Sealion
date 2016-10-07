@@ -18,12 +18,12 @@ class ActionTests: ModelTestCase {
         let model:  Action = self.modelNamed(name: "action")
         let region: Region = self.modelNamed(name: "region")
         
-        XCTAssertEqual(model.id, 123)
-        XCTAssertEqual(model.resourceID, 456)
-        XCTAssertEqual(model.status, "completed")
-        XCTAssertEqual(model.type, "image_destroy")
+        XCTAssertEqual(model.id,           123)
+        XCTAssertEqual(model.resourceID,   456)
+        XCTAssertEqual(model.status,       "completed")
+        XCTAssertEqual(model.type,         "image_destroy")
         XCTAssertEqual(model.resourceType, "image")
-        XCTAssertEqual(model.region, region)
+        XCTAssertEqual(model.region,       region)
     }
     
     func testEquality() {

@@ -30,8 +30,8 @@ public struct Region: JsonCreatable, Equatable {
 
 public func ==(lhs: Region, rhs: Region) -> Bool {
     return (lhs.available == rhs.available) &&
-        (lhs.name   == rhs.name) &&
-        (lhs.slug       == rhs.slug) &&
-        (lhs.sizes         == rhs.sizes) &&
-        (lhs.features    == rhs.features)
+        (lhs.name     == rhs.name) &&
+        (lhs.slug     == rhs.slug) &&
+        (lhs.sizes    == rhs.sizes) &&
+        (lhs.features == rhs.features)
 }

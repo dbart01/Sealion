@@ -21,30 +21,17 @@
    }, 
    "region": {
       "available": true, 
-      "sizes": [
-         "512mb", 
-         "1gb", 
-         "2gb", 
-         "4gb", 
-         "8gb", 
-         "16gb", 
-         "m-16gb", 
-         "32gb", 
-         "m-32gb", 
-         "48gb", 
-         "m-64gb", 
-         "64gb", 
-         "m-128gb", 
-         "m-224gb"
-      ], 
+      "slug": "nyc3", 
       "features": [
-         "private_networking", 
          "backups", 
-         "ipv6", 
-         "metadata"
+         "ipv6"
       ], 
       "name": "New York 3", 
-      "slug": "nyc3"
+      "sizes": [
+         "2gb", 
+         "4gb", 
+         "8gb"
+      ]
    }, 
    "error": {
       "message": "Error message", 
