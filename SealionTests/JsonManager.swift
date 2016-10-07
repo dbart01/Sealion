@@ -26,6 +26,18 @@ class JsonManager {
     //  MARK: - Getters -
     //
     func modelJsonFor(key: String) -> JSON {
-        return self.json[key] as! JSON
+        var json = self.json[key] as! JSON
+        for (key, value) in json {
+            
+            if let string = value as? String,
+                string.hasPrefix("###") {
+                
+                let index = string.index(string.startIndex, offsetBy: 3)
+                let alias = string.substring(from: index)
+                
+                json[key] = self.json[alias]
+            }
+        }
+        return json
     }
 }

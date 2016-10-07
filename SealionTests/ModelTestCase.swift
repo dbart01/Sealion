@@ -16,16 +16,17 @@ class ModelTestCase: APITestCase {
     // ----------------------------------
     //  MARK: - Json Models -
     //
-    func modelNamed(name: String) -> JSON {
-        return self.jsonManager.modelJsonFor(key: name)
+    func modelNamed<T>(name: String) -> T where T: JsonCreatable {
+        let json = self.jsonManager.modelJsonFor(key: name)
+        return T(json: json)
     }
     
     // ----------------------------------
     //  MARK: - Assertions -
     //
     func assertEqualityForModelNamed<T>(type: T.Type, name: String) where T: JsonCreatable, T: Equatable {
-        let model1 = T(json: self.modelNamed(name: "account"))
-        let model2 = T(json: self.modelNamed(name: "account"))
+        let model1: T = self.modelNamed(name: name)
+        let model2: T = self.modelNamed(name: name)
         
         XCTAssertEqual(model1, model2)
     }

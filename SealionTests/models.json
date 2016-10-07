@@ -1,4 +1,15 @@
 {
+   "action": {
+      "status": "completed", 
+      "resource_id": 456, 
+      "region": "###region", 
+      "region_slug": "nyc3", 
+      "completed_at": "2016-09-30T19:52:21Z", 
+      "started_at": "2016-09-30T19:52:21Z", 
+      "type": "image_destroy", 
+      "id": 123, 
+      "resource_type": "image"
+   }, 
    "account": {
       "status": "active", 
       "uuid": "123", 
@@ -7,6 +18,33 @@
       "droplet_limit": 25, 
       "status_message": "Everything is okay", 
       "email": "john.smith@gmail.com"
+   }, 
+   "region": {
+      "available": true, 
+      "sizes": [
+         "512mb", 
+         "1gb", 
+         "2gb", 
+         "4gb", 
+         "8gb", 
+         "16gb", 
+         "m-16gb", 
+         "32gb", 
+         "m-32gb", 
+         "48gb", 
+         "m-64gb", 
+         "64gb", 
+         "m-128gb", 
+         "m-224gb"
+      ], 
+      "features": [
+         "private_networking", 
+         "backups", 
+         "ipv6", 
+         "metadata"
+      ], 
+      "name": "New York 3", 
+      "slug": "nyc3"
    }, 
    "error": {
       "message": "Error message", 

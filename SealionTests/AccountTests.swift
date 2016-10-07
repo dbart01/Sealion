@@ -15,8 +15,7 @@ class AccountTests: ModelTestCase {
     //  MARK: - JsonCreatable -
     //
     func testJsonCreation() {
-        let json   = self.modelNamed(name: "account")
-        let model  = Account(json: json)
+        let model: Account = self.modelNamed(name: "account")
         
         XCTAssertEqual(model.dropletLimit,    25)
         XCTAssertEqual(model.floatingIPLimit, 3)

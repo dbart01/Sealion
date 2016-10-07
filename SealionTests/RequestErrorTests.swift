@@ -15,8 +15,7 @@ class RequestErrorTests: ModelTestCase {
     //  MARK: - JsonCreatable -
     //
     func testJsonCreation() {
-        let json  = self.modelNamed(name: "error")
-        let model = RequestError(json: json)
+        let model: RequestError = self.modelNamed(name: "error")
         
         XCTAssertEqual(model.id,          "request_id")
         XCTAssertEqual(model.name,        "error_id")
