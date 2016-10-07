@@ -24,6 +24,12 @@ class ActionTests: ModelTestCase {
         XCTAssertEqual(model.type,         "image_destroy")
         XCTAssertEqual(model.resourceType, "image")
         XCTAssertEqual(model.region,       region)
+        XCTAssertEqual(model.startedAt,    Date(ISOString: "2016-09-30T19:52:21Z"))
+        XCTAssertEqual(model.finishedAt,   Date(ISOString: "2016-09-30T19:52:21Z"))
+        
+        let model2: Action = self.modelNamed(name: "action", expandAliases: false)
+        
+        XCTAssertNil(model2.region)
     }
     
     func testEquality() {

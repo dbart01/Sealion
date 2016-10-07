@@ -6,8 +6,6 @@
 //  Copyright © 2016 Dima Bart. All rights reserved.
 //
 
-import Foundation
-
 import XCTest
 @testable import Sealion
 

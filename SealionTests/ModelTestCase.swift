@@ -16,8 +16,8 @@ class ModelTestCase: APITestCase {
     // ----------------------------------
     //  MARK: - Json Models -
     //
-    func modelNamed<T>(name: String) -> T where T: JsonCreatable {
-        let json = self.jsonManager.modelJsonFor(key: name)
+    func modelNamed<T>(name: String, expandAliases: Bool = true) -> T where T: JsonCreatable {
+        let json = self.jsonManager.modelJsonFor(key: name, expandAliases: expandAliases)
         return T(json: json)
     }
     

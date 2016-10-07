@@ -16,6 +16,7 @@
 		9A0586BB1DA7BEE500265B2A /* AccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0586BA1DA7BEE500265B2A /* AccountTests.swift */; };
 		9A0586BD1DA7C1E600265B2A /* ActionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0586BC1DA7C1E600265B2A /* ActionTests.swift */; };
 		9A0586BF1DA7C66800265B2A /* RegionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0586BE1DA7C66800265B2A /* RegionTests.swift */; };
+		9A0586C11DA7C77B00265B2A /* VolumeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0586C01DA7C77B00265B2A /* VolumeTests.swift */; };
 		9A950B731DA05DC20068DFF8 /* Sealion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A950B691DA05DC20068DFF8 /* Sealion.framework */; };
 		9A950B781DA05DC20068DFF8 /* API+AccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A950B771DA05DC20068DFF8 /* API+AccountTests.swift */; };
 		9A950B7A1DA05DC20068DFF8 /* Sealion.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A950B6C1DA05DC20068DFF8 /* Sealion.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -72,6 +73,7 @@
 		9A0586BA1DA7BEE500265B2A /* AccountTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountTests.swift; sourceTree = "<group>"; };
 		9A0586BC1DA7C1E600265B2A /* ActionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionTests.swift; sourceTree = "<group>"; };
 		9A0586BE1DA7C66800265B2A /* RegionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegionTests.swift; sourceTree = "<group>"; };
+		9A0586C01DA7C77B00265B2A /* VolumeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VolumeTests.swift; sourceTree = "<group>"; };
 		9A950B691DA05DC20068DFF8 /* Sealion.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Sealion.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A950B6C1DA05DC20068DFF8 /* Sealion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Sealion.h; sourceTree = "<group>"; };
 		9A950B6D1DA05DC20068DFF8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 				9A0586BA1DA7BEE500265B2A /* AccountTests.swift */,
 				9A0586BC1DA7C1E600265B2A /* ActionTests.swift */,
 				9A0586BE1DA7C66800265B2A /* RegionTests.swift */,
+				9A0586C01DA7C77B00265B2A /* VolumeTests.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -458,6 +461,7 @@
 				9A950BED1DA345FF0068DFF8 /* API+ActionsTests.swift in Sources */,
 				9A0586941DA5EED400265B2A /* JsonManager.swift in Sources */,
 				9A950B9B1DA27D160068DFF8 /* Stub.swift in Sources */,
+				9A0586C11DA7C77B00265B2A /* VolumeTests.swift in Sources */,
 				9A0586BB1DA7BEE500265B2A /* AccountTests.swift in Sources */,
 				9AA5DD9C1DA52292003FEFCF /* API+DropletsTests.swift in Sources */,
 				9A0586961DA5F17400265B2A /* ModelTestCase.swift in Sources */,
