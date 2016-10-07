@@ -140,20 +140,19 @@
 			name = API;
 			sourceTree = "<group>";
 		};
-		9A05868C1DA5EDA700265B2A /* Supporting Files */ = {
+		9A05868C1DA5EDA700265B2A /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
 				9A0586881DA5E85800265B2A /* Test Models */,
+				9A0586921DA5EEC300265B2A /* Json Manager */,
 				9A950B951DA279A40068DFF8 /* Mocks */,
-				9A950B791DA05DC20068DFF8 /* Info.plist */,
 			);
-			name = "Supporting Files";
+			name = Utilities;
 			sourceTree = "<group>";
 		};
 		9A05868D1DA5EDB100265B2A /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				9A0586921DA5EEC300265B2A /* Json Manager */,
 				9A0586951DA5F17400265B2A /* ModelTestCase.swift */,
 				9A05868E1DA5EDC600265B2A /* RequestErrorTests.swift */,
 			);
@@ -167,6 +166,26 @@
 				9A0586931DA5EED400265B2A /* JsonManager.swift */,
 			);
 			name = "Json Manager";
+			sourceTree = "<group>";
+		};
+		9A0586B81DA7275500265B2A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9A950B791DA05DC20068DFF8 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9A0586B91DA7277B00265B2A /* Routes */ = {
+			isa = PBXGroup;
+			children = (
+				9A950B931DA2796B0068DFF8 /* APITestCase.swift */,
+				9A950B771DA05DC20068DFF8 /* API+AccountTests.swift */,
+				9A950BEC1DA345FF0068DFF8 /* API+ActionsTests.swift */,
+				9A950BF41DA3D2000068DFF8 /* API+VolumesTests.swift */,
+				9AA5DD9B1DA52292003FEFCF /* API+DropletsTests.swift */,
+			);
+			name = Routes;
 			sourceTree = "<group>";
 		};
 		9A950B5F1DA05DC20068DFF8 = {
@@ -203,14 +222,11 @@
 		9A950B761DA05DC20068DFF8 /* SealionTests */ = {
 			isa = PBXGroup;
 			children = (
+				9A05868C1DA5EDA700265B2A /* Utilities */,
 				9A05868D1DA5EDB100265B2A /* Models */,
 				9A05868B1DA5ED9300265B2A /* API */,
-				9A05868C1DA5EDA700265B2A /* Supporting Files */,
-				9A950B931DA2796B0068DFF8 /* APITestCase.swift */,
-				9A950B771DA05DC20068DFF8 /* API+AccountTests.swift */,
-				9A950BEC1DA345FF0068DFF8 /* API+ActionsTests.swift */,
-				9A950BF41DA3D2000068DFF8 /* API+VolumesTests.swift */,
-				9AA5DD9B1DA52292003FEFCF /* API+DropletsTests.swift */,
+				9A0586B91DA7277B00265B2A /* Routes */,
+				9A0586B81DA7275500265B2A /* Supporting Files */,
 			);
 			path = SealionTests;
 			sourceTree = "<group>";

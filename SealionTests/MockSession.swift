@@ -11,7 +11,7 @@ import Sealion
 
 class MockSession: URLSession {
 
-    private let stubs: [String: Stub]
+    private let stubs: [String : Stub]
     private var activeStub: Stub?
     
     // ----------------------------------
@@ -40,7 +40,7 @@ class MockSession: URLSession {
     // ----------------------------------
     //  MARK: - Mocking -
     //
-    func activateMockNamed(name: String) {
+    func activateStubkNamed(name: String) {
         if let stub = self.stubs[name] {
             self.activeStub = stub
         }
@@ -50,7 +50,7 @@ class MockSession: URLSession {
         self.activeStub = stub
     }
     
-    func deactiveMock() {
+    func deactiveStub() {
         self.activeStub = nil
     }
 

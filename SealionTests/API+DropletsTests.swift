@@ -10,38 +10,25 @@ import XCTest
 @testable import Sealion
 
 class API_DropletsTests: APITestCase {
-
     
     func testDropletList() {
-        self.mockUsing(name: "droplets")
-        let e = self.expectation(description: "")
+        let handle = self.api.droplets { result in }
         
-        self.api.droplets { result in
-            
-            if case .success(let droplets) = result {
-                
-                XCTAssertNotNil(droplets)
-                XCTAssertEqual(droplets!.count, 1)
-                
-                let droplet = droplets![0]
-                
-                XCTAssertEqual(droplet.id,        6263251)
-                XCTAssertEqual(droplet.name,      "test.server.com")
-                XCTAssertEqual(droplet.locked,    false)
-                XCTAssertEqual(droplet.status,    "active")
-                XCTAssertEqual(droplet.features,  ["virtio"])
-                XCTAssertEqual(droplet.tags,      ["cool", "neat"])
-                XCTAssertEqual(droplet.createdAt, Date(ISOString: "2015-08-07T19:50:26Z"))
-                XCTAssertNotNil(droplet.region)
-                
-            } else {
-                XCTFail("Expecting a successful request.")
-            }
-            
-            e.fulfill()
-        }
+        self.assertMethod(handle, method: .get)
+        self.assertBody(handle, data: nil)
+        self.assertToken(handle)
+        self.assertEndpoint(handle, endpoint: .droplets)
+        self.assertKeyPath(handle, keyPath: "droplets")
+    }
+    
+    func testDropletWithID() {
+        let id     = 123
+        let handle = self.api.dropletWith(id: 123) { result in }
         
-        self.waitForExpectations(timeout: 10.0, handler: nil)
-        self.clearMock()
+        self.assertMethod(handle, method: .get)
+        self.assertBody(handle, data: nil)
+        self.assertToken(handle)
+        self.assertEndpoint(handle, endpoint: .dropletWith(id))
+        self.assertKeyPath(handle, keyPath: "droplet")
     }
 }

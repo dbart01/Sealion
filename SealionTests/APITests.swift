@@ -120,7 +120,7 @@ class APITests: XCTestCase {
             XCTFail("Expecting successful response.")
         }
         
-        self.session.deactiveMock()
+        self.session.deactiveStub()
     }
     
     func testResponseWithKeyPaths() {
@@ -153,7 +153,7 @@ class APITests: XCTestCase {
             XCTFail("Expecting successful response.")
         }
         
-        self.session.deactiveMock()
+        self.session.deactiveStub()
     }
     
     func testResponseWithoutPayload() {
@@ -169,7 +169,7 @@ class APITests: XCTestCase {
             XCTFail("Expecting successful response.")
         }
 
-        self.session.deactiveMock()
+        self.session.deactiveStub()
     }
     
     func testErrorResponseWithoutPayload() {
@@ -185,7 +185,7 @@ class APITests: XCTestCase {
             XCTAssertNil(error)
         }
         
-        self.session.deactiveMock()
+        self.session.deactiveStub()
     }
     
     func testErrorResponseWithPayload() {
@@ -214,7 +214,7 @@ class APITests: XCTestCase {
             XCTAssertEqual(error!.description, description)
         }
         
-        self.session.deactiveMock()
+        self.session.deactiveStub()
     }
     
     func testNetworkErrorResponse() {
@@ -234,7 +234,7 @@ class APITests: XCTestCase {
             XCTAssertEqual(error!.description, errorDescription)
         }
         
-        self.session.deactiveMock()
+        self.session.deactiveStub()
     }
     
     // ----------------------------------
@@ -260,7 +260,7 @@ class APITests: XCTestCase {
             XCTFail("Expecting a success response.")
         }
         
-        self.session.deactiveMock()
+        self.session.deactiveStub()
     }
     
     func testModelSingleError() {
@@ -275,7 +275,7 @@ class APITests: XCTestCase {
             XCTAssertNil(error)
         }
         
-        self.session.deactiveMock()
+        self.session.deactiveStub()
     }
     
     func testModelArrayResponse() {
@@ -312,7 +312,7 @@ class APITests: XCTestCase {
             XCTFail("Expecting a success response.")
         }
         
-        self.session.deactiveMock()
+        self.session.deactiveStub()
     }
     
     func testModelArrayError() {
@@ -327,7 +327,7 @@ class APITests: XCTestCase {
             XCTAssertNil(error)
         }
         
-        self.session.deactiveMock()
+        self.session.deactiveStub()
     }
     
     // ----------------------------------

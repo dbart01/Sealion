@@ -12,9 +12,6 @@ public extension API {
     
     public func account(completion: @escaping (_ result: Result<Account>) -> Void) -> Handle {
         let request = self.requestTo(endpoint: .account, method: .get)
-        let handle  = self.taskWith(request: request, keyPath: "account", completion: completion)
-        
-        handle.resume()
-        return handle
+        return self.taskWith(request: request, keyPath: "account", completion: completion)
     }
 }

@@ -10,61 +10,43 @@ import Foundation
 
 public extension API {
     
-    typealias VolumeFilter = (name: String, regionSlug: String)
+    typealias VolumeName = (name: String, regionSlug: String)
     
     public func volumes(completion: @escaping (_ result: Result<[Volume]>) -> Void) -> Handle {
         let request = self.requestTo(endpoint: .volumes, method: .get)
-        let handle    = self.taskWith(request: request, keyPath: "volumes", completion: completion)
-        
-        handle.resume()
-        return handle
+        return self.taskWith(request: request, keyPath: "volumes", completion: completion)
     }
     
     public func create(volume: Volume.CreateRequest, completion: @escaping (_ result: Result<[Volume]>) -> Void) -> Handle {
         let request = self.requestTo(endpoint: .volumes, method: .post, payload: volume)
-        let handle    = self.taskWith(request: request, keyPath: "volumes", completion: completion)
-        
-        handle.resume()
-        return handle
+        return self.taskWith(request: request, keyPath: "volumes", completion: completion)
     }
     
     public func volumeWith(id: String, completion: @escaping (_ result: Result<Volume>) -> Void) -> Handle {
         let request = self.requestTo(endpoint: .volumeWith(id), method: .get)
-        let handle    = self.taskWith(request: request, keyPath: "volume", completion: completion)
-        
-        handle.resume()
-        return handle
+        return self.taskWith(request: request, keyPath: "volume", completion: completion)
     }
     
-    public func volumeWith(filter: VolumeFilter, completion: @escaping (_ result: Result<[Volume]>) -> Void) -> Handle {
+    public func volumeWith(name: VolumeName, completion: @escaping (_ result: Result<[Volume]>) -> Void) -> Handle {
         let parameters = [
-            "name"   : filter.name,
-            "region" : filter.regionSlug,
+            "name"   : name.name,
+            "region" : name.regionSlug,
         ]
         let request = self.requestTo(endpoint: .volumes, method: .get, parameters: parameters)
-        let handle    = self.taskWith(request: request, keyPath: "volumes", completion: completion)
-        
-        handle.resume()
-        return handle
+        return self.taskWith(request: request, keyPath: "volumes", completion: completion)
     }
     
     public func delete(volume id: String, completion: @escaping (_ result: Result<Volume>) -> Void) -> Handle {
         let request = self.requestTo(endpoint: .volumeWith(id), method: .delete)
-        let handle    = self.taskWith(request: request, completion: completion)
-        
-        handle.resume()
-        return handle
+        return self.taskWith(request: request, completion: completion)
     }
     
-    public func delete(volume filter: VolumeFilter, completion: @escaping (_ result: Result<Volume>) -> Void) -> Handle {
+    public func delete(volume name: VolumeName, completion: @escaping (_ result: Result<Volume>) -> Void) -> Handle {
         let parameters = [
-            "name"   : filter.name,
-            "region" : filter.regionSlug,
+            "name"   : name.name,
+            "region" : name.regionSlug,
         ]
         let request = self.requestTo(endpoint: .volumes, method: .delete, parameters: parameters)
-        let handle    = self.taskWith(request: request, completion: completion)
-        
-        handle.resume()
-        return handle
+        return self.taskWith(request: request, completion: completion)
     }
 }
