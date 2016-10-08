@@ -132,18 +132,7 @@
       "transfer": 2, 
       "price_hourly": 0.01488, 
       "regions": [
-         "ams1", 
-         "ams2", 
-         "ams3", 
-         "blr1", 
-         "fra1", 
-         "lon1", 
-         "nyc1", 
-         "nyc2", 
          "nyc3", 
-         "sfo1", 
-         "sfo2", 
-         "sgp1", 
          "tor1"
       ], 
       "vcpus": 1, 
