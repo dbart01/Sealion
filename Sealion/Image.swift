@@ -18,7 +18,7 @@ public struct Image: JsonCreatable, Equatable {
     public let slug:            String?
     public let regionSlugs:     [String]
     public let createdAt:       Date
-    public let minimumDiskSize: Int
+    public let minimumDiskSize: Double
     public let size:            Double
     
     
@@ -33,7 +33,7 @@ public struct Image: JsonCreatable, Equatable {
         self.distribution    = json["distribution"]   as! String
         self.slug            = json["slug"]           as? String
         self.regionSlugs     = json["regions"]        as! [String]
-        self.minimumDiskSize = json["min_disk_size"]  as! Int
+        self.minimumDiskSize = json["min_disk_size"]  as! Double
         self.size            = json["size_gigabytes"] as! Double
         self.createdAt       = Date(ISOString: json["created_at"] as! String)
     }

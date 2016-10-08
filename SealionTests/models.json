@@ -116,11 +116,11 @@
       "min_disk_size": 30, 
       "name": "some-image", 
       "created_at": "2015-08-07T19:44:51Z", 
-      "slug": null, 
+      "slug": "ubuntu", 
       "regions": [
          "nyc3"
       ], 
-      "id": 13051483, 
+      "id": 123, 
       "distribution": "Ubuntu", 
       "type": "snapshot", 
       "public": false, 
