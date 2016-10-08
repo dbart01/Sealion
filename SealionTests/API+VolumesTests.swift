@@ -16,7 +16,7 @@ class API_VolumesTests: APITestCase {
         
         self.assertMethod(handle, method: .get)
         self.assertBody(handle, data: nil)
-        self.assertToken(handle)
+        self.assertHeaders(handle)
         self.assertEndpoint(handle, endpoint: .volumes)
         self.assertKeyPath(handle, keyPath: "volumes")
     }
@@ -27,7 +27,7 @@ class API_VolumesTests: APITestCase {
         
         self.assertMethod(handle, method: .post)
         self.assertBody(handle, object: volume)
-        self.assertToken(handle)
+        self.assertHeaders(handle)
         self.assertEndpoint(handle, endpoint: .volumes)
         self.assertKeyPath(handle, keyPath: "volumes")
     }
@@ -38,7 +38,7 @@ class API_VolumesTests: APITestCase {
         
         self.assertMethod(handle, method: .get)
         self.assertBody(handle, data: nil)
-        self.assertToken(handle)
+        self.assertHeaders(handle)
         self.assertEndpoint(handle, endpoint: .volumeWith(id))
         self.assertKeyPath(handle, keyPath: "volume")
     }
@@ -49,7 +49,7 @@ class API_VolumesTests: APITestCase {
         
         self.assertMethod(handle, method: .get)
         self.assertBody(handle, data: nil)
-        self.assertToken(handle)
+        self.assertHeaders(handle)
         self.assertEndpoint(handle, endpoint: .volumes)
         self.assertKeyPath(handle, keyPath: "volumes")
         self.assertParameters(handle, parameters: [
@@ -64,7 +64,7 @@ class API_VolumesTests: APITestCase {
         
         self.assertMethod(handle, method: .delete)
         self.assertBody(handle, data: nil)
-        self.assertToken(handle)
+        self.assertHeaders(handle)
         self.assertEndpoint(handle, endpoint: .volumeWith(id))
         self.assertKeyPath(handle, keyPath: nil)
     }
@@ -75,7 +75,7 @@ class API_VolumesTests: APITestCase {
         
         self.assertMethod(handle, method: .delete)
         self.assertBody(handle, data: nil)
-        self.assertToken(handle)
+        self.assertHeaders(handle)
         self.assertEndpoint(handle, endpoint: .volumes)
         self.assertKeyPath(handle, keyPath: nil)
         self.assertParameters(handle, parameters: [

@@ -18,8 +18,13 @@ class APITestCase: XCTestCase {
     // ----------------------------------
     //  MARK: - Assertions -
     //
-    func assertToken(_ handle: Handle) {
-        XCTAssertEqual(handle.originalRequest!.value(forHTTPHeaderField: "Authorization"), "Bearer token")
+    func assertHeaders(_ handle: Handle) {
+        let request = handle.originalRequest!
+        XCTAssertEqual(request.value(forHTTPHeaderField: "Authorization"), "Bearer token")
+        
+        if request.httpMethod == "POST" {
+            XCTAssertEqual(request.value(forHTTPHeaderField: "Content-Type"), "application/json")
+        }
     }
     
     func assertBody(_ handle: Handle, data: Data?) {

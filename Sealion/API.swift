@@ -68,6 +68,7 @@ public class API {
         
         if let payload = payload {
             request.httpBody = try! JSONSerialization.data(withJSONObject: payload.json, options: [])
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         }
         request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         

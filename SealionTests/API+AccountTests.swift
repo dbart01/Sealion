@@ -16,7 +16,7 @@ class API_AccountTests: APITestCase {
         
         self.assertMethod(handle, method: .get)
         self.assertBody(handle, data: nil)
-        self.assertToken(handle)
+        self.assertHeaders(handle)
         self.assertEndpoint(handle, endpoint: .account)
         self.assertKeyPath(handle, keyPath: "account")
     }

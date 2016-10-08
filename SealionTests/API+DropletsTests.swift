@@ -16,7 +16,7 @@ class API_DropletsTests: APITestCase {
         
         self.assertMethod(handle, method: .get)
         self.assertBody(handle, data: nil)
-        self.assertToken(handle)
+        self.assertHeaders(handle)
         self.assertEndpoint(handle, endpoint: .droplets)
         self.assertKeyPath(handle, keyPath: "droplets")
     }
@@ -27,7 +27,7 @@ class API_DropletsTests: APITestCase {
         
         self.assertMethod(handle, method: .get)
         self.assertBody(handle, data: nil)
-        self.assertToken(handle)
+        self.assertHeaders(handle)
         self.assertEndpoint(handle, endpoint: .dropletWith(id))
         self.assertKeyPath(handle, keyPath: "droplet")
     }
