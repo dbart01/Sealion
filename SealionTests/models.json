@@ -32,6 +32,16 @@
          456
       ], 
       "size_slug": "1gb", 
+      "id": 123, 
+      "next_backup_window": "###backupWindow", 
+      "vcpus": 1, 
+      "features": [
+         "virtio"
+      ], 
+      "image": "###image", 
+      "memory": 1024, 
+      "region": "###region", 
+      "disk": 30, 
       "networks": {
          "v4": [
             "###v4Network"
@@ -40,61 +50,61 @@
             "###v6Network"
          ]
       }, 
-      "next_backup_window": "###backupWindow", 
-      "vcpus": 1, 
-      "size": "###size", 
-      "image": "###image", 
-      "memory": 1024, 
-      "region": "###region", 
-      "disk": 30, 
-      "id": 123, 
       "tags": [
          "awesome"
       ], 
-      "features": [
-         "virtio"
-      ]
+      "size": "###size"
    }, 
    "v4Network": {
-      "type": "public", 
-      "netmask": "255.255.255.0", 
       "ip_address": "12.12.123.12", 
+      "netmask": "255.255.255.0", 
+      "type": "public", 
       "gateway": "12.12.192.1"
    }, 
    "region": {
       "available": true, 
+      "features": [
+         "backups", 
+         "ipv6"
+      ], 
+      "slug": "nyc3", 
+      "name": "New York 3", 
       "sizes": [
          "2gb", 
          "4gb", 
          "8gb"
-      ], 
-      "slug": "nyc3", 
-      "name": "New York 3", 
-      "features": [
-         "backups", 
-         "ipv6"
       ]
    }, 
    "v6Network": {
       "type": "public", 
-      "netmask": "255.255.255.0", 
-      "ip_address": "12.12.123.12", 
-      "gateway": "12.12.192.1"
+      "netmask": 64, 
+      "ip_address": "2604:AAAA:0000:0000:0000:0000:0000:0000", 
+      "gateway": "2604:AAAA:0000:0000:0000:0000:0000:0000"
    }, 
    "volume": {
       "size_gigabytes": 1, 
-      "created_at": "2016-10-07T12:08:02Z", 
-      "name": "test", 
+      "region": "###region", 
+      "description": "test volume", 
+      "id": "123", 
       "droplet_ids": [
          123
       ], 
-      "region": "###region", 
-      "id": "123", 
-      "description": "test volume"
+      "created_at": "2016-10-07T12:08:02Z", 
+      "name": "test"
    }, 
-   "backupWindow": {
-      "start": "2016-09-26T00:00:00Z", 
-      "end": "2016-09-26T23:00:00Z"
+   "image": {
+      "min_disk_size": 30, 
+      "name": "some-image", 
+      "created_at": "2015-08-07T19:44:51Z", 
+      "slug": "ubuntu", 
+      "regions": [
+         "nyc3"
+      ], 
+      "public": false, 
+      "distribution": "Ubuntu", 
+      "type": "snapshot", 
+      "id": 123, 
+      "size_gigabytes": 3.62
    }, 
    "error": {
       "message": "Error message", 
@@ -112,19 +122,9 @@
       "id": 123, 
       "resource_type": "image"
    }, 
-   "image": {
-      "min_disk_size": 30, 
-      "name": "some-image", 
-      "created_at": "2015-08-07T19:44:51Z", 
-      "slug": "ubuntu", 
-      "regions": [
-         "nyc3"
-      ], 
-      "id": 123, 
-      "distribution": "Ubuntu", 
-      "type": "snapshot", 
-      "public": false, 
-      "size_gigabytes": 3.62
+   "backupWindow": {
+      "start": "2016-09-26T00:00:00Z", 
+      "end": "2016-09-26T23:00:00Z"
    }, 
    "size": {
       "price_monthly": 10, 

@@ -21,8 +21,18 @@ public struct Network: JsonCreatable, Equatable {
     public init(json: JSON) {
         self.ip      = json["ip_address"] as! String
         self.type    = json["type"]       as! String
-        self.netmask = json["netmask"]    as! String
         self.gateway = json["gateway"]    as! String
+        
+        /* ---------------------------------
+         ** Attempt to cast the netmask as
+         ** integer first for ipv6 masks.
+         */
+        let netmask  = json["netmask"]!
+        if let string = netmask as? Int {
+            self.netmask = String(string)
+        } else {
+            self.netmask = netmask as! String
+        }
     }
 }
 
