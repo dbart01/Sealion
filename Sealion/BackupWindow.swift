@@ -24,5 +24,5 @@ public struct BackupWindow: JsonCreatable, Equatable {
 
 public func ==(lhs: BackupWindow, rhs: BackupWindow) -> Bool {
     return (lhs.start == rhs.start) &&
-        (lhs.end    == rhs.end)
+        (lhs.end == rhs.end)
 }
