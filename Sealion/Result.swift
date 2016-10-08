@@ -12,14 +12,3 @@ public enum Result<T> {
     case success(T?)
     case failure(RequestError?)
 }
-
-public func ==<T: Equatable>(lhs: Result<T>, rhs: Result<T>) -> Bool {
-    switch (lhs, rhs) {
-    case (.success(let lValue), .success(let rValue)) where lValue == rValue:
-        return true
-    case (.failure(let lValue), .failure(let rValue)) where lValue == rValue:
-        return true
-    default:
-        return false
-    }
-}

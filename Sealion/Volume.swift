@@ -27,7 +27,7 @@ public struct Volume: JsonCreatable, Equatable {
         self.description = json["description"]    as! String
         self.size        = json["size_gigabytes"] as! Int
         self.dropletIDs  = json["droplet_ids"]    as! [Int]
-        self.createdAt   = Date(ISOString: json["created_at"] as! String)
+        self.createdAt   = Date(ISOString: json["created_at"] as! String)!
         self.region      = Region(json: json["region"] as! JSON)
     }
 }

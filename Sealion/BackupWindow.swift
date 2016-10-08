@@ -17,8 +17,8 @@ public struct BackupWindow: JsonCreatable, Equatable {
     //  MARK: - JsonCreatable -
     //
     public init(json: JSON) {
-        self.start = Date(ISOString: json["start"] as! String)
-        self.end   = Date(ISOString: json["end"]   as! String)
+        self.start = Date(ISOString: json["start"] as! String)!
+        self.end   = Date(ISOString: json["end"]   as! String)!
     }
 }
 

@@ -28,8 +28,8 @@ public struct Action: JsonCreatable, Equatable {
         self.status       = json["status"]        as! String
         self.type         = json["type"]          as! String
         self.resourceType = json["resource_type"] as! String
-        self.startedAt    = Date(ISOString: json["started_at"]   as! String)
-        self.finishedAt   = Date(ISOString: json["completed_at"] as! String)
+        self.startedAt    = Date(ISOString: json["started_at"]   as! String)!
+        self.finishedAt   = Date(ISOString: json["completed_at"] as! String)!
         
         if let regionJSON = json["region"] as? JSON {
             self.region = Region(json: regionJSON)

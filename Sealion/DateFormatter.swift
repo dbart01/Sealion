@@ -13,12 +13,17 @@ internal extension Date {
     internal static let ISOFormatter: DateFormatter = {
         let formatter        = DateFormatter()
         formatter.locale     = Locale(identifier: "en_US_POSIX")
+        formatter.timeZone   = TimeZone(identifier: "UTC")
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
         return formatter
     }()
     
-    internal init(ISOString: String) {
-        self = Date.ISOFormatter.date(from: ISOString)!
+    internal init?(ISOString: String) {
+        if let date = Date.ISOFormatter.date(from: ISOString) {
+            self = date
+        } else {
+            return nil
+        }
     }
     
     internal var ISOString: String {

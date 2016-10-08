@@ -50,7 +50,7 @@ public struct Droplet: JsonCreatable, Equatable {
         let networksJSON = json["networks"] as! JSON
         self.v4Networks  = Network.collection(json: networksJSON["v4"] as! [JSON])
         self.v6Networks  = Network.collection(json: networksJSON["v6"] as! [JSON])
-        self.createdAt   = Date(ISOString: json["created_at"] as! String)
+        self.createdAt   = Date(ISOString: json["created_at"] as! String)!
     }
 }
 
