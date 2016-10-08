@@ -1,4 +1,106 @@
 {
+   "kernel": {
+      "version": "generic", 
+      "id": 123, 
+      "name": "Ubuntu"
+   }, 
+   "account": {
+      "status": "active", 
+      "uuid": "123", 
+      "floating_ip_limit": 3, 
+      "email_verified": true, 
+      "droplet_limit": 25, 
+      "status_message": "Everything is okay", 
+      "email": "john.smith@gmail.com"
+   }, 
+   "droplet": {
+      "status": "active", 
+      "kernel": "###kernel", 
+      "volume_ids": [
+         567, 
+         678
+      ], 
+      "locked": false, 
+      "name": "some.droplet.com", 
+      "backup_ids": [
+         123, 
+         234
+      ], 
+      "created_at": "2015-08-07T19:50:26Z", 
+      "snapshot_ids": [
+         345, 
+         456
+      ], 
+      "size_slug": "1gb", 
+      "networks": {
+         "v4": [
+            "###v4Network"
+         ], 
+         "v6": [
+            "###v6Network"
+         ]
+      }, 
+      "next_backup_window": "###backupWindow", 
+      "vcpus": 1, 
+      "size": "###size", 
+      "image": "###image", 
+      "memory": 1024, 
+      "region": "###region", 
+      "disk": 30, 
+      "id": 123, 
+      "tags": [
+         "awesome"
+      ], 
+      "features": [
+         "virtio"
+      ]
+   }, 
+   "v4Network": {
+      "type": "public", 
+      "netmask": "255.255.255.0", 
+      "ip_address": "12.12.123.12", 
+      "gateway": "12.12.192.1"
+   }, 
+   "region": {
+      "available": true, 
+      "sizes": [
+         "2gb", 
+         "4gb", 
+         "8gb"
+      ], 
+      "slug": "nyc3", 
+      "name": "New York 3", 
+      "features": [
+         "backups", 
+         "ipv6"
+      ]
+   }, 
+   "v6Network": {
+      "type": "public", 
+      "netmask": "255.255.255.0", 
+      "ip_address": "12.12.123.12", 
+      "gateway": "12.12.192.1"
+   }, 
+   "volume": {
+      "size_gigabytes": 1, 
+      "created_at": "2016-10-07T12:08:02Z", 
+      "name": "test", 
+      "droplet_ids": [
+         123
+      ], 
+      "region": "###region", 
+      "id": "123", 
+      "description": "test volume"
+   }, 
+   "backupWindow": {
+      "start": "2016-09-26T00:00:00Z", 
+      "end": "2016-09-26T23:00:00Z"
+   }, 
+   "error": {
+      "message": "Error message", 
+      "id": "error_id", 
+      "request_id": "request_id"
+   }, 
    "action": {
       "status": "completed", 
       "resource_id": 456, 
@@ -10,43 +112,43 @@
       "id": 123, 
       "resource_type": "image"
    }, 
-   "volume": {
-      "size_gigabytes": 1, 
-      "region": "###region", 
-      "description": "test volume", 
-      "id": "123", 
-      "droplet_ids": [
-         123
+   "image": {
+      "min_disk_size": 30, 
+      "name": "some-image", 
+      "created_at": "2015-08-07T19:44:51Z", 
+      "slug": null, 
+      "regions": [
+         "nyc3"
       ], 
-      "created_at": "2016-10-07T12:08:02Z", 
-      "name": "test"
+      "id": 13051483, 
+      "distribution": "Ubuntu", 
+      "type": "snapshot", 
+      "public": false, 
+      "size_gigabytes": 3.62
    }, 
-   "account": {
-      "status": "active", 
-      "uuid": "123", 
-      "floating_ip_limit": 3, 
-      "email_verified": true, 
-      "droplet_limit": 25, 
-      "status_message": "Everything is okay", 
-      "email": "john.smith@gmail.com"
-   }, 
-   "region": {
+   "size": {
+      "price_monthly": 10, 
       "available": true, 
-      "features": [
-         "backups", 
-         "ipv6"
+      "transfer": 2, 
+      "price_hourly": 0.01488, 
+      "regions": [
+         "ams1", 
+         "ams2", 
+         "ams3", 
+         "blr1", 
+         "fra1", 
+         "lon1", 
+         "nyc1", 
+         "nyc2", 
+         "nyc3", 
+         "sfo1", 
+         "sfo2", 
+         "sgp1", 
+         "tor1"
       ], 
-      "slug": "nyc3", 
-      "name": "New York 3", 
-      "sizes": [
-         "2gb", 
-         "4gb", 
-         "8gb"
-      ]
-   }, 
-   "error": {
-      "message": "Error message", 
-      "id": "error_id", 
-      "request_id": "request_id"
+      "vcpus": 1, 
+      "memory": 1024, 
+      "disk": 30, 
+      "slug": "1gb"
    }
 }
