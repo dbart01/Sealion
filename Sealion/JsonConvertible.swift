@@ -8,12 +8,12 @@
 
 import Foundation
 
-protocol JsonConvertible {
-    var json: Any { get }
+public protocol JsonConvertible {
+    var json: JSON { get }
 }
 
 extension Dictionary: JsonConvertible {
-    var json: Any {
-        return self
+    public var json: JSON {
+        return self as Any as! JSON
     }
 }

@@ -10,8 +10,6 @@ import Foundation
 
 public class API {
     
-    typealias Parameters = [String : String]
-    
     public enum Version: String {
         case v2 = "https://api.digitalocean.com/v2/"
     }
@@ -62,8 +60,8 @@ public class API {
     // ----------------------------------
     //  MARK: - Request Generation -
     //
-    internal func requestTo(endpoint: Endpoint, method: Method, parameters: Parameters? = nil, payload: JsonConvertible? = nil) -> URLRequest {
-        var request        = URLRequest(url: self.urlTo(endpoint: endpoint, parameters: parameters))
+    internal func requestTo(endpoint: Endpoint, method: Method, parameters: ParameterConvertible? = nil, payload: JsonConvertible? = nil) -> URLRequest {
+        var request        = URLRequest(url: self.urlTo(endpoint: endpoint, parameters: parameters?.parameters))
         request.httpMethod = method.rawValue
         
         if let payload = payload {

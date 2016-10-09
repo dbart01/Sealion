@@ -28,7 +28,7 @@ class API_ActionsTests: APITestCase {
         self.assertMethod(handle, method: .get)
         self.assertBody(handle, data: nil)
         self.assertHeaders(handle)
-        self.assertEndpoint(handle, endpoint: .actionWith(id))
+        self.assertEndpoint(handle, endpoint: .actionWithID(id))
         self.assertKeyPath(handle, keyPath: "action")
     }
 }

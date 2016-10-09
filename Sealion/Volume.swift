@@ -49,17 +49,36 @@ public extension Volume {
     
     public struct CreateRequest: JsonConvertible {
         
-        public let size:        Int
-        public let name:        String
-        public let regionSlug:  String
-        public let description: String
+        public var size:        Int
+        public var name:        String
+        public var regionSlug:  String
+        public var description: String
         
-        public var json: Any {
+        public var json: JSON {
             return [
                 "size_gigabytes": self.size,
                 "name":           self.name,
                 "description":    self.description,
                 "region":         self.regionSlug,
+            ]
+        }
+    }
+}
+
+// ----------------------------------
+//  MARK: - Volume Name -
+//
+public extension Volume {
+    
+    public struct Name: ParameterConvertible {
+        
+        public var name:   String
+        public var region: String
+        
+        public var parameters: Parameters {
+            return [
+                "name"   : self.name,
+                "region" : self.region,
             ]
         }
     }

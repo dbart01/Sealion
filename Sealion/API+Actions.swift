@@ -16,7 +16,7 @@ public extension API {
     }
     
     public func actionWith(id: Int, completion: @escaping (_ result: Result<Action>) -> Void) -> Handle {
-        let request = self.requestTo(endpoint: .actionWith(id), method: .get)
+        let request = self.requestTo(endpoint: .actionWithID(id), method: .get)
         return self.taskWith(request: request, keyPath: "action", completion: completion)
     }
 }

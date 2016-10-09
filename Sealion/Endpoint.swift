@@ -11,21 +11,27 @@ import Foundation
 internal enum Endpoint {
     case account
     case actions
-    case actionWith(Int)
+    case actionWithID(Int)
     case volumes
-    case volumeWith(String)
+    case volumeWithID(String)
     case droplets
-    case dropletWith(Int)
+    case dropletWithID(Int)
+    case sshKeys
+    case sshKeyWithID(Int)
+    case sshKeyWithFingerprint(String)
     
     internal var path: String {
         switch self {
-        case .account:             return "account"
-        case .actions:             return "actions"
-        case .actionWith(let id):  return "actions/\(id)"
-        case .volumes:             return "volumes"
-        case .volumeWith(let id):  return "volume/\(id)"
-        case .droplets:            return "droplets"
-        case .dropletWith(let id): return "droplets/\(id)"
+        case .account:                      return "account"
+        case .actions:                      return "actions"
+        case .actionWithID(let id):         return "actions/\(id)"
+        case .volumes:                      return "volumes"
+        case .volumeWithID(let id):         return "volume/\(id)"
+        case .droplets:                     return "droplets"
+        case .dropletWithID(let id):        return "droplets/\(id)"
+        case .sshKeys:                      return "account/keys"
+        case .sshKeyWithID(let id):         return "account/keys/\(id)"
+        case .sshKeyWithFingerprint(let f): return "account/keys/\(f)"
         }
     }
 }

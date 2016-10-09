@@ -49,7 +49,7 @@ class APITests: XCTestCase {
         ]
         
         let expected = URL(string: "\(API.Version.v2.rawValue)droplets/123456?per_page=200&page=2")!
-        let url      = api.urlTo(endpoint: .dropletWith(123456), parameters: parameters)
+        let url      = api.urlTo(endpoint: .dropletWithID(123456), parameters: parameters)
         
         XCTAssertEqual(expected, url)
     }
@@ -60,7 +60,7 @@ class APITests: XCTestCase {
     func testRequestGenerationWithoutPayload() {
         let api = self.createAPI()
         
-        let request = api.requestTo(endpoint: .actionWith(123), method: .get)
+        let request = api.requestTo(endpoint: .actionWithID(123), method: .get)
         
         XCTAssertEqual(request.httpMethod, "GET")
         XCTAssertEqual(request.value(forHTTPHeaderField: "Authorization"), "Bearer \(self.token)")
@@ -74,7 +74,7 @@ class APITests: XCTestCase {
             "description" : "Test volume",
         ]
         
-        let request  = api.requestTo(endpoint: .volumeWith("volume-identifier"), method: .post, payload: payload)
+        let request  = api.requestTo(endpoint: .volumeWithID("volume-identifier"), method: .post, payload: payload)
         
         XCTAssertEqual(request.httpMethod, "POST")
         XCTAssertEqual(request.value(forHTTPHeaderField: "Authorization"), "Bearer \(self.token)")

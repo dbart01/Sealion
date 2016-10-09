@@ -48,14 +48,15 @@ class APITestCase: XCTestCase {
         XCTAssertEqual(handle.keyPath, keyPath)
     }
     
-    func assertParameters(_ handle: Handle, parameters: API.Parameters) {
+    func assertParameters(_ handle: Handle, parameters: ParameterConvertible) {
         let components = URLComponents(url: handle.originalRequest!.url!, resolvingAgainstBaseURL: false)!
         let queryItems = components.queryItems!
         
-        XCTAssertEqual(queryItems.count, parameters.count)
+        let parameterItems = parameters.parameters
+        XCTAssertEqual(queryItems.count, parameterItems.count)
         
         for item in queryItems {
-            XCTAssertEqual(parameters[item.name], item.value)
+            XCTAssertEqual(parameterItems[item.name], item.value)
         }
     }
 }

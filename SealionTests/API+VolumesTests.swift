@@ -39,12 +39,12 @@ class API_VolumesTests: APITestCase {
         self.assertMethod(handle, method: .get)
         self.assertBody(handle, data: nil)
         self.assertHeaders(handle)
-        self.assertEndpoint(handle, endpoint: .volumeWith(id))
+        self.assertEndpoint(handle, endpoint: .volumeWithID(id))
         self.assertKeyPath(handle, keyPath: "volume")
     }
     
     func testVolumeWithName() {
-        let name: API.VolumeName = ("test", "nyc1")
+        let name   = Volume.Name(name: "test", region: "nyc1")
         let handle = self.api.volumeWith(name: name) { result in }
         
         self.assertMethod(handle, method: .get)
@@ -52,10 +52,7 @@ class API_VolumesTests: APITestCase {
         self.assertHeaders(handle)
         self.assertEndpoint(handle, endpoint: .volumes)
         self.assertKeyPath(handle, keyPath: "volumes")
-        self.assertParameters(handle, parameters: [
-            "name"   : name.name,
-            "region" : name.regionSlug,
-        ])
+        self.assertParameters(handle, parameters: name)
     }
     
     func testVolumeDeleteByID() {
@@ -65,12 +62,12 @@ class API_VolumesTests: APITestCase {
         self.assertMethod(handle, method: .delete)
         self.assertBody(handle, data: nil)
         self.assertHeaders(handle)
-        self.assertEndpoint(handle, endpoint: .volumeWith(id))
+        self.assertEndpoint(handle, endpoint: .volumeWithID(id))
         self.assertKeyPath(handle, keyPath: nil)
     }
     
     func testVolumeDeleteByName() {
-        let name: API.VolumeName = ("test", "nyc1")
+        let name   = Volume.Name(name: "test", region: "nyc1")
         let handle = self.api.delete(volume: name) { result in }
         
         self.assertMethod(handle, method: .delete)
@@ -78,9 +75,6 @@ class API_VolumesTests: APITestCase {
         self.assertHeaders(handle)
         self.assertEndpoint(handle, endpoint: .volumes)
         self.assertKeyPath(handle, keyPath: nil)
-        self.assertParameters(handle, parameters: [
-            "name"   : name.name,
-            "region" : name.regionSlug,
-        ])
+        self.assertParameters(handle, parameters: name)
     }
 }

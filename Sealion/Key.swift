@@ -34,3 +34,22 @@ public func ==(lhs: Droplet.Key, rhs: Droplet.Key) -> Bool {
         (lhs.publicKey   == rhs.publicKey) &&
         (lhs.fingerprint == rhs.fingerprint)
 }
+
+// ----------------------------------
+//  MARK: - Creation -
+//
+public extension Droplet.Key {
+    
+    public struct CreateRequest: JsonConvertible {
+        
+        public var name:        String
+        public var publicKey:   String
+        
+        public var json: JSON {
+            return [
+                "name":       self.name,
+                "public_key": self.publicKey,
+            ]
+        }
+    }
+}
