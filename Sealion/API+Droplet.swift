@@ -30,4 +30,14 @@ public extension API {
         let request = self.requestTo(endpoint: .droplets, method: .post, payload: droplets)
         return self.taskWith(request: request, keyPath: "droplets", completion: completion)
     }
+    
+    public func delete(droplet id: Int, completion: @escaping (_ result: Result<Droplet>) -> Void) -> Handle {
+        let request = self.requestTo(endpoint: .dropletWithID(id), method: .delete)
+        return self.taskWith(request: request, completion: completion)
+    }
+    
+    public func delete(droplets tag: String, completion: @escaping (_ result: Result<Droplet>) -> Void) -> Handle {
+        let request = self.requestTo(endpoint: .droplets, method: .delete, parameters: ["tag_name" : tag])
+        return self.taskWith(request: request, completion: completion)
+    }
 }

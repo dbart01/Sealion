@@ -69,4 +69,28 @@ class API_DropletsTests: APITestCase {
         self.assertKeyPath(handle, keyPath: "droplets")
         self.assertParameters(handle, parameters: nil)
     }
+    
+    func testDropletDeleteByID() {
+        let id     = 123
+        let handle = self.api.delete(droplet: id) { result in }
+        
+        self.assertMethod(handle, method: .delete)
+        self.assertBody(handle, data: nil)
+        self.assertHeaders(handle)
+        self.assertEndpoint(handle, endpoint: .dropletWithID(id))
+        self.assertKeyPath(handle, keyPath: nil)
+        self.assertParameters(handle, parameters: nil)
+    }
+    
+    func testDropletDeleteByTag() {
+        let tag    = "production"
+        let handle = self.api.delete(droplets: tag) { result in }
+        
+        self.assertMethod(handle, method: .delete)
+        self.assertBody(handle, data: nil)
+        self.assertHeaders(handle)
+        self.assertEndpoint(handle, endpoint: .droplets)
+        self.assertKeyPath(handle, keyPath: nil)
+        self.assertParameters(handle, parameters: ["tag_name" : tag])
+    }
 }
