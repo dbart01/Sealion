@@ -73,3 +73,71 @@ public func ==(lhs: Droplet, rhs: Droplet) -> Bool {
         (lhs.v6Networks  == rhs.v6Networks) &&
         (lhs.createdAt   == rhs.createdAt)
 }
+
+// ----------------------------------
+//  MARK: - Creation -
+//
+public extension Droplet {
+    
+    public struct CreateRequest: JsonConvertible {
+        
+        public var name:                 String
+        public var region:               String
+        public var size:                 String
+        public var image:                Identifier
+        public var sshKeys:              [Identifier]?
+        public var useBackups:           Bool      = false
+        public var useIpv6:              Bool      = false
+        public var usePrivateNetworking: Bool      = false
+        public var userData:             String?   = nil
+        public var volumes:              [String]? = nil
+        
+        // ----------------------------------
+        //  MARK: - Init -
+        //
+        public init(name: String, region: String, size: String, image: Identifier) {
+            self.name        = name
+            self.region      = region
+            self.size        = size
+            self.image       = image
+        }
+        
+        // ----------------------------------
+        //  MARK: - JsonConvertible -
+        //
+        public var json: JSON {
+            var container: JSON = [
+                "name":   self.name,
+                "region": self.region,
+                "size":   self.size,
+                "image":  self.image,
+            ]
+            
+            if let sshKeys = self.sshKeys {
+                container["ssh_keys"] = sshKeys
+            }
+            
+            if self.useBackups {
+                container["backups"] = true
+            }
+            
+            if self.useIpv6 {
+                container["ipv6"] = true
+            }
+            
+            if self.usePrivateNetworking {
+                container["private_networking"] = true
+            }
+            
+            if let userData = self.userData {
+                container["user_data"] = userData
+            }
+            
+            if let volumes = self.volumes, !volumes.isEmpty {
+                container["volumes"] = volumes
+            }
+            
+            return container
+        }
+    }
+}

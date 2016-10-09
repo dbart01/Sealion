@@ -28,6 +28,8 @@
 		9A3918D21DAA8A49001C1603 /* API+Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3918D11DAA8A49001C1603 /* API+Keys.swift */; };
 		9A3918D41DAA9B32001C1603 /* ParameterConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3918D31DAA9B32001C1603 /* ParameterConvertible.swift */; };
 		9A3918D61DAA9F02001C1603 /* API+KeyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3918D51DAA9F02001C1603 /* API+KeyTests.swift */; };
+		9A3918D81DAAAA68001C1603 /* Identifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3918D71DAAAA68001C1603 /* Identifier.swift */; };
+		9A3918DA1DAAE2B4001C1603 /* IdentifierTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3918D91DAAE2B4001C1603 /* IdentifierTest.swift */; };
 		9A5AFC471DA83EDA005FCFA1 /* DropletTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5AFC461DA83EDA005FCFA1 /* DropletTests.swift */; };
 		9A950B731DA05DC20068DFF8 /* Sealion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A950B691DA05DC20068DFF8 /* Sealion.framework */; };
 		9A950B781DA05DC20068DFF8 /* API+AccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A950B771DA05DC20068DFF8 /* API+AccountTests.swift */; };
@@ -97,6 +99,8 @@
 		9A3918D11DAA8A49001C1603 /* API+Keys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "API+Keys.swift"; sourceTree = "<group>"; };
 		9A3918D31DAA9B32001C1603 /* ParameterConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParameterConvertible.swift; sourceTree = "<group>"; };
 		9A3918D51DAA9F02001C1603 /* API+KeyTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "API+KeyTests.swift"; sourceTree = "<group>"; };
+		9A3918D71DAAAA68001C1603 /* Identifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Identifier.swift; sourceTree = "<group>"; };
+		9A3918D91DAAE2B4001C1603 /* IdentifierTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IdentifierTest.swift; sourceTree = "<group>"; };
 		9A5AFC461DA83EDA005FCFA1 /* DropletTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropletTests.swift; sourceTree = "<group>"; };
 		9A950B691DA05DC20068DFF8 /* Sealion.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Sealion.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A950B6C1DA05DC20068DFF8 /* Sealion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Sealion.h; sourceTree = "<group>"; };
@@ -198,6 +202,7 @@
 				9A3918C61DA92E89001C1603 /* SizeTests.swift */,
 				9A3918C81DA92F69001C1603 /* NetworkTests.swift */,
 				9A3918CF1DAA8938001C1603 /* KeyTests.swift */,
+				9A3918D91DAAE2B4001C1603 /* IdentifierTest.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -324,6 +329,7 @@
 				9A950B8C1DA1D3D10068DFF8 /* JsonCreatable.swift */,
 				9AA5DD7F1DA43FC1003FEFCF /* JsonConvertible.swift */,
 				9A3918D31DAA9B32001C1603 /* ParameterConvertible.swift */,
+				9A3918D71DAAAA68001C1603 /* Identifier.swift */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -472,6 +478,7 @@
 				9AA5DD981DA51D8D003FEFCF /* Network.swift in Sources */,
 				9A950BF11DA3CFBE0068DFF8 /* API+Volumes.swift in Sources */,
 				9AA5DD9A1DA5216D003FEFCF /* API+Droplet.swift in Sources */,
+				9A3918D81DAAAA68001C1603 /* Identifier.swift in Sources */,
 				9A950BEB1DA3433A0068DFF8 /* DateFormatter.swift in Sources */,
 				9A950B921DA1D99A0068DFF8 /* Method.swift in Sources */,
 				9A950BF31DA3CFF20068DFF8 /* Volume.swift in Sources */,
@@ -501,6 +508,7 @@
 				9A950B991DA27CFA0068DFF8 /* MockDataTask.swift in Sources */,
 				9A0586BF1DA7C66800265B2A /* RegionTests.swift in Sources */,
 				9A950B971DA279C20068DFF8 /* MockSession.swift in Sources */,
+				9A3918DA1DAAE2B4001C1603 /* IdentifierTest.swift in Sources */,
 				9AA5DDAF1DA59CD9003FEFCF /* APITests.swift in Sources */,
 				9A3918D01DAA8938001C1603 /* KeyTests.swift in Sources */,
 				9A3918C71DA92E89001C1603 /* SizeTests.swift in Sources */,

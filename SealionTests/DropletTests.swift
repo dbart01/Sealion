@@ -48,4 +48,61 @@ class DropletTests: ModelTestCase {
     func testEquality() {
         self.assertEqualityForModelNamed(type: Droplet.self, name: "droplet")
     }
+    
+    // ----------------------------------
+    //  MARK: - CreateRequest -
+    //
+    func testCreateRequestWithImageID() {
+        let name    = "Test Droplet"
+        let region  = "nyc3"
+        let size    = "512mb"
+        let image   = 123
+        var request = Droplet.CreateRequest(
+            name:   name,
+            region: region,
+            size:   size,
+            image:  image
+        )
+        
+        var json = request.json
+        
+        XCTAssertEqual(json["name"]   as! String, name)
+        XCTAssertEqual(json["region"] as! String, region)
+        XCTAssertEqual(json["size"]   as! String, size)
+        XCTAssertEqual(json["image"]  as! Int,    image)
+        
+        XCTAssertNil(json["ssh_keys"])
+        XCTAssertNil(json["backups"])
+        XCTAssertNil(json["ipv6"])
+        XCTAssertNil(json["private_networking"])
+        XCTAssertNil(json["user_data"])
+        XCTAssertNil(json["volume"])
+        
+        let sshKeys     = [123, 234]
+        request.sshKeys = sshKeys
+        json = request.json
+        XCTAssertEqual(json["ssh_keys"] as! [Int], sshKeys)
+        
+        request.useBackups = true
+        json = request.json
+        XCTAssertTrue(json["backups"] as! Bool)
+        
+        request.useIpv6 = true
+        json = request.json
+        XCTAssertTrue(json["ipv6"] as! Bool)
+        
+        request.usePrivateNetworking = true
+        json = request.json
+        XCTAssertTrue(json["private_networking"] as! Bool)
+        
+        let userData     = "Some user data"
+        request.userData = userData
+        json = request.json
+        XCTAssertEqual(json["user_data"] as! String, userData)
+        
+        let volumes     = ["123", "234"]
+        request.volumes = volumes
+        json = request.json
+        XCTAssertEqual(json["volumes"] as! [String], volumes)
+    }
 }
