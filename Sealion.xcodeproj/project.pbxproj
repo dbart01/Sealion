@@ -23,6 +23,8 @@
 		9A3918C71DA92E89001C1603 /* SizeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3918C61DA92E89001C1603 /* SizeTests.swift */; };
 		9A3918C91DA92F69001C1603 /* NetworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3918C81DA92F69001C1603 /* NetworkTests.swift */; };
 		9A3918CC1DA931C4001C1603 /* DateFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3918CB1DA931C4001C1603 /* DateFormatterTests.swift */; };
+		9A3918CE1DAA8810001C1603 /* Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3918CD1DAA880F001C1603 /* Key.swift */; };
+		9A3918D01DAA8938001C1603 /* KeyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3918CF1DAA8938001C1603 /* KeyTests.swift */; };
 		9A5AFC471DA83EDA005FCFA1 /* DropletTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5AFC461DA83EDA005FCFA1 /* DropletTests.swift */; };
 		9A950B731DA05DC20068DFF8 /* Sealion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A950B691DA05DC20068DFF8 /* Sealion.framework */; };
 		9A950B781DA05DC20068DFF8 /* API+AccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A950B771DA05DC20068DFF8 /* API+AccountTests.swift */; };
@@ -87,6 +89,8 @@
 		9A3918C61DA92E89001C1603 /* SizeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SizeTests.swift; sourceTree = "<group>"; };
 		9A3918C81DA92F69001C1603 /* NetworkTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkTests.swift; sourceTree = "<group>"; };
 		9A3918CB1DA931C4001C1603 /* DateFormatterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFormatterTests.swift; sourceTree = "<group>"; };
+		9A3918CD1DAA880F001C1603 /* Key.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Key.swift; sourceTree = "<group>"; };
+		9A3918CF1DAA8938001C1603 /* KeyTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyTests.swift; sourceTree = "<group>"; };
 		9A5AFC461DA83EDA005FCFA1 /* DropletTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropletTests.swift; sourceTree = "<group>"; };
 		9A950B691DA05DC20068DFF8 /* Sealion.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Sealion.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A950B6C1DA05DC20068DFF8 /* Sealion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Sealion.h; sourceTree = "<group>"; };
@@ -187,6 +191,7 @@
 				9A3918C41DA92D37001C1603 /* ImageTests.swift */,
 				9A3918C61DA92E89001C1603 /* SizeTests.swift */,
 				9A3918C81DA92F69001C1603 /* NetworkTests.swift */,
+				9A3918CF1DAA8938001C1603 /* KeyTests.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -300,6 +305,7 @@
 				9AA5DD931DA4A12F003FEFCF /* Image.swift */,
 				9AA5DD951DA51C04003FEFCF /* Size.swift */,
 				9AA5DD971DA51D8D003FEFCF /* Network.swift */,
+				9A3918CD1DAA880F001C1603 /* Key.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -452,6 +458,7 @@
 				9AA5DD8E1DA49EB2003FEFCF /* Droplet.swift in Sources */,
 				9A950B851DA1D1F30068DFF8 /* API.swift in Sources */,
 				9A950BE71DA3420E0068DFF8 /* API+Actions.swift in Sources */,
+				9A3918CE1DAA8810001C1603 /* Key.swift in Sources */,
 				9AA5DD981DA51D8D003FEFCF /* Network.swift in Sources */,
 				9A950BF11DA3CFBE0068DFF8 /* API+Volumes.swift in Sources */,
 				9AA5DD9A1DA5216D003FEFCF /* API+Droplet.swift in Sources */,
@@ -483,6 +490,7 @@
 				9A0586BF1DA7C66800265B2A /* RegionTests.swift in Sources */,
 				9A950B971DA279C20068DFF8 /* MockSession.swift in Sources */,
 				9AA5DDAF1DA59CD9003FEFCF /* APITests.swift in Sources */,
+				9A3918D01DAA8938001C1603 /* KeyTests.swift in Sources */,
 				9A3918C71DA92E89001C1603 /* SizeTests.swift in Sources */,
 				9A950BF51DA3D2000068DFF8 /* API+VolumesTests.swift in Sources */,
 				9A3918C31DA92CC3001C1603 /* BackupWindowTests.swift in Sources */,
