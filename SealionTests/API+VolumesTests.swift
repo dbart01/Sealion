@@ -19,6 +19,7 @@ class API_VolumesTests: APITestCase {
         self.assertHeaders(handle)
         self.assertEndpoint(handle, endpoint: .volumes)
         self.assertKeyPath(handle, keyPath: "volumes")
+        self.assertParameters(handle, parameters: nil)
     }
     
     func testVolumeWithID() {
@@ -30,6 +31,7 @@ class API_VolumesTests: APITestCase {
         self.assertHeaders(handle)
         self.assertEndpoint(handle, endpoint: .volumeWithID(id))
         self.assertKeyPath(handle, keyPath: "volume")
+        self.assertParameters(handle, parameters: nil)
     }
     
     func testVolumeWithName() {
@@ -53,6 +55,7 @@ class API_VolumesTests: APITestCase {
         self.assertHeaders(handle)
         self.assertEndpoint(handle, endpoint: .volumes)
         self.assertKeyPath(handle, keyPath: "volumes")
+        self.assertParameters(handle, parameters: nil)
     }
     
     func testVolumeDeleteByID() {
@@ -64,6 +67,7 @@ class API_VolumesTests: APITestCase {
         self.assertHeaders(handle)
         self.assertEndpoint(handle, endpoint: .volumeWithID(id))
         self.assertKeyPath(handle, keyPath: nil)
+        self.assertParameters(handle, parameters: nil)
     }
     
     func testVolumeDeleteByName() {

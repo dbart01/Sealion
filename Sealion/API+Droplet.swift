@@ -10,8 +10,9 @@ import Foundation
 
 public extension API {
     
-    public func droplets(completion: @escaping (_ result: Result<[Droplet]>) -> Void) -> Handle {
-        let request = self.requestTo(endpoint: .droplets, method: .get)
+    public func droplets(tag: String? = nil, completion: @escaping (_ result: Result<[Droplet]>) -> Void) -> Handle {
+        let parameters: Parameters? = (tag == nil) ? nil : ["tag_name" : tag!]
+        let request = self.requestTo(endpoint: .droplets, method: .get, parameters: parameters)
         return self.taskWith(request: request, keyPath: "droplets", completion: completion)
     }
     

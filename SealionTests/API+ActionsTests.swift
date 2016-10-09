@@ -19,6 +19,7 @@ class API_ActionsTests: APITestCase {
         self.assertHeaders(handle)
         self.assertEndpoint(handle, endpoint: .actions)
         self.assertKeyPath(handle, keyPath: "actions")
+        self.assertParameters(handle, parameters: nil)
     }
     
     func testActionWithID() {
@@ -30,5 +31,6 @@ class API_ActionsTests: APITestCase {
         self.assertHeaders(handle)
         self.assertEndpoint(handle, endpoint: .actionWithID(id))
         self.assertKeyPath(handle, keyPath: "action")
+        self.assertParameters(handle, parameters: nil)
     }
 }

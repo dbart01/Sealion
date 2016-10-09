@@ -19,6 +19,7 @@ class API_KeyTests: APITestCase {
         self.assertHeaders(handle)
         self.assertEndpoint(handle, endpoint: .sshKeys)
         self.assertKeyPath(handle, keyPath: "ssh_keys")
+        self.assertParameters(handle, parameters: nil)
     }
     
     func testKeyWithID() {
@@ -30,6 +31,7 @@ class API_KeyTests: APITestCase {
         self.assertHeaders(handle)
         self.assertEndpoint(handle, endpoint: .sshKeyWithID(id))
         self.assertKeyPath(handle, keyPath: "ssh_key")
+        self.assertParameters(handle, parameters: nil)
     }
     
     func testKeyWithFingerprint() {
@@ -41,6 +43,7 @@ class API_KeyTests: APITestCase {
         self.assertHeaders(handle)
         self.assertEndpoint(handle, endpoint: .sshKeyWithFingerprint(fingerprint))
         self.assertKeyPath(handle, keyPath: "ssh_key")
+        self.assertParameters(handle, parameters: nil)
     }
     
     func testKeyCreate() {
@@ -52,6 +55,7 @@ class API_KeyTests: APITestCase {
         self.assertHeaders(handle)
         self.assertEndpoint(handle, endpoint: .sshKeys)
         self.assertKeyPath(handle, keyPath: "ssh_key")
+        self.assertParameters(handle, parameters: nil)
     }
     
     func testKeyUpdateWithID() {
@@ -64,6 +68,7 @@ class API_KeyTests: APITestCase {
         self.assertHeaders(handle)
         self.assertEndpoint(handle, endpoint: .sshKeyWithID(id))
         self.assertKeyPath(handle, keyPath: "ssh_key")
+        self.assertParameters(handle, parameters: nil)
     }
     
     func testKeyUpdateWithFingerprint() {
@@ -76,6 +81,7 @@ class API_KeyTests: APITestCase {
         self.assertHeaders(handle)
         self.assertEndpoint(handle, endpoint: .sshKeyWithFingerprint(fingerprint))
         self.assertKeyPath(handle, keyPath: "ssh_key")
+        self.assertParameters(handle, parameters: nil)
     }
     
     func testKeyDeleteWithID() {
@@ -87,6 +93,7 @@ class API_KeyTests: APITestCase {
         self.assertHeaders(handle)
         self.assertEndpoint(handle, endpoint: .sshKeyWithID(id))
         self.assertKeyPath(handle, keyPath: nil)
+        self.assertParameters(handle, parameters: nil)
     }
     
     func testKeyDeleteWithFingerprint() {
@@ -98,6 +105,7 @@ class API_KeyTests: APITestCase {
         self.assertHeaders(handle)
         self.assertEndpoint(handle, endpoint: .sshKeyWithFingerprint(fingerprint))
         self.assertKeyPath(handle, keyPath: nil)
+        self.assertParameters(handle, parameters: nil)
     }
     
     // ----------------------------------

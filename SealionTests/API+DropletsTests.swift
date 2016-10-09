@@ -19,6 +19,19 @@ class API_DropletsTests: APITestCase {
         self.assertHeaders(handle)
         self.assertEndpoint(handle, endpoint: .droplets)
         self.assertKeyPath(handle, keyPath: "droplets")
+        self.assertParameters(handle, parameters: nil)
+    }
+    
+    func testDropletListByTag() {
+        let tag    = "production"
+        let handle = self.api.droplets(tag: tag) { result in }
+        
+        self.assertMethod(handle, method: .get)
+        self.assertBody(handle, data: nil)
+        self.assertHeaders(handle)
+        self.assertEndpoint(handle, endpoint: .droplets)
+        self.assertKeyPath(handle, keyPath: "droplets")
+        self.assertParameters(handle, parameters: ["tag_name" : tag])
     }
     
     func testDropletWithID() {
@@ -30,5 +43,6 @@ class API_DropletsTests: APITestCase {
         self.assertHeaders(handle)
         self.assertEndpoint(handle, endpoint: .dropletWithID(id))
         self.assertKeyPath(handle, keyPath: "droplet")
+        self.assertParameters(handle, parameters: nil)
     }
 }
