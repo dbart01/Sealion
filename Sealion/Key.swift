@@ -45,6 +45,17 @@ public extension Droplet.Key {
         public var name:        String
         public var publicKey:   String
         
+        // ----------------------------------
+        //  MARK: - Init -
+        //
+        public init(name: String, publicKey: String) {
+            self.name      = name
+            self.publicKey = publicKey
+        }
+        
+        // ----------------------------------
+        //  MARK: - JsonConvertible -
+        //
         public var json: JSON {
             return [
                 "name":       self.name,

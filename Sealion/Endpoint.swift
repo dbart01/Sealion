@@ -8,7 +8,7 @@
 
 import Foundation
 
-internal enum Endpoint {
+public enum Endpoint {
     case account
     case actions
     case actionWithID(Int)
@@ -20,7 +20,7 @@ internal enum Endpoint {
     case sshKeyWithID(Int)
     case sshKeyWithFingerprint(String)
     
-    internal var path: String {
+    public var path: String {
         switch self {
         case .account:                      return "account"
         case .actions:                      return "actions"

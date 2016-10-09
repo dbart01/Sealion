@@ -8,9 +8,9 @@
 
 import Foundation
 
-internal extension Date {
+public extension Date {
     
-    internal static let ISOFormatter: DateFormatter = {
+    public static let ISOFormatter: DateFormatter = {
         let formatter        = DateFormatter()
         formatter.locale     = Locale(identifier: "en_US_POSIX")
         formatter.timeZone   = TimeZone(identifier: "UTC")
@@ -18,7 +18,7 @@ internal extension Date {
         return formatter
     }()
     
-    internal init?(ISOString: String) {
+    public init?(ISOString: String) {
         if let date = Date.ISOFormatter.date(from: ISOString) {
             self = date
         } else {
@@ -26,7 +26,7 @@ internal extension Date {
         }
     }
     
-    internal var ISOString: String {
+    public var ISOString: String {
         return Date.ISOFormatter.string(from: self)
     }
 }

@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import Sealion
+import Sealion
 
 class ActionTests: ModelTestCase {
     

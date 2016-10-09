@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import Sealion
+import Sealion
 
 class API_VolumesTests: APITestCase {
     
@@ -47,7 +47,7 @@ class API_VolumesTests: APITestCase {
     }
     
     func testVolumeCreate() {
-        let volume = Volume.CreateRequest(size: 1, name: "test", regionSlug: "nyc1", description: "Test volume created from tests.")
+        let volume = Volume.CreateRequest(size: 1, name: "test", region: "nyc1", description: "Test volume created from tests.")
         let handle = self.api.create(volume: volume) { result in }
         
         self.assertMethod(handle, method: .post)

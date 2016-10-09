@@ -51,15 +51,28 @@ public extension Volume {
         
         public var size:        Int
         public var name:        String
-        public var regionSlug:  String
+        public var region:      String
         public var description: String
         
+        // ----------------------------------
+        //  MARK: - Init -
+        //
+        public init(size: Int, name: String, region: String, description: String) {
+            self.size        = size
+            self.name        = name
+            self.region      = region
+            self.description = description
+        }
+        
+        // ----------------------------------
+        //  MARK: - JsonConvertible -
+        //
         public var json: JSON {
             return [
                 "size_gigabytes": self.size,
                 "name":           self.name,
                 "description":    self.description,
-                "region":         self.regionSlug,
+                "region":         self.region,
             ]
         }
     }
@@ -75,6 +88,17 @@ public extension Volume {
         public var name:   String
         public var region: String
         
+        // ----------------------------------
+        //  MARK: - Init -
+        //
+        public init(name: String, region: String) {
+            self.name   = name
+            self.region = region
+        }
+        
+        // ----------------------------------
+        //  MARK: - ParameterConvertible -
+        //
         public var parameters: Parameters {
             return [
                 "name"   : self.name,
