@@ -25,4 +25,9 @@ public extension API {
         let request = self.requestTo(endpoint: .droplets, method: .post, payload: droplet)
         return self.taskWith(request: request, keyPath: "droplet", completion: completion)
     }
+    
+    public func create(droplets: Droplet.CreateRequest, completion: @escaping (_ result: Result<[Droplet]>) -> Void) -> Handle {
+        let request = self.requestTo(endpoint: .droplets, method: .post, payload: droplets)
+        return self.taskWith(request: request, keyPath: "droplets", completion: completion)
+    }
 }

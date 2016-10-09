@@ -81,7 +81,7 @@ public extension Droplet {
     
     public struct CreateRequest: JsonConvertible {
         
-        public var name:                 String
+        public var names:                [String]
         public var region:               String
         public var size:                 String
         public var image:                Identifier
@@ -96,7 +96,11 @@ public extension Droplet {
         //  MARK: - Init -
         //
         public init(name: String, region: String, size: String, image: Identifier) {
-            self.name        = name
+            self.init(names: [name], region: region, size: size, image: image)
+        }
+        
+        public init(names: [String], region: String, size: String, image: Identifier) {
+            self.names       = names
             self.region      = region
             self.size        = size
             self.image       = image
@@ -107,11 +111,16 @@ public extension Droplet {
         //
         public var json: JSON {
             var container: JSON = [
-                "name":   self.name,
                 "region": self.region,
                 "size":   self.size,
                 "image":  self.image,
             ]
+            
+            if self.names.count == 1 {
+                container["name"] = self.names[0]
+            } else {
+                container["name"] = self.names
+            }
             
             if let sshKeys = self.sshKeys {
                 container["ssh_keys"] = sshKeys

@@ -57,4 +57,16 @@ class API_DropletsTests: APITestCase {
         self.assertKeyPath(handle, keyPath: "droplet")
         self.assertParameters(handle, parameters: nil)
     }
+    
+    func testDropletCreateMultiple() {
+        let request = Droplet.CreateRequest(names: ["test1", "test2"], region: "nyc3", size: "512mb", image: "ubuntu-14.04")
+        let handle = self.api.create(droplets: request) { result in }
+        
+        self.assertMethod(handle, method: .post)
+        self.assertBody(handle, object: request)
+        self.assertHeaders(handle)
+        self.assertEndpoint(handle, endpoint: .droplets)
+        self.assertKeyPath(handle, keyPath: "droplets")
+        self.assertParameters(handle, parameters: nil)
+    }
 }

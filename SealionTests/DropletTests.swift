@@ -53,7 +53,7 @@ class DropletTests: ModelTestCase {
     //  MARK: - CreateRequest -
     //
     func testCreateRequestWithImageID() {
-        let name    = "Test Droplet"
+        let name    = "test"
         let region  = "nyc3"
         let size    = "512mb"
         let image   = 123
@@ -77,6 +77,11 @@ class DropletTests: ModelTestCase {
         XCTAssertNil(json["private_networking"])
         XCTAssertNil(json["user_data"])
         XCTAssertNil(json["volume"])
+        
+        let names     = ["test1", "test2"]
+        request.names = names
+        json = request.json
+        XCTAssertEqual(json["name"] as! [String], names)
         
         let sshKeys     = [123, 234]
         request.sshKeys = sshKeys
