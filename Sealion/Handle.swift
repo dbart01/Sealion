@@ -8,7 +8,7 @@
 
 import Foundation
 
-public enum State {
+public enum RequestState {
     case running
     case suspended
     case cancelling
@@ -26,8 +26,8 @@ public enum State {
 
 public class Handle<T> {
         
-    public var state: State {
-        return State(state: self.task.state)
+    public var state: RequestState {
+        return RequestState(state: self.task.state)
     }
     
     internal let task:    URLSessionTask
