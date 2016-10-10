@@ -54,7 +54,7 @@ class API_VolumesTests: APITestCase {
         self.assertBody(handle, object: volume)
         self.assertHeaders(handle)
         self.assertEndpoint(handle, endpoint: .volumes)
-        self.assertKeyPath(handle, keyPath: "volumes")
+        self.assertKeyPath(handle, keyPath: "volume")
         self.assertParameters(handle, parameters: nil)
     }
     

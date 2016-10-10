@@ -18,7 +18,7 @@ class APITestCase: XCTestCase {
     // ----------------------------------
     //  MARK: - Assertions -
     //
-    func assertHeaders(_ handle: Handle) {
+    func assertHeaders<T>(_ handle: Handle<T>) {
         let request = handle.originalRequest!
         XCTAssertEqual(request.value(forHTTPHeaderField: "Authorization"), "Bearer token")
         
@@ -27,28 +27,28 @@ class APITestCase: XCTestCase {
         }
     }
     
-    func assertBody(_ handle: Handle, data: Data?) {
+    func assertBody<T>(_ handle: Handle<T>, data: Data?) {
         XCTAssertEqual(handle.originalRequest!.httpBody, data)
     }
     
-    func assertBody<T: JsonConvertible>(_ handle: Handle, object: T) {
+    func assertBody<T, U: JsonConvertible>(_ handle: Handle<T>, object: U) {
         let data = try! JSONSerialization.data(withJSONObject: object.json, options: [])
         self.assertBody(handle, data: data)
     }
     
-    func assertMethod(_ handle: Handle, method: Sealion.Method) {
+    func assertMethod<T>(_ handle: Handle<T>, method: Sealion.Method) {
         XCTAssertEqual(handle.originalRequest!.httpMethod, method.rawValue)
     }
     
-    func assertEndpoint(_ handle: Handle, endpoint: Endpoint) {
+    func assertEndpoint<T>(_ handle: Handle<T>, endpoint: Endpoint) {
         XCTAssertEqual(handle.originalRequest!.url!.stripped.absoluteString, "https://api.digitalocean.com/v2/\(endpoint.path)")
     }
     
-    func assertKeyPath(_ handle: Handle, keyPath: String?) {
+    func assertKeyPath<T>(_ handle: Handle<T>, keyPath: String?) {
         XCTAssertEqual(handle.keyPath, keyPath)
     }
     
-    func assertParameters(_ handle: Handle, parameters: ParameterConvertible?) {
+    func assertParameters<T>(_ handle: Handle<T>, parameters: ParameterConvertible?) {
         let components = URLComponents(url: handle.originalRequest!.url!, resolvingAgainstBaseURL: false)!
         let queryItems = components.queryItems
         

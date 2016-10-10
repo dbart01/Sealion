@@ -23,7 +23,11 @@ extension Dictionary: ParameterConvertible {
 
 extension ParameterConvertible {
     
-    public func combineWith(convertible: ParameterConvertible) -> ParameterConvertible {
+    public func combineWith(convertible: ParameterConvertible?) -> ParameterConvertible {
+        guard let convertible = convertible else {
+            return self
+        }
+        
         var container = self.parameters
         for (key, value) in convertible.parameters {
             container[key] = value

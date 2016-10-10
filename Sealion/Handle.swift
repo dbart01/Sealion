@@ -8,24 +8,24 @@
 
 import Foundation
 
-public class Handle {
+public enum State {
+    case running
+    case suspended
+    case cancelling
+    case completed
     
-    public enum State {
-        case running
-        case suspended
-        case cancelling
-        case completed
-        
-        fileprivate init(state: URLSessionTask.State) {
-            switch state {
-            case .running:   self = .running
-            case .suspended: self = .suspended
-            case .canceling: self = .cancelling
-            case .completed: self = .completed
-            }
+    fileprivate init(state: URLSessionTask.State) {
+        switch state {
+        case .running:   self = .running
+        case .suspended: self = .suspended
+        case .canceling: self = .cancelling
+        case .completed: self = .completed
         }
     }
-    
+}
+
+public class Handle<T> {
+        
     public var state: State {
         return State(state: self.task.state)
     }
@@ -37,8 +37,19 @@ public class Handle {
     //  MARK: - Init -
     //
     internal init(task: URLSessionTask, keyPath: String?) {
-        self.task    = task
-        self.keyPath = keyPath
+        self.task       = task
+        self.keyPath    = keyPath
+    }
+    
+    // ----------------------------------
+    //  MARK: - Type Comparison -
+    //
+    internal func typeEqualTo<U>(type: U.Type) -> Bool {
+        return false
+    }
+    
+    internal func typeEqualTo(type: T.Type) -> Bool {
+        return true
     }
     
     // ----------------------------------

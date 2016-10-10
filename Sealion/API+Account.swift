@@ -10,7 +10,7 @@ import Foundation
 
 public extension API {
     
-    public func account(completion: @escaping (_ result: Result<Account>) -> Void) -> Handle {
+    public func account(completion: @escaping (_ result: Result<Account>) -> Void) -> Handle<Account> {
         let request = self.requestTo(endpoint: .account, method: .get)
         return self.taskWith(request: request, keyPath: "account", completion: completion)
     }

@@ -376,9 +376,9 @@ class APITests: XCTestCase {
         var resultOut:   Result<Any>!
         var responseOut: HTTPURLResponse!
         
-        let e       = self.expectation(description: "")
-        let request = api.requestTo(endpoint: .account, method: .get) // overriden by mock
-        let task    = api.taskWith(request: request, keyPath: keyPath) { result, response in
+        let e                 = self.expectation(description: "")
+        let request           = api.requestTo(endpoint: .account, method: .get) // overriden by mock
+        let task: Handle<Any> = api.taskWith(request: request, keyPath: keyPath) { result, response in
             
             resultOut   = result
             responseOut = response
