@@ -14,6 +14,7 @@ class API_ActionsTests: APITestCase {
     func testActionsList() {
         let handle = self.api.actions { result in }
         
+        self.assertType(handle, type: [Action].self)
         self.assertMethod(handle, method: .get)
         self.assertBody(handle, data: nil)
         self.assertHeaders(handle)
@@ -26,6 +27,7 @@ class API_ActionsTests: APITestCase {
         let id     = 123
         let handle = self.api.actionWith(id: id) { result in }
         
+        self.assertType(handle, type: Action.self)
         self.assertMethod(handle, method: .get)
         self.assertBody(handle, data: nil)
         self.assertHeaders(handle)

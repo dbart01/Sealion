@@ -16,7 +16,7 @@ public extension API {
         return self.taskWith(request: request, keyPath: "droplets", completion: completion)
     }
     
-    public func dropletWith(id: Int, completion: @escaping (_ result: Result<[Droplet]>) -> Void) -> Handle<[Droplet]> {
+    public func dropletWith(id: Int, completion: @escaping (_ result: Result<Droplet>) -> Void) -> Handle<Droplet> {
         let request = self.requestTo(endpoint: .dropletWithID(id), method: .get)
         return self.taskWith(request: request, keyPath: "droplet", completion: completion)
     }

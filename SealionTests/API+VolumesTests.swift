@@ -14,6 +14,7 @@ class API_VolumesTests: APITestCase {
     func testVolumesList() {
         let handle = self.api.volumes { result in }
         
+        self.assertType(handle, type: [Volume].self)
         self.assertMethod(handle, method: .get)
         self.assertBody(handle, data: nil)
         self.assertHeaders(handle)
@@ -26,6 +27,7 @@ class API_VolumesTests: APITestCase {
         let id     = "123"
         let handle = self.api.volumeWith(id: id) { result in }
         
+        self.assertType(handle, type: Volume.self)
         self.assertMethod(handle, method: .get)
         self.assertBody(handle, data: nil)
         self.assertHeaders(handle)
@@ -38,6 +40,7 @@ class API_VolumesTests: APITestCase {
         let name   = Volume.Name(name: "test", region: "nyc1")
         let handle = self.api.volumeWith(name: name) { result in }
         
+        self.assertType(handle, type: [Volume].self)
         self.assertMethod(handle, method: .get)
         self.assertBody(handle, data: nil)
         self.assertHeaders(handle)
@@ -50,6 +53,7 @@ class API_VolumesTests: APITestCase {
         let volume = Volume.CreateRequest(size: 1, name: "test", region: "nyc1", description: "Test volume created from tests.")
         let handle = self.api.create(volume: volume) { result in }
         
+        self.assertType(handle, type: Volume.self)
         self.assertMethod(handle, method: .post)
         self.assertBody(handle, object: volume)
         self.assertHeaders(handle)
@@ -62,6 +66,7 @@ class API_VolumesTests: APITestCase {
         let id     = "123"
         let handle = self.api.delete(volume: id) { result in }
         
+        self.assertType(handle, type: Volume.self)
         self.assertMethod(handle, method: .delete)
         self.assertBody(handle, data: nil)
         self.assertHeaders(handle)
@@ -74,6 +79,7 @@ class API_VolumesTests: APITestCase {
         let name   = Volume.Name(name: "test", region: "nyc1")
         let handle = self.api.delete(volume: name) { result in }
         
+        self.assertType(handle, type: Volume.self)
         self.assertMethod(handle, method: .delete)
         self.assertBody(handle, data: nil)
         self.assertHeaders(handle)

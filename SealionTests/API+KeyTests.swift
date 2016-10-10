@@ -14,6 +14,7 @@ class API_KeyTests: APITestCase {
     func testKeyList() {
         let handle = self.api.sshKeys { result in }
         
+        self.assertType(handle, type: [SSHKey].self)
         self.assertMethod(handle, method: .get)
         self.assertBody(handle, data: nil)
         self.assertHeaders(handle)
@@ -26,6 +27,7 @@ class API_KeyTests: APITestCase {
         let id     = 123
         let handle = self.api.sshKeyWith(id: 123) { result in }
         
+        self.assertType(handle, type: SSHKey.self)
         self.assertMethod(handle, method: .get)
         self.assertBody(handle, data: nil)
         self.assertHeaders(handle)
@@ -38,6 +40,7 @@ class API_KeyTests: APITestCase {
         let fingerprint = "f1:a2"
         let handle      = self.api.sshKeyWith(fingerprint: fingerprint) { result in }
         
+        self.assertType(handle, type: SSHKey.self)
         self.assertMethod(handle, method: .get)
         self.assertBody(handle, data: nil)
         self.assertHeaders(handle)
@@ -50,6 +53,7 @@ class API_KeyTests: APITestCase {
         let request = self.createRequest()
         let handle  = self.api.create(sshKey: request) { result in }
         
+        self.assertType(handle, type: SSHKey.self)
         self.assertMethod(handle, method: .post)
         self.assertBody(handle, object: request)
         self.assertHeaders(handle)
@@ -63,6 +67,7 @@ class API_KeyTests: APITestCase {
         let request = self.createRequest()
         let handle  = self.api.update(sshKey: id, request: request) { result in }
         
+        self.assertType(handle, type: SSHKey.self)
         self.assertMethod(handle, method: .put)
         self.assertBody(handle, object: request)
         self.assertHeaders(handle)
@@ -76,6 +81,7 @@ class API_KeyTests: APITestCase {
         let request     = self.createRequest()
         let handle      = self.api.update(sshKey: fingerprint, request: request) { result in }
         
+        self.assertType(handle, type: SSHKey.self)
         self.assertMethod(handle, method: .put)
         self.assertBody(handle, object: request)
         self.assertHeaders(handle)
@@ -88,6 +94,7 @@ class API_KeyTests: APITestCase {
         let id     = 123
         let handle = self.api.delete(sshKey: 123) { result in }
         
+        self.assertType(handle, type: SSHKey.self)
         self.assertMethod(handle, method: .delete)
         self.assertBody(handle, data: nil)
         self.assertHeaders(handle)
@@ -111,9 +118,9 @@ class API_KeyTests: APITestCase {
     // ----------------------------------
     //  MARK: - Requests -
     //
-    private func createRequest() -> Droplet.Key.CreateRequest {
+    private func createRequest() -> SSHKey.CreateRequest {
         let name = "testKey"
         let key  = "ssh-rsa AAAAB123j3k12j"
-        return Droplet.Key.CreateRequest(name: name, publicKey: key)
+        return SSHKey.CreateRequest(name: name, publicKey: key)
     }
 }

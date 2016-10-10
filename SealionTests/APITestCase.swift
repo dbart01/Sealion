@@ -18,6 +18,14 @@ class APITestCase: XCTestCase {
     // ----------------------------------
     //  MARK: - Assertions -
     //
+    func assertType<T>(_ handle: Handle<T>, type: T.Type) {
+        XCTAssertTrue(true)
+    }
+    
+    func assertType<T, U>(_ handle: Handle<T>, type: U.Type) {
+        XCTFail("Type \(T.self) doesn't match type: \(type)")
+    }
+    
     func assertHeaders<T>(_ handle: Handle<T>) {
         let request = handle.originalRequest!
         XCTAssertEqual(request.value(forHTTPHeaderField: "Authorization"), "Bearer token")

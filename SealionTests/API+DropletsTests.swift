@@ -14,6 +14,7 @@ class API_DropletsTests: APITestCase {
     func testDropletList() {
         let handle = self.api.droplets { result in }
         
+        self.assertType(handle, type: [Droplet].self)
         self.assertMethod(handle, method: .get)
         self.assertBody(handle, data: nil)
         self.assertHeaders(handle)
@@ -26,6 +27,7 @@ class API_DropletsTests: APITestCase {
         let tag    = "production"
         let handle = self.api.droplets(tag: tag) { result in }
         
+        self.assertType(handle, type: [Droplet].self)
         self.assertMethod(handle, method: .get)
         self.assertBody(handle, data: nil)
         self.assertHeaders(handle)
@@ -38,6 +40,7 @@ class API_DropletsTests: APITestCase {
         let id     = 123
         let handle = self.api.dropletWith(id: 123) { result in }
         
+        self.assertType(handle, type: Droplet.self)
         self.assertMethod(handle, method: .get)
         self.assertBody(handle, data: nil)
         self.assertHeaders(handle)
@@ -50,6 +53,7 @@ class API_DropletsTests: APITestCase {
         let request = Droplet.CreateRequest(name: "test.example.com", region: "nyc3", size: "512mb", image: "ubuntu-14.04")
         let handle = self.api.create(droplet: request) { result in }
         
+        self.assertType(handle, type: Droplet.self)
         self.assertMethod(handle, method: .post)
         self.assertBody(handle, object: request)
         self.assertHeaders(handle)
@@ -62,6 +66,7 @@ class API_DropletsTests: APITestCase {
         let request = Droplet.CreateRequest(names: ["test1", "test2"], region: "nyc3", size: "512mb", image: "ubuntu-14.04")
         let handle = self.api.create(droplets: request) { result in }
         
+        self.assertType(handle, type: [Droplet].self)
         self.assertMethod(handle, method: .post)
         self.assertBody(handle, object: request)
         self.assertHeaders(handle)
@@ -74,6 +79,7 @@ class API_DropletsTests: APITestCase {
         let id     = 123
         let handle = self.api.delete(droplet: id) { result in }
         
+        self.assertType(handle, type: Droplet.self)
         self.assertMethod(handle, method: .delete)
         self.assertBody(handle, data: nil)
         self.assertHeaders(handle)
@@ -86,6 +92,7 @@ class API_DropletsTests: APITestCase {
         let tag    = "production"
         let handle = self.api.delete(droplets: tag) { result in }
         
+        self.assertType(handle, type: Droplet.self)
         self.assertMethod(handle, method: .delete)
         self.assertBody(handle, data: nil)
         self.assertHeaders(handle)

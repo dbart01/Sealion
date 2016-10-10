@@ -15,7 +15,7 @@ class KeytTests: ModelTestCase {
     //  MARK: - JsonCreatable -
     //
     func testJsonCreationForV4() {
-        let model: Droplet.Key = self.modelNamed(name: "key")
+        let model: SSHKey = self.modelNamed(name: "key")
         
         XCTAssertEqual(model.id,          123)
         XCTAssertEqual(model.name,        "john@John-Smiths-MBP")
@@ -24,6 +24,6 @@ class KeytTests: ModelTestCase {
     }
     
     func testEquality() {
-        self.assertEqualityForModelNamed(type: Droplet.Key.self, name: "key")
+        self.assertEqualityForModelNamed(type: SSHKey.self, name: "key")
     }
 }

@@ -14,6 +14,7 @@ class API_AccountTests: APITestCase {
     func testAccount() {
         let handle = self.api.account { result in }
         
+        self.assertType(handle, type: Account.self)
         self.assertMethod(handle, method: .get)
         self.assertBody(handle, data: nil)
         self.assertHeaders(handle)
