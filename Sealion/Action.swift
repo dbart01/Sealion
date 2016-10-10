@@ -17,7 +17,7 @@ public struct Action: JsonCreatable, Equatable {
     public let startedAt:    Date
     public let finishedAt:   Date
     public let resourceType: String
-    public let region:       Region?
+    public let region:       String?
     
     // ----------------------------------
     //  MARK: - JsonCreatable -
@@ -28,14 +28,9 @@ public struct Action: JsonCreatable, Equatable {
         self.status       = json["status"]        as! String
         self.type         = json["type"]          as! String
         self.resourceType = json["resource_type"] as! String
+        self.region       = json["region_slug"]   as? String
         self.startedAt    = Date(ISOString: json["started_at"]   as! String)!
         self.finishedAt   = Date(ISOString: json["completed_at"] as! String)!
-        
-        if let regionJSON = json["region"] as? JSON {
-            self.region = Region(json: regionJSON)
-        } else {
-            self.region = nil
-        }
     }
 }
 
@@ -46,5 +41,6 @@ public func ==(lhs: Action, rhs: Action) -> Bool {
         (lhs.type         == rhs.type) &&
         (lhs.startedAt    == rhs.startedAt) &&
         (lhs.finishedAt   == rhs.finishedAt) &&
+        (lhs.region       == rhs.region) &&
         (lhs.resourceType == rhs.resourceType)
 }

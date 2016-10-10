@@ -111,7 +111,7 @@
    "action": {
       "status": "completed", 
       "resource_id": 456, 
-      "region": "###region", 
+      "region": "nyc3", 
       "region_slug": "nyc3", 
       "completed_at": "2016-09-30T19:52:21Z", 
       "started_at": "2016-09-30T19:52:21Z", 
