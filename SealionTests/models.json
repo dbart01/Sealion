@@ -103,6 +103,7 @@
       "fingerprint": "b7:40"
    }, 
    "error": {
+      "code": 403,
       "message": "Error message", 
       "id": "error_id", 
       "request_id": "request_id"

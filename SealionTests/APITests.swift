@@ -209,6 +209,7 @@ class APITests: XCTestCase {
             XCTFail("Expecting an error response.")
         case .failure(let error):
             XCTAssertNotNil(error)
+            XCTAssertEqual(error!.code,        handle.response.statusCode)
             XCTAssertEqual(error!.id,          id)
             XCTAssertEqual(error!.name,        name)
             XCTAssertEqual(error!.description, description)

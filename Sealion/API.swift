@@ -152,7 +152,9 @@ public class API {
                     parsedJson = json
                     
                 } else {
-                    parsedError = RequestError(json: json as! JSON)
+                    var errorJSON     = json as! JSON
+                    errorJSON["code"] = httpResponse.statusCode
+                    parsedError       = RequestError(json: errorJSON)
                 }
             }
             
@@ -165,7 +167,7 @@ public class API {
             } else {
                 
                 if let error = error, parsedError == nil {
-                    parsedError = RequestError(id: "", name: "network_error", description: error.localizedDescription)
+                    parsedError = RequestError(code: httpResponse.statusCode, id: "", name: "network_error", description: error.localizedDescription)
                 }
                 completion(.failure(parsedError), httpResponse)
             }
