@@ -20,3 +20,14 @@ extension Dictionary: ParameterConvertible {
         return self as Any as! Parameters
     }
 }
+
+extension ParameterConvertible {
+    
+    public func combineWith(convertible: ParameterConvertible) -> ParameterConvertible {
+        var container = self.parameters
+        for (key, value) in convertible.parameters {
+            container[key] = value
+        }
+        return container
+    }
+}
