@@ -16,6 +16,7 @@ public enum Endpoint {
     case volumeWithID(String)
     case droplets
     case dropletWithID(Int)
+    case dropletActionWithID(Int)
     case sshKeys
     case sshKeyWithID(Int)
     case sshKeyWithFingerprint(String)
@@ -29,6 +30,7 @@ public enum Endpoint {
         case .volumeWithID(let id):         return "volume/\(id)"
         case .droplets:                     return "droplets"
         case .dropletWithID(let id):        return "droplets/\(id)"
+        case .dropletActionWithID(let id):  return "droplets/\(id)/actions"
         case .sshKeys:                      return "account/keys"
         case .sshKeyWithID(let id):         return "account/keys/\(id)"
         case .sshKeyWithFingerprint(let f): return "account/keys/\(f)"

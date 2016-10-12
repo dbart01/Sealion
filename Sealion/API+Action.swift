@@ -1,5 +1,5 @@
 //
-//  API+Actions.swift
+//  API+Action.swift
 //  Sealion
 //
 //  Created by Dima Bart on 2016-10-03.

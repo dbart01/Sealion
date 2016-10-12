@@ -1,5 +1,5 @@
 //
-//  API+VolumesTests.swift
+//  API+VolumeTests.swift
 //  Sealion
 //
 //  Created by Dima Bart on 2016-10-04.
@@ -9,7 +9,7 @@
 import XCTest
 import Sealion
 
-class API_VolumesTests: APITestCase {
+class API_VolumeTests: APITestCase {
     
     func testVolumesList() {
         let handle = self.api.volumes { result in }

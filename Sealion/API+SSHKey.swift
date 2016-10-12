@@ -1,5 +1,5 @@
 //
-//  API+Keys.swift
+//  API+SSHKey.swift
 //  Sealion
 //
 //  Created by Dima Bart on 2016-10-09.

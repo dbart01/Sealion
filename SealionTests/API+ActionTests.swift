@@ -1,5 +1,5 @@
 //
-//  API+ActionsTests.swift
+//  API+ActionTests.swift
 //  Sealion
 //
 //  Created by Dima Bart on 2016-10-03.
@@ -9,7 +9,7 @@
 import XCTest
 import Sealion
 
-class API_ActionsTests: APITestCase {
+class API_ActionTests: APITestCase {
     
     func testActionsList() {
         let handle = self.api.actions { result in }

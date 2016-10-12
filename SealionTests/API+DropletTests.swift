@@ -1,5 +1,5 @@
 //
-//  API+DropletsTests.swift
+//  API+DropletTests.swift
 //  Sealion
 //
 //  Created by Dima Bart on 2016-10-05.
@@ -9,7 +9,7 @@
 import XCTest
 import Sealion
 
-class API_DropletsTests: APITestCase {
+class API_DropletTests: APITestCase {
     
     func testDropletList() {
         let handle = self.api.droplets { result in }

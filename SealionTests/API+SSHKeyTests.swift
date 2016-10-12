@@ -1,5 +1,5 @@
 //
-//  API+KeyTests.swift
+//  API+SSHKeyTests.swift
 //  Sealion
 //
 //  Created by Dima Bart on 2016-10-09.
@@ -9,7 +9,7 @@
 import XCTest
 import Sealion
 
-class API_KeyTests: APITestCase {
+class API_SSHKeyTests: APITestCase {
     
     func testKeyList() {
         let handle = self.api.sshKeys { result in }
