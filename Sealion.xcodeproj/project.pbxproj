@@ -31,6 +31,7 @@
 		9A3918D81DAAAA68001C1603 /* Identifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3918D71DAAAA68001C1603 /* Identifier.swift */; };
 		9A3918DA1DAAE2B4001C1603 /* IdentifierTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3918D91DAAE2B4001C1603 /* IdentifierTest.swift */; };
 		9A4AC6451DAD88D50003553E /* JSON+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4AC6441DAD88D50003553E /* JSON+Equatable.swift */; };
+		9A4AC6471DADD29B0003553E /* API+DropletActionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4AC6461DADD29B0003553E /* API+DropletActionTests.swift */; };
 		9A5AFC471DA83EDA005FCFA1 /* DropletTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5AFC461DA83EDA005FCFA1 /* DropletTests.swift */; };
 		9A950B731DA05DC20068DFF8 /* Sealion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A950B691DA05DC20068DFF8 /* Sealion.framework */; };
 		9A950B781DA05DC20068DFF8 /* API+AccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A950B771DA05DC20068DFF8 /* API+AccountTests.swift */; };
@@ -108,6 +109,7 @@
 		9A3918D71DAAAA68001C1603 /* Identifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Identifier.swift; sourceTree = "<group>"; };
 		9A3918D91DAAE2B4001C1603 /* IdentifierTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IdentifierTest.swift; sourceTree = "<group>"; };
 		9A4AC6441DAD88D50003553E /* JSON+Equatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "JSON+Equatable.swift"; sourceTree = "<group>"; };
+		9A4AC6461DADD29B0003553E /* API+DropletActionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "API+DropletActionTests.swift"; sourceTree = "<group>"; };
 		9A5AFC461DA83EDA005FCFA1 /* DropletTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropletTests.swift; sourceTree = "<group>"; };
 		9A950B691DA05DC20068DFF8 /* Sealion.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Sealion.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A950B6C1DA05DC20068DFF8 /* Sealion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Sealion.h; sourceTree = "<group>"; };
@@ -246,6 +248,7 @@
 				9A950BEC1DA345FF0068DFF8 /* API+ActionTests.swift */,
 				9A950BF41DA3D2000068DFF8 /* API+VolumeTests.swift */,
 				9AA5DD9B1DA52292003FEFCF /* API+DropletTests.swift */,
+				9A4AC6461DADD29B0003553E /* API+DropletActionTests.swift */,
 				9A3918D51DAA9F02001C1603 /* API+SSHKeyTests.swift */,
 			);
 			name = Routes;
@@ -547,6 +550,7 @@
 				9A950B971DA279C20068DFF8 /* MockSession.swift in Sources */,
 				9A3918DA1DAAE2B4001C1603 /* IdentifierTest.swift in Sources */,
 				9AA5DDAF1DA59CD9003FEFCF /* APITests.swift in Sources */,
+				9A4AC6471DADD29B0003553E /* API+DropletActionTests.swift in Sources */,
 				9A3918D01DAA8938001C1603 /* KeyTests.swift in Sources */,
 				9A3918C71DA92E89001C1603 /* SizeTests.swift in Sources */,
 				9A950BF51DA3D2000068DFF8 /* API+VolumeTests.swift in Sources */,
