@@ -11,7 +11,7 @@ import Foundation
 public extension API {
     
     public func volumes(page: Page? = nil, completion: @escaping (_ result: Result<[Volume]>) -> Void) -> Handle<[Volume]> {
-        let request = self.requestTo(endpoint: .volumes, method: .get, parameters: page)
+        let request = self.requestTo(endpoint: .volumes, method: .get, page: page)
         return self.taskWith(request: request, keyPath: "volumes", completion: completion)
     }
     
@@ -20,8 +20,8 @@ public extension API {
         return self.taskWith(request: request, keyPath: "volume", completion: completion)
     }
     
-    public func volumeWith(name: Volume.Name, page: Page? = nil, completion: @escaping (_ result: Result<[Volume]>) -> Void) -> Handle<[Volume]> {
-        let request = self.requestTo(endpoint: .volumes, method: .get, parameters: name.combineWith(convertible: page))
+    public func volumeWith(name: Volume.Name, completion: @escaping (_ result: Result<[Volume]>) -> Void) -> Handle<[Volume]> {
+        let request = self.requestTo(endpoint: .volumes, method: .get, parameters: name)
         return self.taskWith(request: request, keyPath: "volumes", completion: completion)
     }
     

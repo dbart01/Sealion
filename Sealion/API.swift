@@ -42,13 +42,18 @@ public class API {
     // ----------------------------------
     //  MARK: - URL Generation -
     //
-    internal func urlTo(endpoint: Endpoint, parameters: Parameters? = nil) -> URL {
+    internal func urlTo(endpoint: Endpoint, page: Page? = nil, parameters: ParameterConvertible? = nil) -> URL {
         let url        = URL(string: endpoint.path, relativeTo: self.apiRoot)!
         var components = URLComponents(url: url, resolvingAgainstBaseURL: true)!
         
-        if let parameters = parameters {
+        var p: ParameterConvertible = [:]
+        p = p.combineWith(convertible: page)
+        p = p.combineWith(convertible: parameters)
+        
+        let finalParameters = p.parameters
+        if !finalParameters.isEmpty {
             var items = [URLQueryItem]()
-            for (name, value) in parameters {
+            for (name, value) in finalParameters {
                 items.append(URLQueryItem(name: name, value: value))
             }
             components.queryItems = items
@@ -60,8 +65,9 @@ public class API {
     // ----------------------------------
     //  MARK: - Request Generation -
     //
-    internal func requestTo(endpoint: Endpoint, method: Method, parameters: ParameterConvertible? = nil, payload: JsonConvertible? = nil) -> URLRequest {
-        var request        = URLRequest(url: self.urlTo(endpoint: endpoint, parameters: parameters?.parameters))
+    internal func requestTo(endpoint: Endpoint, method: Method, page: Page? = nil, parameters: ParameterConvertible? = nil, payload: JsonConvertible? = nil) -> URLRequest {
+        
+        var request        = URLRequest(url: self.urlTo(endpoint: endpoint, page: page, parameters: parameters))
         request.httpMethod = method.rawValue
         
         if let payload = payload {

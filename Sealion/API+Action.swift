@@ -11,7 +11,7 @@ import Foundation
 public extension API {
     
     public func actions(page: Page? = nil, completion: @escaping (_ result: Result<[Action]>) -> Void) -> Handle<[Action]> {
-        let request = self.requestTo(endpoint: .actions, method: .get, parameters: page)
+        let request = self.requestTo(endpoint: .actions, method: .get, page: page)
         return self.taskWith(request: request, keyPath: "actions", completion: completion)
     }
     

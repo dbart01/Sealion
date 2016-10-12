@@ -44,14 +44,21 @@ class APITests: XCTestCase {
         let api = self.createAPI()
         
         let parameters = [
-            "page"     : "2",
-            "per_page" : "200",
+            "id"    : "2",
+            "image" : "200",
         ]
         
-        let expected = URL(string: "\(API.Version.v2.rawValue)droplets/123456?per_page=200&page=2")!
-        let url      = api.urlTo(endpoint: .dropletWithID(123456), parameters: parameters)
+        let expectedWithoutPage = URL(string: "\(API.Version.v2.rawValue)droplets/123456?id=2&image=200")!
+        let urlWithoutPage      = api.urlTo(endpoint: .dropletWithID(123456), parameters: parameters)
         
-        XCTAssertEqual(expected, url)
+        XCTAssertEqual(expectedWithoutPage, urlWithoutPage)
+        
+        let page = Page(index: 0, count: 50)
+        
+        let expectedWithPage = URL(string: "\(API.Version.v2.rawValue)droplets/123456?page=1&per_page=50&id=2&image=200")!
+        let urlWithPage      = api.urlTo(endpoint: .dropletWithID(123456), page: page, parameters: parameters)
+        
+        XCTAssertEqual(expectedWithPage, urlWithPage)
     }
     
     // ----------------------------------

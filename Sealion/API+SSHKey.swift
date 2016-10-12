@@ -10,8 +10,8 @@ import Foundation
 
 public extension API {
     
-    public func sshKeys(completion: @escaping (_ result: Result<[SSHKey]>) -> Void) -> Handle<[SSHKey]> {
-        let request = self.requestTo(endpoint: .sshKeys, method: .get)
+    public func sshKeys(page: Page? = nil, completion: @escaping (_ result: Result<[SSHKey]>) -> Void) -> Handle<[SSHKey]> {
+        let request = self.requestTo(endpoint: .sshKeys, method: .get, page: page)
         return self.taskWith(request: request, keyPath: "ssh_keys", completion: completion)
     }
     
