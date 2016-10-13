@@ -1,5 +1,5 @@
 //
-//  KeyTests.swift
+//  SSHKeyTests.swift
 //  Sealion
 //
 //  Created by Dima Bart on 2016-10-09.
@@ -9,7 +9,7 @@
 import XCTest
 import Sealion
 
-class KeytTests: ModelTestCase {
+class SSHKeyTests: ModelTestCase {
     
     // ----------------------------------
     //  MARK: - JsonCreatable -

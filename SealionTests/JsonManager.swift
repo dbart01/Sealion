@@ -40,30 +40,43 @@ class JsonManager {
     static func preprocessJsonNamed(_ jsonNamed: String) -> (original: JSON, processed: JSON) {
         let fileURL    = Bundle(for: JsonManager.self).url(forResource: jsonNamed, withExtension: "json")!
         let fileData   = try! Data(contentsOf: fileURL)
-        var fileString = String(data: fileData, encoding: .utf8)! as NSString
         let original   = try! JSONSerialization.jsonObject(with: fileData, options: []) as! JSON
         
-        let regex   = try! NSRegularExpression(pattern: "\"###(.+?)\"", options: [])
-        let results = regex.matches(in: fileString as String, options: [], range: NSRange(location: 0, length: fileString.length))
+        let regex      = try! NSRegularExpression(pattern: "\"###(.+?)\"", options: [])
+        var results    = [NSTextCheckingResult]()
+        var fileString = String(data: fileData, encoding: .utf8)! as NSString
         
-        for result in results.reversed() {
-            guard result.numberOfRanges > 1 else {
-                continue
+        /* ----------------------------------
+         ** Repeat regex matching until there
+         ** are no more matches left. This is
+         ** necessary for nested objects with
+         ** references. Otherwise, not all 
+         ** references will be replaced.
+         */
+        repeat {
+            
+            results = regex.matches(in: fileString as String, options: [], range: NSRange(location: 0, length: fileString.length))
+            
+            for result in results.reversed() {
+                guard result.numberOfRanges > 1 else {
+                    continue
+                }
+                
+                let range  = result.rangeAt(1)
+                let alias  = fileString.substring(with: range)
+                
+                guard let object = original[alias] else {
+                    fatalError("Alias not found: \(alias)")
+                }
+                
+                let data   = try! JSONSerialization.data(withJSONObject: object, options: [])
+                let string = String(data: data, encoding: .utf8)!
+                
+                let replacementRange = result.rangeAt(0)
+                fileString = fileString.replacingCharacters(in: replacementRange, with: string) as NSString
             }
             
-            let range  = result.rangeAt(1)
-            let alias  = fileString.substring(with: range)
-            
-            guard let object = original[alias] else {
-                fatalError("Alias not found: \(alias)")
-            }
-            
-            let data   = try! JSONSerialization.data(withJSONObject: object, options: [])
-            let string = String(data: data, encoding: .utf8)!
-            
-            let replacementRange = result.rangeAt(0)
-            fileString = fileString.replacingCharacters(in: replacementRange, with: string) as NSString
-        }
+        } while results.count > 0
         
         let processedData = (fileString as String).data(using: .utf8)
         let processed     = try! JSONSerialization.jsonObject(with: processedData!, options: []) as! JSON

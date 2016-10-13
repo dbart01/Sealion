@@ -28,6 +28,8 @@ public enum Endpoint {
     case sshKeyWithFingerprint(String)
     case regions
     case sizes
+    case floatingIPs
+    case floatingIPWithIP(String)
     
     public var path: String {
         switch self {
@@ -50,6 +52,8 @@ public enum Endpoint {
         case .sshKeyWithFingerprint(let f): return "account/keys/\(f)"
         case .regions:                      return "regions"
         case .sizes:                        return "sizes"
+        case .floatingIPs:                  return "floating_ips"
+        case .floatingIPWithIP(let ip):     return "floating_ips/\(ip)"
         }
     }
 }

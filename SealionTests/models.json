@@ -32,16 +32,6 @@
          456
       ], 
       "size_slug": "1gb", 
-      "id": 123, 
-      "next_backup_window": "###backupWindow", 
-      "vcpus": 1, 
-      "features": [
-         "virtio"
-      ], 
-      "image": "###image", 
-      "memory": 1024, 
-      "region": "###region", 
-      "disk": 30, 
       "networks": {
          "v4": [
             "###v4Network"
@@ -50,54 +40,74 @@
             "###v6Network"
          ]
       }, 
+      "next_backup_window": "###backupWindow", 
+      "vcpus": 1, 
+      "size": "###size", 
+      "image": "###image", 
+      "memory": 1024, 
+      "region": "###region", 
+      "disk": 30, 
+      "id": 123, 
       "tags": [
          "awesome"
       ], 
-      "size": "###size"
+      "features": [
+         "virtio"
+      ]
    }, 
    "v4Network": {
-      "ip_address": "12.12.123.12", 
-      "netmask": "255.255.255.0", 
       "type": "public", 
+      "netmask": "255.255.255.0", 
+      "ip_address": "12.12.123.12", 
       "gateway": "12.12.192.1"
    }, 
    "region": {
       "available": true, 
-      "slug": "nyc3", 
-      "features": [
-         "backups", 
-         "ipv6"
-      ], 
-      "name": "New York 3", 
       "sizes": [
          "2gb", 
          "4gb", 
          "8gb"
+      ], 
+      "slug": "nyc3", 
+      "name": "New York 3", 
+      "features": [
+         "backups", 
+         "ipv6"
       ]
    }, 
+   "floatingIPWithDroplet": {
+      "ip": "12.12.12.12", 
+      "region": "###region", 
+      "droplet": "###droplet"
+   }, 
+   "floatingIPWithoutDroplet": {
+      "ip": "12.12.12.12", 
+      "region": "###region", 
+      "droplet": null
+   },
    "v6Network": {
-      "type": "public", 
-      "netmask": 64, 
       "ip_address": "2604:AAAA:0000:0000:0000:0000:0000:0000", 
+      "netmask": 64, 
+      "type": "public", 
       "gateway": "2604:AAAA:0000:0000:0000:0000:0000:0000"
    }, 
    "volume": {
       "size_gigabytes": 1, 
-      "region": "###region", 
-      "description": "test volume", 
-      "id": "123", 
+      "created_at": "2016-10-07T12:08:02Z", 
+      "name": "test", 
       "droplet_ids": [
          123
       ], 
-      "created_at": "2016-10-07T12:08:02Z", 
-      "name": "test"
+      "region": "###region", 
+      "id": "123", 
+      "description": "test volume"
    }, 
    "snapshot": {
       "min_disk_size": 20, 
       "name": "test-snapshot", 
       "resource_id": 234, 
       "created_at": "2016-09-10T18:06:25Z", 
-      "regions": [ 
+      "regions": [
          "tor1"
       ], 
       "id": 123, 
@@ -106,9 +116,9 @@
    }, 
    "key": {
       "public_key": "ssh-rsa AB3", 
-      "fingerprint": "b7:40", 
       "id": 123, 
-      "name": "john@John-Smiths-MBP"
+      "name": "john@John-Smiths-MBP", 
+      "fingerprint": "b7:40"
    }, 
    "error": {
       "message": "Error message", 
@@ -127,6 +137,10 @@
       "id": 123, 
       "resource_type": "image"
    }, 
+   "backupWindow": {
+      "start": "2016-09-26T00:00:00Z", 
+      "end": "2016-09-26T23:00:00Z"
+   }, 
    "image": {
       "min_disk_size": 30, 
       "name": "some-image", 
@@ -135,15 +149,11 @@
       "regions": [
          "nyc3"
       ], 
-      "public": false, 
+      "id": 123, 
       "distribution": "Ubuntu", 
       "type": "snapshot", 
-      "id": 123, 
+      "public": false, 
       "size_gigabytes": 3.62
-   }, 
-   "backupWindow": {
-      "start": "2016-09-26T00:00:00Z", 
-      "end": "2016-09-26T23:00:00Z"
    }, 
    "size": {
       "price_monthly": 10, 
