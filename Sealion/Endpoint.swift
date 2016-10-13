@@ -26,6 +26,7 @@ public enum Endpoint {
     case sshKeys
     case sshKeyWithID(Int)
     case sshKeyWithFingerprint(String)
+    case regions
     
     public var path: String {
         switch self {
@@ -46,6 +47,7 @@ public enum Endpoint {
         case .sshKeys:                      return "account/keys"
         case .sshKeyWithID(let id):         return "account/keys/\(id)"
         case .sshKeyWithFingerprint(let f): return "account/keys/\(f)"
+        case .regions:                      return "regions"
         }
     }
 }

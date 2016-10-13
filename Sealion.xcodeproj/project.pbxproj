@@ -39,6 +39,8 @@
 		9A4AC66E1DAF24BE0003553E /* API+Snapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4AC66D1DAF24BE0003553E /* API+Snapshot.swift */; };
 		9A4AC6701DAFA8620003553E /* API+SnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4AC66F1DAFA8620003553E /* API+SnapshotTests.swift */; };
 		9A4AC6721DAFA9780003553E /* SnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4AC6711DAFA9780003553E /* SnapshotTests.swift */; };
+		9A4AC6741DAFAB6C0003553E /* API+Region.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4AC6731DAFAB6C0003553E /* API+Region.swift */; };
+		9A4AC6761DAFABCE0003553E /* API+RegionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4AC6751DAFABCE0003553E /* API+RegionTests.swift */; };
 		9A5AFC471DA83EDA005FCFA1 /* DropletTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5AFC461DA83EDA005FCFA1 /* DropletTests.swift */; };
 		9A950B731DA05DC20068DFF8 /* Sealion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A950B691DA05DC20068DFF8 /* Sealion.framework */; };
 		9A950B781DA05DC20068DFF8 /* API+AccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A950B771DA05DC20068DFF8 /* API+AccountTests.swift */; };
@@ -124,6 +126,8 @@
 		9A4AC66D1DAF24BE0003553E /* API+Snapshot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "API+Snapshot.swift"; sourceTree = "<group>"; };
 		9A4AC66F1DAFA8620003553E /* API+SnapshotTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "API+SnapshotTests.swift"; sourceTree = "<group>"; };
 		9A4AC6711DAFA9780003553E /* SnapshotTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotTests.swift; sourceTree = "<group>"; };
+		9A4AC6731DAFAB6C0003553E /* API+Region.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "API+Region.swift"; sourceTree = "<group>"; };
+		9A4AC6751DAFABCE0003553E /* API+RegionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "API+RegionTests.swift"; sourceTree = "<group>"; };
 		9A5AFC461DA83EDA005FCFA1 /* DropletTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropletTests.swift; sourceTree = "<group>"; };
 		9A950B691DA05DC20068DFF8 /* Sealion.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Sealion.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A950B6C1DA05DC20068DFF8 /* Sealion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Sealion.h; sourceTree = "<group>"; };
@@ -267,6 +271,7 @@
 				9A4AC6691DAF16090003553E /* API+ImageTests.swift */,
 				9A4AC66F1DAFA8620003553E /* API+SnapshotTests.swift */,
 				9A3918D51DAA9F02001C1603 /* API+SSHKeyTests.swift */,
+				9A4AC6751DAFABCE0003553E /* API+RegionTests.swift */,
 			);
 			name = Routes;
 			sourceTree = "<group>";
@@ -347,6 +352,7 @@
 				9A4AC6671DAF0CCA0003553E /* API+Image.swift */,
 				9A4AC66D1DAF24BE0003553E /* API+Snapshot.swift */,
 				9A3918D11DAA8A49001C1603 /* API+SSHKey.swift */,
+				9A4AC6731DAFAB6C0003553E /* API+Region.swift */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -532,6 +538,7 @@
 				9AC487D01DAD065E006E459A /* DropletAction.swift in Sources */,
 				9A950B851DA1D1F30068DFF8 /* API.swift in Sources */,
 				9A3918D21DAA8A49001C1603 /* API+SSHKey.swift in Sources */,
+				9A4AC6741DAFAB6C0003553E /* API+Region.swift in Sources */,
 				9A950BE71DA3420E0068DFF8 /* API+Action.swift in Sources */,
 				9A3918CE1DAA8810001C1603 /* SSHKey.swift in Sources */,
 				9AA5DD981DA51D8D003FEFCF /* Network.swift in Sources */,
@@ -570,6 +577,7 @@
 				9A05868A1DA5E86200265B2A /* Person.swift in Sources */,
 				9A3918D61DAA9F02001C1603 /* API+SSHKeyTests.swift in Sources */,
 				9A950B991DA27CFA0068DFF8 /* MockDataTask.swift in Sources */,
+				9A4AC6761DAFABCE0003553E /* API+RegionTests.swift in Sources */,
 				9A0586BF1DA7C66800265B2A /* RegionTests.swift in Sources */,
 				9A950B971DA279C20068DFF8 /* MockSession.swift in Sources */,
 				9A3918DA1DAAE2B4001C1603 /* IdentifierTest.swift in Sources */,
