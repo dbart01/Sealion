@@ -22,7 +22,7 @@ public struct Droplet: JsonCreatable, Equatable {
     public let kernel:      Kernel
     public let nextWindow:  BackupWindow
     public let image:       Image
-    public let size:        Size
+    public let size:        DropletSize
     public let region:      Region
     public let v4Networks:  [Network]
     public let v6Networks:  [Network]
@@ -44,7 +44,7 @@ public struct Droplet: JsonCreatable, Equatable {
         self.kernel      = Kernel(json:       json["kernel"]     as! JSON)
         self.nextWindow  = BackupWindow(json: json["next_backup_window"] as! JSON)
         self.image       = Image(json:        json["image"]      as! JSON)
-        self.size        = Size(json:         json["size"]       as! JSON)
+        self.size        = DropletSize(json:  json["size"]       as! JSON)
         self.region      = Region(json:       json["region"]     as! JSON)
         
         let networksJSON = json["networks"] as! JSON

@@ -19,7 +19,7 @@ class DropletTests: ModelTestCase {
         let kernel:    Kernel       = self.modelNamed(name: "kernel")
         let window:    BackupWindow = self.modelNamed(name: "backupWindow")
         let image:     Image        = self.modelNamed(name: "image")
-        let size:      Droplet.Size = self.modelNamed(name: "size")
+        let size:      DropletSize  = self.modelNamed(name: "size")
         let region:    Region       = self.modelNamed(name: "region")
         let v4Network: Network      = self.modelNamed(name: "v4Network")
         let v6Network: Network      = self.modelNamed(name: "v6Network")

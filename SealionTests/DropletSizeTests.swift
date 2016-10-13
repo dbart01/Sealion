@@ -1,5 +1,5 @@
 //
-//  SizeTests.swift
+//  DropletSizeTests.swift
 //  Sealion
 //
 //  Created by Dima Bart on 2016-10-08.
@@ -9,13 +9,13 @@
 import XCTest
 import Sealion
 
-class SizeTests: ModelTestCase {
+class DropletSizeTests: ModelTestCase {
     
     // ----------------------------------
     //  MARK: - JsonCreatable -
     //
     func testJsonCreation() {
-        let model: Droplet.Size = self.modelNamed(name: "size")
+        let model: DropletSize = self.modelNamed(name: "size")
         
         XCTAssertEqual(model.slug,         "1gb")
         XCTAssertEqual(model.available,    true)
@@ -29,6 +29,6 @@ class SizeTests: ModelTestCase {
     }
     
     func testEquality() {
-        self.assertEqualityForModelNamed(type: Droplet.Size.self, name: "size")
+        self.assertEqualityForModelNamed(type: DropletSize.self, name: "size")
     }
 }
