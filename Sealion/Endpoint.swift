@@ -21,6 +21,8 @@ public enum Endpoint {
     case imageWithID(Int)
     case imageWithSlug(String)
     case imageActionsWithID(Int)
+    case snapshots
+    case snapshotWithID(Int)
     case sshKeys
     case sshKeyWithID(Int)
     case sshKeyWithFingerprint(String)
@@ -31,14 +33,16 @@ public enum Endpoint {
         case .actions:                      return "actions"
         case .actionWithID(let id):         return "actions/\(id)"
         case .volumes:                      return "volumes"
-        case .volumeWithID(let id):         return "volume/\(id)"
+        case .volumeWithID(let id):         return "volumes/\(id)"
         case .droplets:                     return "droplets"
         case .dropletWithID(let id):        return "droplets/\(id)"
         case .dropletActionsWithID(let id): return "droplets/\(id)/actions"
         case .images:                       return "images"
-        case .imageWithID(let id):          return "image/\(id)"
-        case .imageWithSlug(let slug):      return "image/\(slug)"
-        case .imageActionsWithID(let id):   return "image/\(id)/actions"
+        case .imageWithID(let id):          return "images/\(id)"
+        case .imageWithSlug(let slug):      return "images/\(slug)"
+        case .imageActionsWithID(let id):   return "images/\(id)/actions"
+        case .snapshots:                    return "snapshots"
+        case .snapshotWithID(let id):       return "snapshots/\(id)"
         case .sshKeys:                      return "account/keys"
         case .sshKeyWithID(let id):         return "account/keys/\(id)"
         case .sshKeyWithFingerprint(let f): return "account/keys/\(f)"

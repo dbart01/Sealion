@@ -10,7 +10,7 @@ import Foundation
 
 public extension API {
     
-    public func images(type: Image.ImageType? = nil, completion: @escaping (_ result: Result<[Image]>) -> Void) -> Handle<[Image]> {
+    public func images(type: Image.ImageType? = nil, page: Page? = nil, completion: @escaping (_ result: Result<[Image]>) -> Void) -> Handle<[Image]> {
         let request = self.requestTo(endpoint: .images, method: .get, parameters: type)
         return self.taskWith(request: request, keyPath: "images", completion: completion)
     }
@@ -32,6 +32,6 @@ public extension API {
     
     public func delete(image id: Int, completion: @escaping (_ result: Result<Image>) -> Void) -> Handle<Image> {
         let request = self.requestTo(endpoint: .imageWithID(id), method: .delete)
-        return self.taskWith(request: request, keyPath: "image", completion: completion)
+        return self.taskWith(request: request, completion: completion)
     }
 }

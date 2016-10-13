@@ -78,7 +78,7 @@ class API_ImageTests: APITestCase {
         self.assertBody(handle, data: nil)
         self.assertHeaders(handle)
         self.assertEndpoint(handle, endpoint: .imageWithID(id))
-        self.assertKeyPath(handle, keyPath: "image")
+        self.assertKeyPath(handle, keyPath: nil)
         self.assertParameters(handle, parameters: nil)
     }
 }
