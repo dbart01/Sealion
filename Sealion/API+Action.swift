@@ -19,4 +19,9 @@ public extension API {
         let request = self.requestTo(endpoint: .actionWithID(id), method: .get)
         return self.taskWith(request: request, keyPath: "action", completion: completion)
     }
+    
+    // TODO: List all actions for droplet
+    
+    // TODO: List all actions for image
+    
 }

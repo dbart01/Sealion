@@ -33,6 +33,8 @@
 		9A4AC6451DAD88D50003553E /* JSON+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4AC6441DAD88D50003553E /* JSON+Equatable.swift */; };
 		9A4AC6471DADD29B0003553E /* API+DropletActionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4AC6461DADD29B0003553E /* API+DropletActionTests.swift */; };
 		9A4AC6491DADD9840003553E /* PageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4AC6481DADD9840003553E /* PageTests.swift */; };
+		9A4AC6681DAF0CCA0003553E /* API+Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4AC6671DAF0CCA0003553E /* API+Image.swift */; };
+		9A4AC66A1DAF16090003553E /* API+ImageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4AC6691DAF16090003553E /* API+ImageTests.swift */; };
 		9A5AFC471DA83EDA005FCFA1 /* DropletTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5AFC461DA83EDA005FCFA1 /* DropletTests.swift */; };
 		9A950B731DA05DC20068DFF8 /* Sealion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A950B691DA05DC20068DFF8 /* Sealion.framework */; };
 		9A950B781DA05DC20068DFF8 /* API+AccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A950B771DA05DC20068DFF8 /* API+AccountTests.swift */; };
@@ -112,6 +114,8 @@
 		9A4AC6441DAD88D50003553E /* JSON+Equatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "JSON+Equatable.swift"; sourceTree = "<group>"; };
 		9A4AC6461DADD29B0003553E /* API+DropletActionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "API+DropletActionTests.swift"; sourceTree = "<group>"; };
 		9A4AC6481DADD9840003553E /* PageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageTests.swift; sourceTree = "<group>"; };
+		9A4AC6671DAF0CCA0003553E /* API+Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "API+Image.swift"; sourceTree = "<group>"; };
+		9A4AC6691DAF16090003553E /* API+ImageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "API+ImageTests.swift"; sourceTree = "<group>"; };
 		9A5AFC461DA83EDA005FCFA1 /* DropletTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropletTests.swift; sourceTree = "<group>"; };
 		9A950B691DA05DC20068DFF8 /* Sealion.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Sealion.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A950B6C1DA05DC20068DFF8 /* Sealion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Sealion.h; sourceTree = "<group>"; };
@@ -251,6 +255,7 @@
 				9A950BF41DA3D2000068DFF8 /* API+VolumeTests.swift */,
 				9AA5DD9B1DA52292003FEFCF /* API+DropletTests.swift */,
 				9A4AC6461DADD29B0003553E /* API+DropletActionTests.swift */,
+				9A4AC6691DAF16090003553E /* API+ImageTests.swift */,
 				9A3918D51DAA9F02001C1603 /* API+SSHKeyTests.swift */,
 			);
 			name = Routes;
@@ -329,6 +334,7 @@
 				9A950BF01DA3CFBE0068DFF8 /* API+Volume.swift */,
 				9AA5DD991DA5216D003FEFCF /* API+Droplet.swift */,
 				9AC487CD1DABF0B9006E459A /* API+DropletAction.swift */,
+				9A4AC6671DAF0CCA0003553E /* API+Image.swift */,
 				9A3918D11DAA8A49001C1603 /* API+SSHKey.swift */,
 			);
 			name = API;
@@ -535,6 +541,7 @@
 				9AA5DD801DA43FC1003FEFCF /* JsonConvertible.swift in Sources */,
 				9A950B8D1DA1D3D10068DFF8 /* JsonCreatable.swift in Sources */,
 				9AA5DD961DA51C04003FEFCF /* Size.swift in Sources */,
+				9A4AC6681DAF0CCA0003553E /* API+Image.swift in Sources */,
 				9AA5DD8C1DA49705003FEFCF /* RequestError.swift in Sources */,
 				9AA5DD901DA4A079003FEFCF /* Kernel.swift in Sources */,
 				9A950B901DA1D8610068DFF8 /* Endpoint.swift in Sources */,
@@ -565,6 +572,7 @@
 				9A950BED1DA345FF0068DFF8 /* API+ActionTests.swift in Sources */,
 				9A0586941DA5EED400265B2A /* JsonManager.swift in Sources */,
 				9A950B9B1DA27D160068DFF8 /* Stub.swift in Sources */,
+				9A4AC66A1DAF16090003553E /* API+ImageTests.swift in Sources */,
 				9A0586C11DA7C77B00265B2A /* VolumeTests.swift in Sources */,
 				9A4AC6451DAD88D50003553E /* JSON+Equatable.swift in Sources */,
 				9A3918CC1DA931C4001C1603 /* DateFormatterTests.swift in Sources */,

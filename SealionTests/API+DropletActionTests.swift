@@ -20,7 +20,7 @@ class API_DropletActionTests: APITestCase {
         self.assertMethod(handle, method: .post)
         self.assertBody(handle, object: action)
         self.assertHeaders(handle)
-        self.assertEndpoint(handle, endpoint: .dropletActionWithID(id))
+        self.assertEndpoint(handle, endpoint: .dropletActionsWithID(id))
         self.assertKeyPath(handle, keyPath: "action")
         self.assertParameters(handle, parameters: nil)
     }

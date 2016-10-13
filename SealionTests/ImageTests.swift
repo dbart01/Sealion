@@ -32,4 +32,38 @@ class ImageTests: ModelTestCase {
     func testEquality() {
         self.assertEqualityForModelNamed(type: Image.self, name: "image")
     }
+    
+    // ----------------------------------
+    //  MARK: - ImageType -
+    //
+    func testImageTypes() {
+        
+        let userType = Image.ImageType.user
+        XCTAssertTrue(userType.parameters == [
+            "private" : "true"
+        ])
+        
+        let applicationType = Image.ImageType.application
+        XCTAssertTrue(applicationType.parameters == [
+            "type" : "application"
+        ])
+        
+        let distributionType = Image.ImageType.distribution
+        XCTAssertTrue(distributionType.parameters == [
+            "type" : "distribution"
+        ])
+    }
+    
+    // ----------------------------------
+    //  MARK: - UpdateRequest -
+    //
+    func testUpdateRequest() {
+        let name    = "Snapshot Name"
+        let request = Image.UpdateRequest(name: name)
+        
+        XCTAssertEqual(request.name, name)
+        XCTAssertTrue(request.json == [
+            "name" : name,
+        ])
+    }
 }

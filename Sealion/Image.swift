@@ -51,3 +51,50 @@ public func ==(lhs: Image, rhs: Image) -> Bool {
         (lhs.size            == rhs.size) &&
         (lhs.createdAt       == rhs.createdAt)
 }
+
+// ----------------------------------
+//  MARK: - ImageType -
+//
+public extension Image {
+    
+    public enum ImageType: ParameterConvertible {
+        case user
+        case application
+        case distribution
+        
+        public var parameters: Parameters {
+            switch self {
+            case .user:         return ["private" : "true"]
+            case .application:  return ["type" : "application"]
+            case .distribution: return ["type" : "distribution"]
+            }
+        }
+    }
+}
+
+// ----------------------------------
+//  MARK: - Creation -
+//
+public extension Image {
+    
+    public struct UpdateRequest: JsonConvertible {
+        
+        public var name: String
+        
+        // ----------------------------------
+        //  MARK: - Init -
+        //
+        public init(name: String) {
+            self.name = name
+        }
+        
+        // ----------------------------------
+        //  MARK: - JsonConvertible -
+        //
+        public var json: JSON {
+            return [
+                "name" : self.name,
+            ]
+        }
+    }
+}

@@ -11,7 +11,7 @@ import Foundation
 public extension API {
     
     public func action(create action: DropletAction, for id: Int, completion: @escaping (_ result: Result<Action>) -> Void) -> Handle<Action> {
-        let request = self.requestTo(endpoint: .dropletActionWithID(id), method: .post, payload: action)
+        let request = self.requestTo(endpoint: .dropletActionsWithID(id), method: .post, payload: action)
         return self.taskWith(request: request, keyPath: "action", completion: completion)
     }
 }
