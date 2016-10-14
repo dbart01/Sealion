@@ -14,6 +14,8 @@ public enum Endpoint {
     case actionWithID(Int)
     case volumes
     case volumeWithID(String)
+    case volumeActions
+    case volumeActionsWithID(Int)
     case droplets
     case dropletWithID(Int)
     case dropletActionsWithID(Int)
@@ -41,6 +43,8 @@ public enum Endpoint {
         case .actionWithID(let id):            return "actions/\(id)"
         case .volumes:                         return "volumes"
         case .volumeWithID(let id):            return "volumes/\(id)"
+        case .volumeActions:                   return "volumes/actions"
+        case .volumeActionsWithID(let id):     return "volumes/\(id)/actions"
         case .droplets:                        return "droplets"
         case .dropletWithID(let id):           return "droplets/\(id)"
         case .dropletActionsWithID(let id):    return "droplets/\(id)/actions"

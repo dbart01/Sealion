@@ -24,6 +24,10 @@
 		9A34D6941DB02F5C00DA7CFE /* API+FloatingIPActionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A34D6931DB02F5C00DA7CFE /* API+FloatingIPActionTests.swift */; };
 		9A34D6961DB030C600DA7CFE /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A34D6951DB030C600DA7CFE /* Tag.swift */; };
 		9A34D6981DB0328D00DA7CFE /* TagTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A34D6971DB0328D00DA7CFE /* TagTests.swift */; };
+		9A34D69A1DB0F9F700DA7CFE /* VolumeAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A34D6991DB0F9F700DA7CFE /* VolumeAction.swift */; };
+		9A34D69C1DB0FBE700DA7CFE /* VolumeActionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A34D69B1DB0FBE700DA7CFE /* VolumeActionTests.swift */; };
+		9A34D69E1DB0FD2700DA7CFE /* API+VolumeAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A34D69D1DB0FD2700DA7CFE /* API+VolumeAction.swift */; };
+		9A34D6A01DB0FDB500DA7CFE /* API+VolumeActionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A34D69F1DB0FDB500DA7CFE /* API+VolumeActionTests.swift */; };
 		9A3918C11DA92C25001C1603 /* KernelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3918C01DA92C25001C1603 /* KernelTests.swift */; };
 		9A3918C31DA92CC3001C1603 /* BackupWindowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3918C21DA92CC3001C1603 /* BackupWindowTests.swift */; };
 		9A3918C51DA92D37001C1603 /* ImageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3918C41DA92D37001C1603 /* ImageTests.swift */; };
@@ -125,6 +129,10 @@
 		9A34D6931DB02F5C00DA7CFE /* API+FloatingIPActionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "API+FloatingIPActionTests.swift"; sourceTree = "<group>"; };
 		9A34D6951DB030C600DA7CFE /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		9A34D6971DB0328D00DA7CFE /* TagTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagTests.swift; sourceTree = "<group>"; };
+		9A34D6991DB0F9F700DA7CFE /* VolumeAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VolumeAction.swift; sourceTree = "<group>"; };
+		9A34D69B1DB0FBE700DA7CFE /* VolumeActionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VolumeActionTests.swift; sourceTree = "<group>"; };
+		9A34D69D1DB0FD2700DA7CFE /* API+VolumeAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "API+VolumeAction.swift"; sourceTree = "<group>"; };
+		9A34D69F1DB0FDB500DA7CFE /* API+VolumeActionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "API+VolumeActionTests.swift"; sourceTree = "<group>"; };
 		9A3918C01DA92C25001C1603 /* KernelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KernelTests.swift; sourceTree = "<group>"; };
 		9A3918C21DA92CC3001C1603 /* BackupWindowTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackupWindowTests.swift; sourceTree = "<group>"; };
 		9A3918C41DA92D37001C1603 /* ImageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageTests.swift; sourceTree = "<group>"; };
@@ -256,6 +264,7 @@
 				9A0586BC1DA7C1E600265B2A /* ActionTests.swift */,
 				9A0586BE1DA7C66800265B2A /* RegionTests.swift */,
 				9A0586C01DA7C77B00265B2A /* VolumeTests.swift */,
+				9A34D69B1DB0FBE700DA7CFE /* VolumeActionTests.swift */,
 				9A5AFC461DA83EDA005FCFA1 /* DropletTests.swift */,
 				9AC487D11DAD0DD4006E459A /* DropletActionTests.swift */,
 				9A3918C01DA92C25001C1603 /* KernelTests.swift */,
@@ -297,6 +306,7 @@
 				9A950B771DA05DC20068DFF8 /* API+AccountTests.swift */,
 				9A950BEC1DA345FF0068DFF8 /* API+ActionTests.swift */,
 				9A950BF41DA3D2000068DFF8 /* API+VolumeTests.swift */,
+				9A34D69F1DB0FDB500DA7CFE /* API+VolumeActionTests.swift */,
 				9AA5DD9B1DA52292003FEFCF /* API+DropletTests.swift */,
 				9A4AC6461DADD29B0003553E /* API+DropletActionTests.swift */,
 				9A4AC6691DAF16090003553E /* API+ImageTests.swift */,
@@ -382,6 +392,7 @@
 				9A950B861DA1D2680068DFF8 /* API+Account.swift */,
 				9A950BE61DA3420E0068DFF8 /* API+Action.swift */,
 				9A950BF01DA3CFBE0068DFF8 /* API+Volume.swift */,
+				9A34D69D1DB0FD2700DA7CFE /* API+VolumeAction.swift */,
 				9AA5DD991DA5216D003FEFCF /* API+Droplet.swift */,
 				9AC487CD1DABF0B9006E459A /* API+DropletAction.swift */,
 				9A4AC6671DAF0CCA0003553E /* API+Image.swift */,
@@ -404,6 +415,7 @@
 				9A950BE81DA342260068DFF8 /* Action.swift */,
 				9A950BEE1DA3CA5A0068DFF8 /* Region.swift */,
 				9A950BF21DA3CFF20068DFF8 /* Volume.swift */,
+				9A34D6991DB0F9F700DA7CFE /* VolumeAction.swift */,
 				9AA5DD8D1DA49EB2003FEFCF /* Droplet.swift */,
 				9AC487CF1DAD065E006E459A /* DropletAction.swift */,
 				9AA5DD8F1DA4A079003FEFCF /* Kernel.swift */,
@@ -595,6 +607,7 @@
 				9A950B921DA1D99A0068DFF8 /* Method.swift in Sources */,
 				9A950BF31DA3CFF20068DFF8 /* Volume.swift in Sources */,
 				9AA5DD921DA4A0D6003FEFCF /* BackupWindow.swift in Sources */,
+				9A34D69A1DB0F9F700DA7CFE /* VolumeAction.swift in Sources */,
 				9A4AC66E1DAF24BE0003553E /* API+Snapshot.swift in Sources */,
 				9A4AC67E1DAFAFF30003553E /* API+FloatingIP.swift in Sources */,
 				9A950B8A1DA1D3880068DFF8 /* Account.swift in Sources */,
@@ -602,6 +615,7 @@
 				9A3918D41DAA9B32001C1603 /* ParameterConvertible.swift in Sources */,
 				9A950BEF1DA3CA5A0068DFF8 /* Region.swift in Sources */,
 				9AC487C91DABD2C0006E459A /* Page.swift in Sources */,
+				9A34D69E1DB0FD2700DA7CFE /* API+VolumeAction.swift in Sources */,
 				9AC487CE1DABF0B9006E459A /* API+DropletAction.swift in Sources */,
 				9A950BE51DA2FFF80068DFF8 /* Result.swift in Sources */,
 				9A0586B71DA715F300265B2A /* Handle.swift in Sources */,
@@ -625,6 +639,7 @@
 				9A0586BD1DA7C1E600265B2A /* ActionTests.swift in Sources */,
 				9A34D6941DB02F5C00DA7CFE /* API+FloatingIPActionTests.swift in Sources */,
 				9A05868A1DA5E86200265B2A /* Person.swift in Sources */,
+				9A34D69C1DB0FBE700DA7CFE /* VolumeActionTests.swift in Sources */,
 				9A3918D61DAA9F02001C1603 /* API+SSHKeyTests.swift in Sources */,
 				9A950B991DA27CFA0068DFF8 /* MockDataTask.swift in Sources */,
 				9A4AC6761DAFABCE0003553E /* API+RegionTests.swift in Sources */,
@@ -640,6 +655,7 @@
 				9A950BF51DA3D2000068DFF8 /* API+VolumeTests.swift in Sources */,
 				9AC487D21DAD0DD4006E459A /* DropletActionTests.swift in Sources */,
 				9A3918C31DA92CC3001C1603 /* BackupWindowTests.swift in Sources */,
+				9A34D6A01DB0FDB500DA7CFE /* API+VolumeActionTests.swift in Sources */,
 				9A4AC6701DAFA8620003553E /* API+SnapshotTests.swift in Sources */,
 				9A4AC6801DAFB08F0003553E /* FloatingIPTests.swift in Sources */,
 				9A950B941DA2796B0068DFF8 /* APITestCase.swift in Sources */,
