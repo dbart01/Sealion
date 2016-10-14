@@ -21,7 +21,9 @@ class DomainTests: ModelTestCase {
         
         XCTAssertEqual(model.name, "example.com")
         XCTAssertEqual(model.ttl,  1800)
-        XCTAssertTrue(model.zone.characters.count > 0)
+        
+        XCTAssertNotNil(model.zone)
+        XCTAssertTrue(model.zone!.characters.count > 0)
     }
     
     func testEquality() {
