@@ -32,6 +32,8 @@
 		9A34D6A41DB101C500DA7CFE /* DomainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A34D6A31DB101C500DA7CFE /* DomainTests.swift */; };
 		9A34D6A61DB1028300DA7CFE /* API+Domain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A34D6A51DB1028300DA7CFE /* API+Domain.swift */; };
 		9A34D6A81DB1799900DA7CFE /* API+DomainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A34D6A71DB1799900DA7CFE /* API+DomainTests.swift */; };
+		9A34D6AA1DB17B5000DA7CFE /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A34D6A91DB17B5000DA7CFE /* Record.swift */; };
+		9A34D6AC1DB17E1400DA7CFE /* RecordTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A34D6AB1DB17E1400DA7CFE /* RecordTests.swift */; };
 		9A3918C11DA92C25001C1603 /* KernelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3918C01DA92C25001C1603 /* KernelTests.swift */; };
 		9A3918C31DA92CC3001C1603 /* BackupWindowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3918C21DA92CC3001C1603 /* BackupWindowTests.swift */; };
 		9A3918C51DA92D37001C1603 /* ImageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3918C41DA92D37001C1603 /* ImageTests.swift */; };
@@ -141,6 +143,8 @@
 		9A34D6A31DB101C500DA7CFE /* DomainTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DomainTests.swift; sourceTree = "<group>"; };
 		9A34D6A51DB1028300DA7CFE /* API+Domain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "API+Domain.swift"; sourceTree = "<group>"; };
 		9A34D6A71DB1799900DA7CFE /* API+DomainTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "API+DomainTests.swift"; sourceTree = "<group>"; };
+		9A34D6A91DB17B5000DA7CFE /* Record.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
+		9A34D6AB1DB17E1400DA7CFE /* RecordTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordTests.swift; sourceTree = "<group>"; };
 		9A3918C01DA92C25001C1603 /* KernelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KernelTests.swift; sourceTree = "<group>"; };
 		9A3918C21DA92CC3001C1603 /* BackupWindowTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackupWindowTests.swift; sourceTree = "<group>"; };
 		9A3918C41DA92D37001C1603 /* ImageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageTests.swift; sourceTree = "<group>"; };
@@ -274,6 +278,7 @@
 				9A0586C01DA7C77B00265B2A /* VolumeTests.swift */,
 				9A34D69B1DB0FBE700DA7CFE /* VolumeActionTests.swift */,
 				9A34D6A31DB101C500DA7CFE /* DomainTests.swift */,
+				9A34D6AB1DB17E1400DA7CFE /* RecordTests.swift */,
 				9A5AFC461DA83EDA005FCFA1 /* DropletTests.swift */,
 				9AC487D11DAD0DD4006E459A /* DropletActionTests.swift */,
 				9A3918C01DA92C25001C1603 /* KernelTests.swift */,
@@ -428,6 +433,7 @@
 				9A950BF21DA3CFF20068DFF8 /* Volume.swift */,
 				9A34D6991DB0F9F700DA7CFE /* VolumeAction.swift */,
 				9A34D6A11DB100CF00DA7CFE /* Domain.swift */,
+				9A34D6A91DB17B5000DA7CFE /* Record.swift */,
 				9AA5DD8D1DA49EB2003FEFCF /* Droplet.swift */,
 				9AC487CF1DAD065E006E459A /* DropletAction.swift */,
 				9AA5DD8F1DA4A079003FEFCF /* Kernel.swift */,
@@ -610,6 +616,7 @@
 				9A950BE71DA3420E0068DFF8 /* API+Action.swift in Sources */,
 				9A3918CE1DAA8810001C1603 /* SSHKey.swift in Sources */,
 				9AA5DD981DA51D8D003FEFCF /* Network.swift in Sources */,
+				9A34D6AA1DB17B5000DA7CFE /* Record.swift in Sources */,
 				9AEE1ABE1DB0706A00DC65DE /* API+Tag.swift in Sources */,
 				9A950BF11DA3CFBE0068DFF8 /* API+Volume.swift in Sources */,
 				9AA5DD9A1DA5216D003FEFCF /* API+Droplet.swift in Sources */,
@@ -664,6 +671,7 @@
 				9A4AC6471DADD29B0003553E /* API+DropletActionTests.swift in Sources */,
 				9A34D68C1DB0275200DA7CFE /* API+FloatingIPTests.swift in Sources */,
 				9A3918D01DAA8938001C1603 /* SSHKeyTests.swift in Sources */,
+				9A34D6AC1DB17E1400DA7CFE /* RecordTests.swift in Sources */,
 				9A34D6921DB02EA600DA7CFE /* FloatingIPActionTests.swift in Sources */,
 				9A3918C71DA92E89001C1603 /* DropletSizeTests.swift in Sources */,
 				9A950BF51DA3D2000068DFF8 /* API+VolumeTests.swift in Sources */,
