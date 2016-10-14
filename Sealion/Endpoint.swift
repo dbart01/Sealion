@@ -31,6 +31,8 @@ public enum Endpoint {
     case floatingIPs
     case floatingIPWithIP(String)
     case floatingIPActionsWithIP(String)
+    case tags
+    case tagWithName(String)
     
     public var path: String {
         switch self {
@@ -56,6 +58,8 @@ public enum Endpoint {
         case .floatingIPs:                     return "floating_ips"
         case .floatingIPWithIP(let ip):        return "floating_ips/\(ip)"
         case .floatingIPActionsWithIP(let ip): return "floating_ips/\(ip)/actions"
+        case .tags:                            return "tags"
+        case .tagWithName(let name):           return "tags/\(name)"
         }
     }
 }
