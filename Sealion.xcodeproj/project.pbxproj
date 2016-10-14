@@ -28,6 +28,8 @@
 		9A34D69C1DB0FBE700DA7CFE /* VolumeActionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A34D69B1DB0FBE700DA7CFE /* VolumeActionTests.swift */; };
 		9A34D69E1DB0FD2700DA7CFE /* API+VolumeAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A34D69D1DB0FD2700DA7CFE /* API+VolumeAction.swift */; };
 		9A34D6A01DB0FDB500DA7CFE /* API+VolumeActionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A34D69F1DB0FDB500DA7CFE /* API+VolumeActionTests.swift */; };
+		9A34D6A21DB100CF00DA7CFE /* Domain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A34D6A11DB100CF00DA7CFE /* Domain.swift */; };
+		9A34D6A41DB101C500DA7CFE /* DomainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A34D6A31DB101C500DA7CFE /* DomainTests.swift */; };
 		9A3918C11DA92C25001C1603 /* KernelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3918C01DA92C25001C1603 /* KernelTests.swift */; };
 		9A3918C31DA92CC3001C1603 /* BackupWindowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3918C21DA92CC3001C1603 /* BackupWindowTests.swift */; };
 		9A3918C51DA92D37001C1603 /* ImageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3918C41DA92D37001C1603 /* ImageTests.swift */; };
@@ -133,6 +135,8 @@
 		9A34D69B1DB0FBE700DA7CFE /* VolumeActionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VolumeActionTests.swift; sourceTree = "<group>"; };
 		9A34D69D1DB0FD2700DA7CFE /* API+VolumeAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "API+VolumeAction.swift"; sourceTree = "<group>"; };
 		9A34D69F1DB0FDB500DA7CFE /* API+VolumeActionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "API+VolumeActionTests.swift"; sourceTree = "<group>"; };
+		9A34D6A11DB100CF00DA7CFE /* Domain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Domain.swift; sourceTree = "<group>"; };
+		9A34D6A31DB101C500DA7CFE /* DomainTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DomainTests.swift; sourceTree = "<group>"; };
 		9A3918C01DA92C25001C1603 /* KernelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KernelTests.swift; sourceTree = "<group>"; };
 		9A3918C21DA92CC3001C1603 /* BackupWindowTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackupWindowTests.swift; sourceTree = "<group>"; };
 		9A3918C41DA92D37001C1603 /* ImageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageTests.swift; sourceTree = "<group>"; };
@@ -265,6 +269,7 @@
 				9A0586BE1DA7C66800265B2A /* RegionTests.swift */,
 				9A0586C01DA7C77B00265B2A /* VolumeTests.swift */,
 				9A34D69B1DB0FBE700DA7CFE /* VolumeActionTests.swift */,
+				9A34D6A31DB101C500DA7CFE /* DomainTests.swift */,
 				9A5AFC461DA83EDA005FCFA1 /* DropletTests.swift */,
 				9AC487D11DAD0DD4006E459A /* DropletActionTests.swift */,
 				9A3918C01DA92C25001C1603 /* KernelTests.swift */,
@@ -416,6 +421,7 @@
 				9A950BEE1DA3CA5A0068DFF8 /* Region.swift */,
 				9A950BF21DA3CFF20068DFF8 /* Volume.swift */,
 				9A34D6991DB0F9F700DA7CFE /* VolumeAction.swift */,
+				9A34D6A11DB100CF00DA7CFE /* Domain.swift */,
 				9AA5DD8D1DA49EB2003FEFCF /* Droplet.swift */,
 				9AC487CF1DAD065E006E459A /* DropletAction.swift */,
 				9AA5DD8F1DA4A079003FEFCF /* Kernel.swift */,
@@ -613,6 +619,7 @@
 				9A950B8A1DA1D3880068DFF8 /* Account.swift in Sources */,
 				9A4AC67C1DAFAF110003553E /* FloatingIP.swift in Sources */,
 				9A3918D41DAA9B32001C1603 /* ParameterConvertible.swift in Sources */,
+				9A34D6A21DB100CF00DA7CFE /* Domain.swift in Sources */,
 				9A950BEF1DA3CA5A0068DFF8 /* Region.swift in Sources */,
 				9AC487C91DABD2C0006E459A /* Page.swift in Sources */,
 				9A34D69E1DB0FD2700DA7CFE /* API+VolumeAction.swift in Sources */,
@@ -675,6 +682,7 @@
 				9A4AC6491DADD9840003553E /* PageTests.swift in Sources */,
 				9AA5DD9C1DA52292003FEFCF /* API+DropletTests.swift in Sources */,
 				9AEE1AC01DB072E100DC65DE /* API+TagTests.swift in Sources */,
+				9A34D6A41DB101C500DA7CFE /* DomainTests.swift in Sources */,
 				9A3918C11DA92C25001C1603 /* KernelTests.swift in Sources */,
 				9A3918C51DA92D37001C1603 /* ImageTests.swift in Sources */,
 				9A4AC6721DAFA9780003553E /* SnapshotTests.swift in Sources */,
