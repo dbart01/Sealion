@@ -111,9 +111,9 @@ public extension Droplet {
         //
         public var json: JSON {
             var container: JSON = [
-                "region": self.region,
-                "size":   self.size,
-                "image":  self.image,
+                "region" : self.region,
+                "size"   : self.size,
+                "image"  : self.image,
             ]
             
             if self.names.count == 1 {

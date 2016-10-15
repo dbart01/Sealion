@@ -34,6 +34,8 @@
 		9A34D6A81DB1799900DA7CFE /* API+DomainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A34D6A71DB1799900DA7CFE /* API+DomainTests.swift */; };
 		9A34D6AA1DB17B5000DA7CFE /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A34D6A91DB17B5000DA7CFE /* Record.swift */; };
 		9A34D6AC1DB17E1400DA7CFE /* RecordTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A34D6AB1DB17E1400DA7CFE /* RecordTests.swift */; };
+		9A34D6AE1DB17F5800DA7CFE /* API+Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A34D6AD1DB17F5800DA7CFE /* API+Record.swift */; };
+		9A34D6B01DB1848F00DA7CFE /* API+RecordTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A34D6AF1DB1848F00DA7CFE /* API+RecordTests.swift */; };
 		9A3918C11DA92C25001C1603 /* KernelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3918C01DA92C25001C1603 /* KernelTests.swift */; };
 		9A3918C31DA92CC3001C1603 /* BackupWindowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3918C21DA92CC3001C1603 /* BackupWindowTests.swift */; };
 		9A3918C51DA92D37001C1603 /* ImageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3918C41DA92D37001C1603 /* ImageTests.swift */; };
@@ -145,6 +147,8 @@
 		9A34D6A71DB1799900DA7CFE /* API+DomainTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "API+DomainTests.swift"; sourceTree = "<group>"; };
 		9A34D6A91DB17B5000DA7CFE /* Record.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
 		9A34D6AB1DB17E1400DA7CFE /* RecordTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordTests.swift; sourceTree = "<group>"; };
+		9A34D6AD1DB17F5800DA7CFE /* API+Record.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "API+Record.swift"; sourceTree = "<group>"; };
+		9A34D6AF1DB1848F00DA7CFE /* API+RecordTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "API+RecordTests.swift"; sourceTree = "<group>"; };
 		9A3918C01DA92C25001C1603 /* KernelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KernelTests.swift; sourceTree = "<group>"; };
 		9A3918C21DA92CC3001C1603 /* BackupWindowTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackupWindowTests.swift; sourceTree = "<group>"; };
 		9A3918C41DA92D37001C1603 /* ImageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageTests.swift; sourceTree = "<group>"; };
@@ -322,6 +326,7 @@
 				9A950BF41DA3D2000068DFF8 /* API+VolumeTests.swift */,
 				9A34D69F1DB0FDB500DA7CFE /* API+VolumeActionTests.swift */,
 				9A34D6A71DB1799900DA7CFE /* API+DomainTests.swift */,
+				9A34D6AF1DB1848F00DA7CFE /* API+RecordTests.swift */,
 				9AA5DD9B1DA52292003FEFCF /* API+DropletTests.swift */,
 				9A4AC6461DADD29B0003553E /* API+DropletActionTests.swift */,
 				9A4AC6691DAF16090003553E /* API+ImageTests.swift */,
@@ -409,6 +414,7 @@
 				9A950BF01DA3CFBE0068DFF8 /* API+Volume.swift */,
 				9A34D69D1DB0FD2700DA7CFE /* API+VolumeAction.swift */,
 				9A34D6A51DB1028300DA7CFE /* API+Domain.swift */,
+				9A34D6AD1DB17F5800DA7CFE /* API+Record.swift */,
 				9AA5DD991DA5216D003FEFCF /* API+Droplet.swift */,
 				9AC487CD1DABF0B9006E459A /* API+DropletAction.swift */,
 				9A4AC6671DAF0CCA0003553E /* API+Image.swift */,
@@ -616,6 +622,7 @@
 				9A950BE71DA3420E0068DFF8 /* API+Action.swift in Sources */,
 				9A3918CE1DAA8810001C1603 /* SSHKey.swift in Sources */,
 				9AA5DD981DA51D8D003FEFCF /* Network.swift in Sources */,
+				9A34D6AE1DB17F5800DA7CFE /* API+Record.swift in Sources */,
 				9A34D6AA1DB17B5000DA7CFE /* Record.swift in Sources */,
 				9AEE1ABE1DB0706A00DC65DE /* API+Tag.swift in Sources */,
 				9A950BF11DA3CFBE0068DFF8 /* API+Volume.swift in Sources */,
@@ -662,6 +669,7 @@
 				9A05868A1DA5E86200265B2A /* Person.swift in Sources */,
 				9A34D69C1DB0FBE700DA7CFE /* VolumeActionTests.swift in Sources */,
 				9A3918D61DAA9F02001C1603 /* API+SSHKeyTests.swift in Sources */,
+				9A34D6B01DB1848F00DA7CFE /* API+RecordTests.swift in Sources */,
 				9A950B991DA27CFA0068DFF8 /* MockDataTask.swift in Sources */,
 				9A4AC6761DAFABCE0003553E /* API+RegionTests.swift in Sources */,
 				9A0586BF1DA7C66800265B2A /* RegionTests.swift in Sources */,

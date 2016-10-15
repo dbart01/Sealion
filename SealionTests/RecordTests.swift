@@ -41,4 +41,84 @@ class RecordTests: ModelTestCase {
     func testEquality() {
         self.assertEqualityForModelNamed(type: Record.self, name: "record")
     }
+    
+    // ----------------------------------
+    //  MARK: - Create Request -
+    //
+    func testCreateRequest() {
+        let kind    = Record.Kind.a
+        let name    = "@"
+        let value   = "12.12.12.12"
+        var request = Record.CreateRequest(kind: .a, name: name, value: value)
+        
+        var json    = request.json
+        
+        XCTAssertEqual(json["type"] as! String, kind.rawValue)
+        XCTAssertEqual(json["name"] as! String, name)
+        XCTAssertEqual(json["data"] as! String, value)
+        
+        XCTAssertNil(json["priority"])
+        XCTAssertNil(json["port"])
+        XCTAssertNil(json["weight"])
+        
+        let priority     = 10
+        request.priority = priority
+        json = request.json
+        XCTAssertEqual(json["priority"] as! Int, priority)
+        
+        let port     = 80
+        request.port = port
+        json = request.json
+        XCTAssertEqual(json["port"] as! Int, port)
+        
+        let weight     = 5
+        request.weight = weight
+        json = request.json
+        XCTAssertEqual(json["weight"] as! Int, weight)
+    }
+    
+    // ----------------------------------
+    //  MARK: - Update Request -
+    //
+    func testUpdateRequest() {
+        var request = Record.UpdateRequest()
+        var json    = request.json
+        
+        XCTAssertNil(json["type"])
+        XCTAssertNil(json["name"])
+        XCTAssertNil(json["data"])
+        XCTAssertNil(json["priority"])
+        XCTAssertNil(json["port"])
+        XCTAssertNil(json["weight"])
+        
+        let kind     = Record.Kind.a
+        request.kind = kind
+        json = request.json
+        XCTAssertEqual(json["type"] as! String, kind.rawValue)
+        
+        let name     = "@"
+        request.name = name
+        json = request.json
+        XCTAssertEqual(json["name"] as! String, name)
+        
+        let value     = "12.12.12.12"
+        request.value = value
+        json = request.json
+        XCTAssertEqual(json["data"] as! String, value)
+        
+        let priority     = 10
+        request.priority = priority
+        json = request.json
+        XCTAssertEqual(json["priority"] as! Int, priority)
+        
+        let port     = 80
+        request.port = port
+        json = request.json
+        XCTAssertEqual(json["port"] as! Int, port)
+        
+        let weight     = 5
+        request.weight = weight
+        json = request.json
+        XCTAssertEqual(json["weight"] as! Int, weight)
+    }
 }

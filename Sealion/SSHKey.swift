@@ -56,8 +56,8 @@ public extension SSHKey {
         //
         public var json: JSON {
             return [
-                "name":       self.name,
-                "public_key": self.publicKey,
+                "name"       : self.name,
+                "public_key" : self.publicKey,
             ]
         }
     }

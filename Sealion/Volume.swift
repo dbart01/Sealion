@@ -69,10 +69,10 @@ public extension Volume {
         //
         public var json: JSON {
             return [
-                "size_gigabytes": self.size,
-                "name":           self.name,
-                "description":    self.description,
-                "region":         self.region,
+                "size_gigabytes" : self.size,
+                "name"           : self.name,
+                "description"    : self.description,
+                "region"         : self.region,
             ]
         }
     }
