@@ -29,4 +29,18 @@ class DomainTests: ModelTestCase {
     func testEquality() {
         self.assertEqualityForModelNamed(type: Domain.self, name: "domain")
     }
+    
+    // ----------------------------------
+    //  MARK: - Create Request -
+    //
+    func testCreateRequest() {
+        let ip      = "12.12.12.12"
+        let name    = "example.com"
+        let request = Domain.CreateRequest(ip: ip, name: name)
+        
+        let json = request.json
+        
+        XCTAssertEqual(json["ip"]   as! String, ip)
+        XCTAssertEqual(json["name"] as! String, name)
+    }
 }
