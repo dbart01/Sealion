@@ -38,4 +38,16 @@ class TagTests: ModelTestCase {
     func testEqualityWithoutDroplet() {
         self.assertEqualityForModelNamed(type: Tag.self, name: "tagWithoutDroplet")
     }
+    
+    // ----------------------------------
+    //  MARK: - Create Request -
+    //
+    func testCreateRequest() {
+        let name    = "cool"
+        let request = Tag.CreateRequest(name: name)
+        
+        let json = request.json
+        
+        XCTAssertEqual(json["name"] as! String, name)
+    }
 }
