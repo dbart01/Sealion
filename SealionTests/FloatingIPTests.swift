@@ -42,4 +42,25 @@ class FloatingIPTests: ModelTestCase {
     func testEqualityWithoutDroplet() {
         self.assertEqualityForModelNamed(type: FloatingIP.self, name: "floatingIPWithoutDroplet")
     }
+    
+    // ----------------------------------
+    //  MARK: - Create Request Droplet -
+    //
+    func testCreateRequestDroplet() {
+        let id      = 123
+        let request = FloatingIP.CreateRequestDroplet(droplet: id)
+        
+        let json = request.json
+        
+        XCTAssertEqual(json["droplet_id"] as! Int, id)
+    }
+    
+    func testCreateRequestRegion() {
+        let region  = "nyc3"
+        let request = FloatingIP.CreateRequestRegion(region: region)
+        
+        let json = request.json
+        
+        XCTAssertEqual(json["region"] as! String, region)
+    }
 }
