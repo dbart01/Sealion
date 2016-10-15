@@ -26,4 +26,18 @@ class SSHKeyTests: ModelTestCase {
     func testEquality() {
         self.assertEqualityForModelNamed(type: SSHKey.self, name: "key")
     }
+    
+    // ----------------------------------
+    //  MARK: - Create Request -
+    //
+    func testCreateRequest() {
+        let name      = "My Key"
+        let publicKey = "ssh-key asdf"
+        let request   = SSHKey.CreateRequest(name: name, publicKey: publicKey)
+        
+        let json = request.json
+        
+        XCTAssertEqual(json["name"]       as! String, name)
+        XCTAssertEqual(json["public_key"] as! String, publicKey)
+    }
 }
