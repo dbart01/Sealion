@@ -30,4 +30,36 @@ class VolumeTests: ModelTestCase {
     func testEquality() {
         self.assertEqualityForModelNamed(type: Volume.self, name: "volume")
     }
+    
+    // ----------------------------------
+    //  MARK: - Create Request -
+    //
+    func testCreateRequest() {
+        let size        = 100
+        let name        = "volume"
+        let region      = "nyc3"
+        let description = "A large volume"
+        let request     = Volume.CreateRequest(size: size, name: name, region: region, description: description)
+        
+        let json = request.json
+        
+        XCTAssertEqual(json["size_gigabytes"] as! Int,    size)
+        XCTAssertEqual(json["name"]           as! String, name)
+        XCTAssertEqual(json["region"]         as! String, region)
+        XCTAssertEqual(json["description"]    as! String, description)
+    }
+    
+    // ----------------------------------
+    //  MARK: - Name Request -
+    //
+    func testNameRequest() {
+        let name    = "volume"
+        let region  = "nyc3"
+        let request = Volume.Name(name: name, region: region)
+        
+        let json = request.parameters
+        
+        XCTAssertEqual(json["name"],   name)
+        XCTAssertEqual(json["region"], region)
+    }
 }
