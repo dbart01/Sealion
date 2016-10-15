@@ -61,9 +61,8 @@ class ImageTests: ModelTestCase {
         let name    = "Snapshot Name"
         let request = Image.UpdateRequest(name: name)
         
-        XCTAssertEqual(request.name, name)
-        XCTAssertTrue(request.json == [
-            "name" : name,
-        ])
+        let json = request.json
+        
+        XCTAssertEqual(json["name"] as! String, name)
     }
 }
