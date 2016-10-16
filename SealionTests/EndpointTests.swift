@@ -29,6 +29,8 @@ class EndpointTests: XCTest {
         XCTAssertEqual(Endpoint.kernelsForDroplet(123).path,                 "droplets/123/kernels")
         XCTAssertEqual(Endpoint.snapshotsForDroplet(123).path,               "droplets/123/snapshots")
         XCTAssertEqual(Endpoint.backupsForDroplet(123).path,                 "droplets/123/backups")
+        XCTAssertEqual(Endpoint.neighborsForDroplet(123).path,               "droplets/123/neighbors")
+        XCTAssertEqual(Endpoint.neighbors.path,                              "reports/droplet_neighbors")
         XCTAssertEqual(Endpoint.images.path,                                 "images")
         XCTAssertEqual(Endpoint.imageWithID(123).path,                       "images/123")
         XCTAssertEqual(Endpoint.imageWithSlug("acb").path,                   "images/abc")
