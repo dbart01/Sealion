@@ -29,6 +29,11 @@ public extension API {
         let request = self.requestTo(endpoint: .snapshotWithID(id), method: .get)
         return self.taskWith(request: request, keyPath: "snapshot", completion: completion)
     }
+    
+    public func create(snapshot request: Volume.SnapshotRequest, for id: String, completion: @escaping (_ result: Result<Snapshot>) -> Void) -> Handle<Snapshot> {
+        let request = self.requestTo(endpoint: .snapshotsForVolume(id), method: .post, payload: request)
+        return self.taskWith(request: request, keyPath: "snapshot", completion: completion)
+    }
 
     public func delete(snapshot id: Int, completion: @escaping (_ result: Result<Snapshot>) -> Void) -> Handle<Snapshot> {
         let request = self.requestTo(endpoint: .snapshotWithID(id), method: .delete)

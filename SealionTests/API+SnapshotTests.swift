@@ -68,6 +68,21 @@ class API_SnapshotTests: APITestCase {
         self.assertParameters(handle, parameters: nil)
     }
     
+    func testSnapshotsCreateForVolume() {
+        let id      = "123"
+        let name    = "volume-snapshot"
+        let request = Volume.SnapshotRequest(name: name)
+        let handle  = self.api.create(snapshot: request, for: id) { result in }
+        
+        self.assertType(handle, type: Snapshot.self)
+        self.assertMethod(handle, method: .post)
+        self.assertBody(handle, object: request)
+        self.assertHeaders(handle)
+        self.assertEndpoint(handle, endpoint: .snapshotsForVolume(id))
+        self.assertKeyPath(handle, keyPath: "snapshot")
+        self.assertParameters(handle, parameters: nil)
+    }
+    
     func testSnapshotDelete() {
         let id     = 123
         let handle = self.api.delete(snapshot: 123) { result in }

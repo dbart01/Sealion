@@ -79,6 +79,33 @@ public extension Volume {
 }
 
 // ----------------------------------
+//  MARK: - Snapshot Request -
+//
+public extension Volume {
+    
+    public struct SnapshotRequest: JsonConvertible {
+        
+        public var name: String
+        
+        // ----------------------------------
+        //  MARK: - Init -
+        //
+        public init(name: String) {
+            self.name = name
+        }
+        
+        // ----------------------------------
+        //  MARK: - JsonConvertible -
+        //
+        public var json: JSON {
+            return [
+                "name" : self.name,
+            ]
+        }
+    }
+}
+
+// ----------------------------------
 //  MARK: - Volume Name -
 //
 public extension Volume {

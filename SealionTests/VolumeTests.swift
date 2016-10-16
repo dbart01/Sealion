@@ -50,6 +50,18 @@ class VolumeTests: ModelTestCase {
     }
     
     // ----------------------------------
+    //  MARK: - Snapshot Request -
+    //
+    func testSnapshotRequest() {
+        let name    = "volume snapshot"
+        let request = Volume.SnapshotRequest(name: name)
+        
+        let json = request.json
+        
+        XCTAssertEqual(json["name"] as! String, name)
+    }
+    
+    // ----------------------------------
     //  MARK: - Name Request -
     //
     func testNameRequest() {
