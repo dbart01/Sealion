@@ -19,6 +19,7 @@ class EndpointTests: XCTest {
         XCTAssertEqual(Endpoint.volumeWithID("123").path,                    "volumes/123")
         XCTAssertEqual(Endpoint.volumeActions.path,                          "volumes/actions")
         XCTAssertEqual(Endpoint.volumeActionsWithID("123").path,             "volumes/123/actions")
+        XCTAssertEqual(Endpoint.snapshotsForVolume("123").path,              "volumes/123/snapshots")
         XCTAssertEqual(Endpoint.domains.path,                                "domains")
         XCTAssertEqual(Endpoint.domainWithName("example.com").path,          "domains/example.com")
         XCTAssertEqual(Endpoint.recordsForDomain("example").path,            "domains/example.com/records")
