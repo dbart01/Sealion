@@ -15,7 +15,7 @@ public enum Endpoint {
     case volumes
     case volumeWithID(String)
     case volumeActions
-    case volumeActionsWithID(Int)
+    case volumeActionsWithID(String)
     case domains
     case domainWithName(String)
     case recordsForDomain(String)

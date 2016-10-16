@@ -15,8 +15,13 @@ public extension API {
         return self.taskWith(request: request, keyPath: "action", completion: completion)
     }
     
-    public func action(create action: VolumeAction, for id: Int, completion: @escaping (_ result: Result<Action>) -> Void) -> Handle<Action> {
+    public func action(create action: VolumeAction, for id: String, completion: @escaping (_ result: Result<Action>) -> Void) -> Handle<Action> {
         let request = self.requestTo(endpoint: .volumeActionsWithID(id), method: .post, payload: action)
         return self.taskWith(request: request, keyPath: "action", completion: completion)
+    }
+    
+    public func actionsFor(volume: String, completion: @escaping (_ result: Result<[Action]>) -> Void) -> Handle<[Action]> {
+        let request = self.requestTo(endpoint: .volumeActionsWithID(volume), method: .get)
+        return self.taskWith(request: request, keyPath: "actions", completion: completion)
     }
 }

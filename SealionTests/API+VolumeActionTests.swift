@@ -29,8 +29,7 @@ class API_VolumeActionTests: APITestCase {
     }
     
     func testActions() {
-        
-        let id      = 123
+        let id      = "123"
         let droplet = 234
         let region  = "nyc3"
         
@@ -43,6 +42,19 @@ class API_VolumeActionTests: APITestCase {
         self.assertHeaders(handle)
         self.assertEndpoint(handle, endpoint: .volumeActionsWithID(id))
         self.assertKeyPath(handle, keyPath: "action")
+        self.assertParameters(handle, parameters: nil)
+    }
+    
+    func testActionsForVolume() {
+        let id     = "123"
+        let handle = self.api.actionsFor(volume: id) { result in }
+        
+        self.assertType(handle, type: [Action].self)
+        self.assertMethod(handle, method: .get)
+        self.assertBody(handle, data: nil)
+        self.assertHeaders(handle)
+        self.assertEndpoint(handle, endpoint: .volumeActionsWithID(id))
+        self.assertKeyPath(handle, keyPath: "actions")
         self.assertParameters(handle, parameters: nil)
     }
 }
