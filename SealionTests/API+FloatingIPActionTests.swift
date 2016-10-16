@@ -24,4 +24,17 @@ class API_FloatingIPActionTests: APITestCase {
         self.assertKeyPath(handle, keyPath: "action")
         self.assertParameters(handle, parameters: nil)
     }
+    
+    func testActionsForFloatingIP() {
+        let ip     = "12.12.12.12"
+        let handle = self.api.actionsFor(floatingIP: ip) { result in }
+        
+        self.assertType(handle, type: [Action].self)
+        self.assertMethod(handle, method: .get)
+        self.assertBody(handle, data: nil)
+        self.assertHeaders(handle)
+        self.assertEndpoint(handle, endpoint: .floatingIPActionsWithIP(ip))
+        self.assertKeyPath(handle, keyPath: "actions")
+        self.assertParameters(handle, parameters: nil)
+    }
 }
