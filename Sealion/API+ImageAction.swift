@@ -14,4 +14,9 @@ public extension API {
         let request = self.requestTo(endpoint: .imageActionsWithID(id), method: .post, payload: action)
         return self.taskWith(request: request, keyPath: "action", completion: completion)
     }
+    
+    public func actionsFor(image: Int, completion: @escaping (_ result: Result<[Action]>) -> Void) -> Handle<[Action]> {
+        let request = self.requestTo(endpoint: .imageActionsWithID(image), method: .get)
+        return self.taskWith(request: request, keyPath: "actions", completion: completion)
+    }
 }

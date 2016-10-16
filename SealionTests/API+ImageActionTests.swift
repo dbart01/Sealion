@@ -25,4 +25,17 @@ class API_ImageActionTests: APITestCase {
         self.assertKeyPath(handle, keyPath: "action")
         self.assertParameters(handle, parameters: nil)
     }
+    
+    func testActionsForImage() {
+        let id     = 123
+        let handle = self.api.actionsFor(image: id) { result in }
+        
+        self.assertType(handle, type: [Action].self)
+        self.assertMethod(handle, method: .get)
+        self.assertBody(handle, data: nil)
+        self.assertHeaders(handle)
+        self.assertEndpoint(handle, endpoint: .imageActionsWithID(id))
+        self.assertKeyPath(handle, keyPath: "actions")
+        self.assertParameters(handle, parameters: nil)
+    }
 }

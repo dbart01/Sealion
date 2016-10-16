@@ -24,4 +24,17 @@ class API_DropletActionTests: APITestCase {
         self.assertKeyPath(handle, keyPath: "action")
         self.assertParameters(handle, parameters: nil)
     }
+    
+    func testActionsForDoplet() {
+        let id     = 123
+        let handle = self.api.actionsFor(droplet: id) { result in }
+        
+        self.assertType(handle, type: [Action].self)
+        self.assertMethod(handle, method: .get)
+        self.assertBody(handle, data: nil)
+        self.assertHeaders(handle)
+        self.assertEndpoint(handle, endpoint: .dropletActionsWithID(id))
+        self.assertKeyPath(handle, keyPath: "actions")
+        self.assertParameters(handle, parameters: nil)
+    }
 }

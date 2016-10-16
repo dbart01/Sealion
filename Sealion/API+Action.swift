@@ -19,12 +19,4 @@ public extension API {
         let request = self.requestTo(endpoint: .actionWithID(id), method: .get)
         return self.taskWith(request: request, keyPath: "action", completion: completion)
     }
-    
-    public func actionsFor(droplet: Int, completion: @escaping (_ result: Result<[Action]>) -> Void) -> Handle<[Action]> {
-        let request = self.requestTo(endpoint: .dropletActionsWithID(droplet), method: .get)
-        return self.taskWith(request: request, keyPath: "actions", completion: completion)
-    }
-    
-    // TODO: List all actions for image
-    
 }
