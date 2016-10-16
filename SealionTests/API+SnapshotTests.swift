@@ -44,7 +44,7 @@ class API_SnapshotTests: APITestCase {
     
     func testSnapshotsForDroplet() {
         let id     = 123
-        let handle = self.api.snapshotFor(droplet: id) { result in }
+        let handle = self.api.snapshotsFor(droplet: id) { result in }
         
         self.assertType(handle, type: [Snapshot].self)
         self.assertMethod(handle, method: .get)
