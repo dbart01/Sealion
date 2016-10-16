@@ -24,6 +24,7 @@ public enum Endpoint {
     case dropletWithID(Int)
     case dropletActionsWithID(Int)
     case kernelsForDroplet(Int)
+    case snapshotsForDroplet(Int)
     case images
     case imageWithID(Int)
     case imageWithSlug(String)
@@ -58,6 +59,7 @@ public enum Endpoint {
         case .dropletWithID(let id):             return "droplets/\(id)"
         case .dropletActionsWithID(let id):      return "droplets/\(id)/actions"
         case .kernelsForDroplet(let id):         return "droplets/\(id)/kernels"
+        case .snapshotsForDroplet(let id):       return "droplets/\(id)/snapshots"
         case .images:                            return "images"
         case .imageWithID(let id):               return "images/\(id)"
         case .imageWithSlug(let slug):           return "images/\(slug)"

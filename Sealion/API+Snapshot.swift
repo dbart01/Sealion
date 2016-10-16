@@ -15,6 +15,11 @@ public extension API {
         return self.taskWith(request: request, keyPath: "snapshots", completion: completion)
     }
     
+    public func snapshotFor(droplet: Int, completion: @escaping (_ result: Result<[Snapshot]>) -> Void) -> Handle<[Snapshot]> {
+        let request = self.requestTo(endpoint: .snapshotsForDroplet(droplet), method: .get)
+        return self.taskWith(request: request, keyPath: "snapshots", completion: completion)
+    }
+    
     public func snapshotWith(id: Int, completion: @escaping (_ result: Result<Snapshot>) -> Void) -> Handle<Snapshot> {
         let request = self.requestTo(endpoint: .snapshotWithID(id), method: .get)
         return self.taskWith(request: request, keyPath: "snapshot", completion: completion)

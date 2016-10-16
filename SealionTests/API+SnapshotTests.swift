@@ -42,6 +42,19 @@ class API_SnapshotTests: APITestCase {
         self.assertParameters(handle, parameters: nil)
     }
     
+    func testSnapshotsForDroplet() {
+        let id     = 123
+        let handle = self.api.snapshotFor(droplet: id) { result in }
+        
+        self.assertType(handle, type: [Snapshot].self)
+        self.assertMethod(handle, method: .get)
+        self.assertBody(handle, data: nil)
+        self.assertHeaders(handle)
+        self.assertEndpoint(handle, endpoint: .snapshotsForDroplet(id))
+        self.assertKeyPath(handle, keyPath: "snapshots")
+        self.assertParameters(handle, parameters: nil)
+    }
+    
     func testSnapshotDelete() {
         let id     = 123
         let handle = self.api.delete(snapshot: 123) { result in }
