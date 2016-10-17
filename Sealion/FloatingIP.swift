@@ -18,15 +18,9 @@ public struct FloatingIP: JsonCreatable, Equatable {
     //  MARK: - JsonCreatable -
     //
     public init(json: JSON) {
-        self.ip     = json["ip"] as! String
-        self.region = Region(json: json["region"] as! JSON)
-        
-        if let dropletJSON = json["droplet"] as? JSON {
-            self.droplet = Droplet(json: dropletJSON)
-        } else {
-            self.droplet = nil
-        }
-    }
+        self.ip      = json["ip"] as! String
+        self.region  = Region(json:  json["region"]  as! JSON)
+        self.droplet = Droplet(json: json["droplet"] as? JSON)    }
 }
 
 public func ==(lhs: FloatingIP, rhs: FloatingIP) -> Bool {

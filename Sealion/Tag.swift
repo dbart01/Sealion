@@ -22,14 +22,9 @@ public struct Tag: JsonCreatable, Equatable {
         
         let resourcesJSON = json["resources"]         as! JSON
         let dropletsJSON  = resourcesJSON["droplets"] as! JSON
+        self.dropletCount = dropletsJSON["count"]     as! Int
+        self.lastDroplet  = Droplet(json: dropletsJSON["last_tagged"] as? JSON)
         
-        self.dropletCount = dropletsJSON["count"] as! Int
-        
-        if let dropletJSON = dropletsJSON["last_tagged"] as? JSON {
-            self.lastDroplet = Droplet(json: dropletJSON)
-        } else {
-            self.lastDroplet = nil
-        }
     }
 }
 

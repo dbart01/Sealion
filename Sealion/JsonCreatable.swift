@@ -15,6 +15,15 @@ public protocol JsonCreatable {
 }
 
 public extension JsonCreatable {
+    
+    init?(json: JSON?) {
+        if let json = json {
+            self.init(json: json)
+        } else {
+            return nil
+        }
+    }
+    
     static func collection(json: [JSON]) -> [Self] {
         return json.map {
             Self(json: $0)

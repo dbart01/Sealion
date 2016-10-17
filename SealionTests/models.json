@@ -65,6 +65,48 @@
          "awesome"
       ], 
       "size": "###size"
+   },
+   "dropletCreated": {
+      "status": "active", 
+      "kernel": null, 
+      "volume_ids": [
+         567, 
+         678
+      ], 
+      "locked": false, 
+      "name": "some.droplet.com", 
+      "backup_ids": [
+         123, 
+         234
+      ], 
+      "created_at": "2015-08-07T19:50:26Z", 
+      "snapshot_ids": [
+         345, 
+         456
+      ], 
+      "size_slug": "1gb", 
+      "id": 123, 
+      "next_backup_window": null, 
+      "vcpus": 1, 
+      "features": [
+         "virtio"
+      ], 
+      "image": "###image", 
+      "memory": 1024, 
+      "region": "###region", 
+      "disk": 30, 
+      "networks": {
+         "v4": [
+            "###v4Network"
+         ], 
+         "v6": [
+            "###v6Network"
+         ]
+      }, 
+      "tags": [
+         "awesome"
+      ], 
+      "size": "###size"
    }, 
    "v4Network": {
       "ip_address": "12.12.123.12", 
