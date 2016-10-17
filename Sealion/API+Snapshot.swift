@@ -11,7 +11,7 @@ import Foundation
 public extension API {
     
     public func snapshots(type: Snapshot.SnapshotType? = nil, page: Page? = nil, completion: @escaping (_ result: Result<[Snapshot]>) -> Void) -> Handle<[Snapshot]> {
-        let request = self.requestTo(endpoint: .snapshots, method: .get, parameters: type)
+        let request = self.requestTo(endpoint: .snapshots, method: .get, page: page, parameters: type)
         return self.taskWith(request: request, keyPath: "snapshots", completion: completion)
     }
     
