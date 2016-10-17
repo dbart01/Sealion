@@ -71,6 +71,7 @@
 		9A4AC67E1DAFAFF30003553E /* API+FloatingIP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4AC67D1DAFAFF30003553E /* API+FloatingIP.swift */; };
 		9A4AC6801DAFB08F0003553E /* FloatingIPTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4AC67F1DAFB08F0003553E /* FloatingIPTests.swift */; };
 		9A5AFC471DA83EDA005FCFA1 /* DropletTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5AFC461DA83EDA005FCFA1 /* DropletTests.swift */; };
+		9A67098E1DB45B26005CFB52 /* IntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A67098D1DB45B26005CFB52 /* IntegrationTests.swift */; };
 		9A950B731DA05DC20068DFF8 /* Sealion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A950B691DA05DC20068DFF8 /* Sealion.framework */; };
 		9A950B781DA05DC20068DFF8 /* API+AccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A950B771DA05DC20068DFF8 /* API+AccountTests.swift */; };
 		9A950B7A1DA05DC20068DFF8 /* Sealion.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A950B6C1DA05DC20068DFF8 /* Sealion.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -195,6 +196,7 @@
 		9A4AC67D1DAFAFF30003553E /* API+FloatingIP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "API+FloatingIP.swift"; sourceTree = "<group>"; };
 		9A4AC67F1DAFB08F0003553E /* FloatingIPTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatingIPTests.swift; sourceTree = "<group>"; };
 		9A5AFC461DA83EDA005FCFA1 /* DropletTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropletTests.swift; sourceTree = "<group>"; };
+		9A67098D1DB45B26005CFB52 /* IntegrationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntegrationTests.swift; sourceTree = "<group>"; };
 		9A950B691DA05DC20068DFF8 /* Sealion.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Sealion.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A950B6C1DA05DC20068DFF8 /* Sealion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Sealion.h; sourceTree = "<group>"; };
 		9A950B6D1DA05DC20068DFF8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -386,6 +388,14 @@
 			name = Extensions;
 			sourceTree = "<group>";
 		};
+		9A67098C1DB45B14005CFB52 /* Integration */ = {
+			isa = PBXGroup;
+			children = (
+				9A67098D1DB45B26005CFB52 /* IntegrationTests.swift */,
+			);
+			name = Integration;
+			sourceTree = "<group>";
+		};
 		9A950B5F1DA05DC20068DFF8 = {
 			isa = PBXGroup;
 			children = (
@@ -426,6 +436,7 @@
 				9A05868D1DA5EDB100265B2A /* Models */,
 				9A05868B1DA5ED9300265B2A /* API */,
 				9A0586B91DA7277B00265B2A /* Routes */,
+				9A67098C1DB45B14005CFB52 /* Integration */,
 				9A0586B81DA7275500265B2A /* Supporting Files */,
 			);
 			path = SealionTests;
@@ -702,6 +713,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A67098E1DB45B26005CFB52 /* IntegrationTests.swift in Sources */,
 				9A0586BD1DA7C1E600265B2A /* ActionTests.swift in Sources */,
 				9A34D6941DB02F5C00DA7CFE /* API+FloatingIPActionTests.swift in Sources */,
 				9A34D6B81DB29C4E00DA7CFE /* API+ImageActionTests.swift in Sources */,
