@@ -18,7 +18,7 @@ class IntegrationTests: XCTestCase {
     // ----------------------------------
     //  MARK: - Everything -
     //
-    func testEverything() {
+    func _testEverything() {
         self.fetchImages()
         let droplet = self.createDroplet()
         self.deleteDroplet(droplet: droplet)

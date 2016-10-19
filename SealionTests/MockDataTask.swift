@@ -24,9 +24,23 @@ class MockDataTask: URLSessionDataTask {
     // ----------------------------------
     //  MARK: - Overrides -
     //
-    override func cancel() {}
-    override func suspend() {}
+    private var customState: URLSessionDataTask.State = .suspended
+    
+    override func cancel() {
+        self.customState = .canceling
+    }
+    
+    override func suspend() {
+        self.customState = .suspended
+    }
+    
     override func resume() {
+        self.customState = .running
+        self.customState = .completed
         self.resumeHandler?()
+    }
+    
+    override var state: URLSessionTask.State {
+        return self.customState
     }
 }

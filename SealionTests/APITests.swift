@@ -14,6 +14,12 @@ class APITests: XCTestCase {
     let token   = "ab837378789f2a87"
     let session = MockSession(stubsNamed: "mocks")
     
+    let nonPollingHandler: API.PollingHandler = {
+        return { result, response in
+            return false
+        }
+    }()
+    
     // ----------------------------------
     //  MARK: - Init -
     //
@@ -104,7 +110,7 @@ class APITests: XCTestCase {
             ]
         ]
         self.session.activateStub(stub: Stub(status: 200, json: payload))
-        let handle = self.runTask()
+        let handle = self.runTask(pollHandler: self.nonPollingHandler)
         
         XCTAssertEqual(handle.response.statusCode, 200)
         
@@ -142,7 +148,7 @@ class APITests: XCTestCase {
             ]
         ]
         self.session.activateStub(stub: Stub(status: 200, json: payload))
-        let handle = self.runTask(keyPath: "company.department.employee")
+        let handle = self.runTask(keyPath: "company.department.employee", pollHandler: self.nonPollingHandler)
         
         XCTAssertEqual(handle.response.statusCode, 200)
         
@@ -165,7 +171,7 @@ class APITests: XCTestCase {
     
     func testResponseWithoutPayload() {
         self.session.activateStub(stub: Stub(status: 204, json: nil))
-        let handle = self.runTask()
+        let handle = self.runTask(pollHandler: self.nonPollingHandler)
         
         XCTAssertEqual(handle.response.statusCode, 204)
         
@@ -181,7 +187,7 @@ class APITests: XCTestCase {
     
     func testErrorResponseWithoutPayload() {
         self.session.activateStub(stub: Stub(status: 404, json: nil))
-        let handle = self.runTask()
+        let handle = self.runTask(pollHandler: self.nonPollingHandler)
         
         XCTAssertEqual(handle.response.statusCode, 404)
         
@@ -207,7 +213,7 @@ class APITests: XCTestCase {
         ]
         
         self.session.activateStub(stub: Stub(status: 403, json: payload, error: "Something wen't wrong."))
-        let handle = self.runTask()
+        let handle = self.runTask(pollHandler: self.nonPollingHandler)
         
         XCTAssertEqual(handle.response.statusCode, 403)
         
@@ -229,7 +235,7 @@ class APITests: XCTestCase {
         
         let errorDescription = "Network failed"
         self.session.activateStub(stub: Stub(status: 500, json: nil, error: errorDescription))
-        let handle = self.runTask()
+        let handle = self.runTask(pollHandler: self.nonPollingHandler)
         
         XCTAssertEqual(handle.response.statusCode, 500)
         
@@ -241,6 +247,41 @@ class APITests: XCTestCase {
             XCTAssertNotNil(error)
             XCTAssertEqual(error!.description, errorDescription)
         }
+        
+        self.session.deactiveStub()
+    }
+    
+    func testPolling() {
+        
+        let assertResult: (Result<Any>) -> Void = { result in
+            
+            switch result {
+            case .success(let object):
+                
+                XCTAssertNotNil(object)
+                let json = object as! JSON
+                XCTAssertEqual(json["message"] as! String, "OK")
+                
+            case .failure:
+                XCTFail("Expecting a success response.")
+            }
+        }
+        
+        let payload = ["message" : "OK"]
+        var count   = 0
+        
+        self.session.activateStub(stub: Stub(status: 204, json: payload))
+        let handle = self.runTask(pollHandler: { result, response in
+            
+            assertResult(result)
+            count += 1
+            
+            // Poll while count is less than 3
+            return count < 3
+        })
+        
+        XCTAssertEqual(count, 3)
+        assertResult(handle.result)
         
         self.session.deactiveStub()
     }
@@ -282,6 +323,45 @@ class APITests: XCTestCase {
         case .failure(let error):
             XCTAssertNil(error)
         }
+        
+        self.session.deactiveStub()
+    }
+    
+    func testModelSinglePolling() {
+        
+        let payload = [
+            "firstName" : "John",
+            "lastName"  : "Smith",
+        ]
+        
+        let assertResult: (Result<Person>) -> Void = { result in
+            
+            switch result {
+            case .success(let person):
+                
+                XCTAssertNotNil(person)
+                XCTAssertEqual(person!.firstName, "John")
+                XCTAssertEqual(person!.lastName, "Smith")
+                
+            case .failure:
+                XCTFail("Expecting a success response.")
+            }
+        }
+        
+        var count = 0
+        
+        self.session.activateStub(stub: Stub(status: 200, json: payload))
+        let result: Result<Person> = self.runObjectTask(pollHandler: { result in
+            
+            assertResult(result)
+            count += 1
+            
+            // Poll while count is less than 3
+            return count < 3
+        })
+        
+        XCTAssertEqual(count, 3)
+        assertResult(result)
         
         self.session.deactiveStub()
     }
@@ -338,17 +418,70 @@ class APITests: XCTestCase {
         self.session.deactiveStub()
     }
     
+    func testModelArrayPolling() {
+        
+        let payload = [
+            "people": [
+                [
+                    "firstName" : "John",
+                    "lastName"  : "Smith",
+                ],
+                [
+                    "firstName" : "Walter",
+                    "lastName"  : "Appleseed",
+                ]
+            ]
+        ]
+        
+        let assertResult: (Result<[Person]>) -> Void = { result in
+            
+            switch result {
+            case .success(let people):
+                
+                XCTAssertNotNil(people)
+                
+                guard let people = people else { return }
+                
+                XCTAssertEqual(people.count, 2)
+                XCTAssertEqual(people[0].firstName, "John")
+                XCTAssertEqual(people[0].lastName,  "Smith")
+                XCTAssertEqual(people[1].firstName, "Walter")
+                XCTAssertEqual(people[1].lastName,  "Appleseed")
+                
+            case .failure:
+                XCTFail("Expecting a success response.")
+            }
+        }
+        
+        var count = 0
+        
+        self.session.activateStub(stub: Stub(status: 200, json: payload))
+        let result: Result<[Person]> = self.runObjectTask(keyPath: "people", pollHandler: { result in
+            
+            assertResult(result)
+            count += 1
+            
+            // Poll while count is less than 3
+            return count < 3
+        })
+        
+        XCTAssertEqual(count, 3)
+        assertResult(result)
+        
+        self.session.deactiveStub()
+    }
+    
     // ----------------------------------
     //  MARK: - Conveniences -
     //
-    private func runObjectTask(keyPath: String? = nil) -> Result<Person> {
+    private func runObjectTask(keyPath: String? = nil, pollHandler: ((Result<Person>) -> Bool)? = nil) -> Result<Person> {
         let api = self.createAPI()
         
         var resultOut: Result<Person>!
         
         let e       = self.expectation(description: "")
         let request = api.requestTo(endpoint: .account, method: .get) // overriden by mock
-        let task    = api.taskWith(request: request, keyPath: keyPath) { (result: Result<Person>) in
+        let task    = api.taskWith(request: request, keyPath: keyPath, pollHandler: pollHandler) { (result: Result<Person>) in
             
             resultOut = result
             e.fulfill()
@@ -359,14 +492,14 @@ class APITests: XCTestCase {
         return resultOut
     }
     
-    private func runObjectTask(keyPath: String? = nil) -> Result<[Person]> {
+    private func runObjectTask(keyPath: String? = nil, pollHandler: ((Result<[Person]>) -> Bool)? = nil) -> Result<[Person]> {
         let api = self.createAPI()
         
         var resultOut: Result<[Person]>!
         
         let e       = self.expectation(description: "")
         let request = api.requestTo(endpoint: .account, method: .get) // overriden by mock
-        let task    = api.taskWith(request: request, keyPath: keyPath) { (result: Result<[Person]>) in
+        let task    = api.taskWith(request: request, keyPath: keyPath, pollHandler: pollHandler) { (result: Result<[Person]>) in
             
             resultOut = result
             e.fulfill()
@@ -377,7 +510,7 @@ class APITests: XCTestCase {
         return resultOut
     }
     
-    private func runTask(keyPath: String? = nil) -> (result: Result<Any>, response: HTTPURLResponse) {
+    private func runTask(keyPath: String? = nil, pollHandler: @escaping API.PollingHandler) -> (result: Result<Any>, response: HTTPURLResponse) {
         let api = self.createAPI()
         
         var resultOut:   Result<Any>!
@@ -385,7 +518,7 @@ class APITests: XCTestCase {
         
         let e                 = self.expectation(description: "")
         let request           = api.requestTo(endpoint: .account, method: .get) // overriden by mock
-        let task: Handle<Any> = api.taskWith(request: request, keyPath: keyPath) { result, response in
+        let task: Handle<Any> = api.taskWith(request: request, keyPath: keyPath, pollHandler: pollHandler) { result, response in
             
             resultOut   = result
             responseOut = response

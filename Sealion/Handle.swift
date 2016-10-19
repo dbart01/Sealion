@@ -24,21 +24,30 @@ public enum RequestState {
     }
 }
 
-public class Handle<T> {
+public final class Handle<T> {
         
     public var state: RequestState {
         return RequestState(state: self.task.state)
     }
     
-    internal let task:    URLSessionTask
+    internal private(set) var task: URLSessionTask
     internal let keyPath: String?
     
     // ----------------------------------
     //  MARK: - Init -
     //
     internal init(task: URLSessionTask, keyPath: String?) {
-        self.task       = task
-        self.keyPath    = keyPath
+        self.task    = task
+        self.keyPath = keyPath
+    }
+    
+    // ----------------------------------
+    //  MARK: - Set Task -
+    //
+    internal func setTask(task: URLSessionTask) {
+        objc_sync_enter(self)
+        self.task = task
+        objc_sync_exit(self)
     }
     
     // ----------------------------------

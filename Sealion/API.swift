@@ -10,6 +10,9 @@ import Foundation
 
 public class API {
     
+    internal typealias CompletionHandler = (Result<Any>, HTTPURLResponse) -> Void
+    internal typealias PollingHandler    = (Result<Any>, HTTPURLResponse) -> Bool
+    
     public enum Version: String {
         case v2 = "https://api.digitalocean.com/v2/"
     }
@@ -82,9 +85,9 @@ public class API {
     // ----------------------------------
     //  MARK: - Request Execution -
     //
-    internal func taskWith<T: JsonCreatable>(request: URLRequest, keyPath: String? = nil, completion: @escaping (Result<T>) -> Void) -> Handle<T> {
+    internal func taskWith<T: JsonCreatable>(request: URLRequest, keyPath: String? = nil, pollHandler: ((Result<T>) -> Bool)? = nil, completion: @escaping (Result<T>) -> Void) -> Handle<T> {
         
-        return self.taskWith(request: request, keyPath: keyPath) { result, respose in
+        let resultFor: (Result<Any>) -> Result<T> = { result in
             switch result {
             case .success(let json):
                 
@@ -92,17 +95,23 @@ public class API {
                 if let json = json {
                     object = T(json: json as! JSON)
                 }
-                completion(.success(object))
+                return .success(object)
                 
             case .failure(let error):
-                completion(.failure(error))
+                return .failure(error)
             }
         }
+        
+        return self.taskWith(request: request, keyPath: keyPath, pollHandler: { result, response in
+            return pollHandler?(resultFor(result)) ?? false
+        }, completion: { result, respose in
+            completion(resultFor(result))
+        })
     }
     
-    internal func taskWith<T: JsonCreatable>(request: URLRequest, keyPath: String? = nil, completion: @escaping (Result<[T]>) -> Void) -> Handle<[T]> {
+    internal func taskWith<T: JsonCreatable>(request: URLRequest, keyPath: String? = nil, pollHandler: ((Result<[T]>) -> Bool)? = nil, completion: @escaping (Result<[T]>) -> Void) -> Handle<[T]> {
         
-        return self.taskWith(request: request, keyPath: keyPath) { result, response in
+        let resultFor: (Result<Any>) -> Result<[T]> = { result in
             switch result {
             case .success(let json):
                 
@@ -112,15 +121,23 @@ public class API {
                         T(json: $0)
                     }
                 }
-                completion(.success(collection))
+                return .success(collection)
                 
             case .failure(let error):
-                completion(.failure(error))
+                return .failure(error)
             }
         }
+        
+        return self.taskWith(request: request, keyPath: keyPath, pollHandler: { result, response in
+            return pollHandler?(resultFor(result)) ?? false
+        }, completion: { result, response in
+            completion(resultFor(result))
+        })
     }
     
-    internal func taskWith<T>(request: URLRequest, keyPath: String? = nil, completion: @escaping (Result<Any>, HTTPURLResponse) -> Void) -> Handle<T> {
+    internal func taskWith<T>(request: URLRequest, keyPath: String? = nil, pollHandler: @escaping PollingHandler, completion: @escaping CompletionHandler) -> Handle<T> {
+        
+        var requestHandle: Handle<T>?
         let task = self.session.dataTask(with: request) { (data, response, error) in
             
             /* ---------------------------------
@@ -164,22 +181,46 @@ public class API {
                 }
             }
             
+            /* ---------------------------------
+             ** The completion of a task can be 
+             ** a poll event or calling the
+             ** completion directly.
+             */
+            let pollOrComplete: (Result<Any>, HTTPURLResponse) -> Void = { result, response in
+                let shouldPoll = pollHandler(result, httpResponse)
+                if let requestHandle = requestHandle, requestHandle.state != .cancelling, shouldPoll {
+                    
+                    let handle: Handle<T> = self.taskWith(request: request, keyPath: keyPath, pollHandler: pollHandler, completion: completion)
+                    requestHandle.setTask(task: handle.task)
+                    requestHandle.resume()
+                    
+                } else {
+                    completion(result, httpResponse)
+                }
+            }
+            
             /* ------------------------------------
              ** Use the response codes to determine
              ** whether the request succeeded or not.
              */
             if httpResponse.successful {
-                completion(.success(parsedJson), httpResponse)
+                
+                let result = Result<Any>.success(parsedJson)
+                pollOrComplete(result, httpResponse)
+                
             } else {
                 
                 if let error = error, parsedError == nil {
                     parsedError = RequestError(code: httpResponse.statusCode, id: "", name: "network_error", description: error.localizedDescription)
                 }
-                completion(.failure(parsedError), httpResponse)
+                
+                let result = Result<Any>.failure(parsedError)
+                pollOrComplete(result, httpResponse)
             }
         }
         
-        return Handle(task: task, keyPath: keyPath)
+        requestHandle = Handle(task: task, keyPath: keyPath)
+        return requestHandle!
     }
 }
 
