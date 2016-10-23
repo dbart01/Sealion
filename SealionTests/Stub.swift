@@ -9,11 +9,36 @@
 import Foundation
 import Sealion
 
+// ----------------------------------
+//  MARK: - Error Json -
+//
+struct MockError {
+    
+    let code:        Int
+    let domain:      String
+    let description: String
+    
+    init(domain: String = "MockErrorDomain", code: Int, description: String = "No description") {
+        self.code        = code
+        self.domain      = domain
+        self.description = description
+    }
+    
+    func cocoaError() -> NSError {
+        return NSError(domain: self.domain, code: self.code, userInfo: [
+            NSLocalizedDescriptionKey : self.description,
+        ])
+    }
+}
+
+// ----------------------------------
+//  MARK: - Stub -
+//
 struct Stub {
     
-    let status:  Int
+    let status:  Int?
     let json:    JSON?
-    let error:   String?
+    let error:   MockError?
     let headers: [String : String]?
     
     var jsonData: Data? {
@@ -26,14 +51,7 @@ struct Stub {
     // ----------------------------------
     //  MARK: - Init -
     //
-    init(json: [String : Any]) {
-        self.status  = json["status"]  as! Int
-        self.json    = json["json"]    as? JSON
-        self.error   = json["error"]   as? String
-        self.headers = json["headers"] as? [String : String]
-    }
-    
-    init(status: Int, json: JSON? = nil, error: String? = nil, headers: [String : String]? = nil) {
+    init(status: Int? = nil, json: JSON? = nil, error: MockError? = nil, headers: [String : String]? = nil) {
         self.status  = status
         self.json    = json
         self.error   = error

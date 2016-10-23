@@ -45,9 +45,9 @@ public final class Handle<T> {
     //  MARK: - Set Task -
     //
     internal func setTask(task: URLSessionTask) {
-        objc_sync_enter(self)
-        self.task = task
-        objc_sync_exit(self)
+        sync(self) {
+            self.task = task
+        }
     }
     
     // ----------------------------------
@@ -65,32 +65,71 @@ public final class Handle<T> {
     //  MARK: - Requests -
     //
     public var originalRequest: URLRequest? {
-        return self.task.originalRequest
+        return sync(self) {
+            return self.task.originalRequest
+        }
     }
     
     public var currentRequest: URLRequest? {
-        return self.task.currentRequest
+        return sync(self) {
+            return self.task.currentRequest
+        }
     }
     
     // ----------------------------------
     //  MARK: - Response -
     //
     public var response: URLResponse? {
-        return self.task.response
+        return sync(self) {
+            return self.task.response
+        }
     }
     
     // ----------------------------------
     //  MARK: - Actions -
     //
     public func cancel() {
-        self.task.cancel()
+        sync(self) {
+            self.task.cancel()
+        }
     }
     
     public func suspend() {
-        self.task.suspend()
+        sync(self) {
+            self.task.suspend()
+        }
     }
     
     public func resume() {
-        self.task.resume()
+        sync(self) {
+            self.task.resume()
+        }
     }
+}
+
+private class Sync {
+    
+    weak var target: AnyObject!
+    
+    @discardableResult init(target: AnyObject) {
+        self.target = target
+        objc_sync_enter(target)
+    }
+    
+    deinit {
+        objc_sync_exit(self.target)
+    }
+}
+
+private func sync(_ object: AnyObject, task: () -> Void) {
+    objc_sync_enter(object)
+    task()
+    objc_sync_exit(object)
+}
+
+private func sync<T>(_ object: AnyObject, task: () -> T) -> T {
+    objc_sync_enter(object)
+    let value = task()
+    objc_sync_exit(object)
+    return value
 }

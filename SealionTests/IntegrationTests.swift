@@ -52,7 +52,7 @@ class IntegrationTests: XCTestCase {
             switch result {
             case .success(let droplet):
                 createdDroplet = droplet!
-            case .failure(let error):
+            case .failure(let error, _):
                 XCTFail(error?.description ?? "Failed to create droplet")
             }
             e.fulfill()
@@ -70,7 +70,7 @@ class IntegrationTests: XCTestCase {
             switch result {
             case .success:
                 break
-            case .failure(let error):
+            case .failure(let error, _):
                 XCTFail(error?.description ?? "Failed to delete droplet")
             }
             e.fulfill()

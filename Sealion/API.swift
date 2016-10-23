@@ -10,7 +10,7 @@ import Foundation
 
 public class API {
     
-    internal typealias CompletionHandler = (Result<Any>, HTTPURLResponse) -> Void
+    internal typealias CompletionHandler = (Result<Any>, HTTPURLResponse?) -> Void
     internal typealias PollingHandler    = (Result<Any>, HTTPURLResponse) -> Bool
     
     public enum Version: String {
@@ -95,10 +95,10 @@ public class API {
                 if let json = json {
                     object = T(json: json as! JSON)
                 }
-                return .success(object)
+                return .success(object: object)
                 
-            case .failure(let error):
-                return .failure(error)
+            case .failure(let error, let reason):
+                return .failure(error: error, reason: reason)
             }
         }
         
@@ -121,10 +121,10 @@ public class API {
                         T(json: $0)
                     }
                 }
-                return .success(collection)
+                return .success(object: collection)
                 
-            case .failure(let error):
-                return .failure(error)
+            case .failure(let error, let reason):
+                return .failure(error: error, reason: reason)
             }
         }
         
@@ -140,46 +140,19 @@ public class API {
         var requestHandle: Handle<T>?
         let task = self.session.dataTask(with: request) { (data, response, error) in
             
+            let reason = FailureReason(code: (error as? NSError)?.code)
+            
             /* ---------------------------------
-             ** We always expect to get back an
-             ** HTTPURLResponse since we can be
-             ** relying on the statusCode of the
-             ** response.
+             ** Ensure that we have a network
+             ** reponse going forward, otherwise
+             ** bail early.
              */
-            let httpResponse = response as! HTTPURLResponse
-            
-            var parsedError: RequestError?
-            var parsedJson:  Any?
-            
-            /* -----------------------------
-             ** Parse the body JSON if it is
-             ** not nil.
-             */
-            if let data = data,
-                var json = try? JSONSerialization.jsonObject(with: data, options: []) {
-                
-                /* ---------------------------------
-                 ** If a keyPath was provided, and
-                 ** the response was success, we'll
-                 ** unwrap the json object. Otherwise
-                 ** we assume the root is the error.
-                 */
-                if httpResponse.successful {
-                    
-                    if let keyPath = keyPath {
-                        let components = keyPath.components(separatedBy: ".")
-                        for component in components {
-                            json = (json as! JSON)[component]
-                        }
-                    }
-                    parsedJson = json
-                    
-                } else {
-                    var errorJSON     = json as! JSON
-                    errorJSON["code"] = httpResponse.statusCode
-                    parsedError       = RequestError(json: errorJSON)
-                }
+            guard let response = response as? HTTPURLResponse else {
+                completion(Result<Any>.failure(error: nil, reason: reason), nil)
+                return
             }
+            
+            let (parsedJson, parsedError) = self.parseData(data, for: keyPath, with: response)
             
             /* ---------------------------------
              ** The completion of a task can be 
@@ -187,15 +160,19 @@ public class API {
              ** completion directly.
              */
             let pollOrComplete: (Result<Any>, HTTPURLResponse) -> Void = { result, response in
-                let shouldPoll = pollHandler(result, httpResponse)
-                if let requestHandle = requestHandle, requestHandle.state != .cancelling, shouldPoll {
+                
+                /* -----------------------------------
+                 ** Check the pollingHandler to see if
+                 ** we should continue polling.
+                 */
+                if pollHandler(result, response) {
                     
                     let handle: Handle<T> = self.taskWith(request: request, keyPath: keyPath, pollHandler: pollHandler, completion: completion)
-                    requestHandle.setTask(task: handle.task)
-                    requestHandle.resume()
+                    requestHandle!.setTask(task: handle.task)
+                    requestHandle!.resume()
                     
                 } else {
-                    completion(result, httpResponse)
+                    completion(result, response)
                 }
             }
             
@@ -203,33 +180,77 @@ public class API {
              ** Use the response codes to determine
              ** whether the request succeeded or not.
              */
-            if httpResponse.successful {
+            if response.successful {
                 
-                let result = Result<Any>.success(parsedJson)
-                pollOrComplete(result, httpResponse)
+                let result = Result<Any>.success(object: parsedJson)
+                pollOrComplete(result, response)
                 
             } else {
                 
-                if let error = error, parsedError == nil {
-                    parsedError = RequestError(code: httpResponse.statusCode, id: "", name: "network_error", description: error.localizedDescription)
-                }
+                let result = Result<Any>.failure(error: parsedError, reason: reason)
                 
-                let result = Result<Any>.failure(parsedError)
-                pollOrComplete(result, httpResponse)
+                /* ---------------------------------
+                 ** In the case where the request
+                 ** failed due to cancellation, we'll
+                 ** ignore the polling handler and
+                 ** call the completion instead.
+                 */
+                if reason == .cancelled {
+                    completion(result, response)
+                } else {
+                    pollOrComplete(result, response)
+                }
             }
         }
         
         requestHandle = Handle(task: task, keyPath: keyPath)
         return requestHandle!
     }
+    
+    // ----------------------------------
+    //  MARK: - Data Parsing -
+    //
+    private func parseData(_ data: Data?, for keyPath: String?, with response: HTTPURLResponse) -> (json: Any?, error: RequestError?) {
+        
+        var parsedError: RequestError?
+        var parsedJson:  Any?
+        
+        if let data = data,
+            data.count > 2, // Empty json is '{}'
+            var json = try? JSONSerialization.jsonObject(with: data, options: []) {
+            
+            /* ---------------------------------
+             ** If a keyPath was provided, and
+             ** the response was success, we'll
+             ** unwrap the json object. Otherwise
+             ** we assume the root is the error.
+             */
+            if response.successful {
+                
+                if let keyPath = keyPath {
+                    let components = keyPath.components(separatedBy: ".")
+                    for component in components {
+                        json = (json as! JSON)[component]
+                    }
+                }
+                parsedJson = json
+                
+            } else {
+                var errorJSON     = json as! JSON
+                errorJSON["code"] = response.statusCode
+                parsedError       = RequestError(json: errorJSON)
+            }
+        }
+        
+        return (parsedJson, parsedError)
+    }
 }
 
 // ----------------------------------
 //  MARK: - HTTPURLResponse -
 //
-extension HTTPURLResponse {
+private extension HTTPURLResponse {
     var successful: Bool {
         return (self.statusCode / 100) == 2
     }
 }
-

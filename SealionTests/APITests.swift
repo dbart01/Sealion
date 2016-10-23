@@ -11,8 +11,7 @@ import XCTest
 
 class APITests: XCTestCase {
     
-    let token   = "ab837378789f2a87"
-    let session = MockSession(stubsNamed: "mocks")
+    let token = "ab837378789f2a87"
     
     let nonPollingHandler: API.PollingHandler = {
         return { result, response in
@@ -38,16 +37,16 @@ class APITests: XCTestCase {
     //  MARK: - URL Generation -
     //
     func testURLGenerationWithoutParameters() {
-        let api = self.createAPI()
+        let suite = self.create()
         
         let expected = URL(string: "\(API.Version.v2.rawValue)account")!
-        let url      = api.urlTo(endpoint: .account)
+        let url      = suite.api.urlTo(endpoint: .account)
         
         XCTAssertEqual(expected, url)
     }
     
     func testURLGenerationWithParameters() {
-        let api = self.createAPI()
+        let suite = self.create()
         
         let parameters = [
             "id"    : "2",
@@ -55,14 +54,14 @@ class APITests: XCTestCase {
         ]
         
         let expectedWithoutPage = URL(string: "\(API.Version.v2.rawValue)droplets/123456?id=2&image=200")!
-        let urlWithoutPage      = api.urlTo(endpoint: .dropletWithID(123456), parameters: parameters)
+        let urlWithoutPage      = suite.api.urlTo(endpoint: .dropletWithID(123456), parameters: parameters)
         
         XCTAssertEqual(expectedWithoutPage, urlWithoutPage)
         
         let page = Page(index: 0, count: 50)
         
         let expectedWithPage = URL(string: "\(API.Version.v2.rawValue)droplets/123456?page=1&per_page=50&id=2&image=200")!
-        let urlWithPage      = api.urlTo(endpoint: .dropletWithID(123456), page: page, parameters: parameters)
+        let urlWithPage      = suite.api.urlTo(endpoint: .dropletWithID(123456), page: page, parameters: parameters)
         
         XCTAssertEqual(expectedWithPage, urlWithPage)
     }
@@ -71,23 +70,21 @@ class APITests: XCTestCase {
     //  MARK: - Request Generation -
     //
     func testRequestGenerationWithoutPayload() {
-        let api = self.createAPI()
-        
-        let request = api.requestTo(endpoint: .actionWithID(123), method: .get)
+        let suite   = self.create()
+        let request = suite.api.requestTo(endpoint: .actionWithID(123), method: .get)
         
         XCTAssertEqual(request.httpMethod, "GET")
         XCTAssertEqual(request.value(forHTTPHeaderField: "Authorization"), "Bearer \(self.token)")
     }
     
     func testRequestGenerationWithPayload() {
-        let api = self.createAPI()
-        
+        let suite   = self.create()
         let payload = [
             "name"        : "volume",
             "description" : "Test volume",
         ]
         
-        let request  = api.requestTo(endpoint: .volumeWithID("volume-identifier"), method: .post, payload: payload)
+        let request  = suite.api.requestTo(endpoint: .volumeWithID("volume-identifier"), method: .post, payload: payload)
         
         XCTAssertEqual(request.httpMethod, "POST")
         XCTAssertEqual(request.value(forHTTPHeaderField: "Authorization"), "Bearer \(self.token)")
@@ -103,16 +100,18 @@ class APITests: XCTestCase {
     //
     func testResponseWithPayload() {
         
+        let suite   = self.create()
         let payload = [
             "item" : [
                 "firstName" : "John",
                 "lastName"  : "Smith",
             ]
         ]
-        self.session.activateStub(stub: Stub(status: 200, json: payload))
-        let handle = self.runTask(pollHandler: self.nonPollingHandler)
+        suite.session.activateStub(stub: Stub(status: 200, json: payload))
+        let handle = self.runTask(api: suite.api, pollHandler: self.nonPollingHandler)
         
-        XCTAssertEqual(handle.response.statusCode, 200)
+        XCTAssertNotNil(handle.response)
+        XCTAssertEqual(handle.response!.statusCode, 200)
         
         switch handle.result {
         case .success(let object):
@@ -133,11 +132,12 @@ class APITests: XCTestCase {
             XCTFail("Expecting successful response.")
         }
         
-        self.session.deactiveStub()
+        suite.session.deactiveStub()
     }
     
     func testResponseWithKeyPaths() {
         
+        let suite   = self.create()
         let payload = [
             "company" : [
                 "department" : [
@@ -147,10 +147,11 @@ class APITests: XCTestCase {
                 ]
             ]
         ]
-        self.session.activateStub(stub: Stub(status: 200, json: payload))
-        let handle = self.runTask(keyPath: "company.department.employee", pollHandler: self.nonPollingHandler)
+        suite.session.activateStub(stub: Stub(status: 200, json: payload))
+        let handle = self.runTask(api: suite.api, keyPath: "company.department.employee", pollHandler: self.nonPollingHandler)
         
-        XCTAssertEqual(handle.response.statusCode, 200)
+        XCTAssertNotNil(handle.response)
+        XCTAssertEqual(handle.response!.statusCode, 200)
         
         switch handle.result {
         case .success(let object):
@@ -166,14 +167,17 @@ class APITests: XCTestCase {
             XCTFail("Expecting successful response.")
         }
         
-        self.session.deactiveStub()
+        suite.session.deactiveStub()
     }
     
     func testResponseWithoutPayload() {
-        self.session.activateStub(stub: Stub(status: 204, json: nil))
-        let handle = self.runTask(pollHandler: self.nonPollingHandler)
+        let suite = self.create()
         
-        XCTAssertEqual(handle.response.statusCode, 204)
+        suite.session.activateStub(stub: Stub(status: 204, json: nil))
+        let handle = self.runTask(api: suite.api, pollHandler: self.nonPollingHandler)
+        
+        XCTAssertNotNil(handle.response)
+        XCTAssertEqual(handle.response!.statusCode, 204)
         
         switch handle.result {
         case .success(let object):
@@ -182,76 +186,85 @@ class APITests: XCTestCase {
             XCTFail("Expecting successful response.")
         }
 
-        self.session.deactiveStub()
+        suite.session.deactiveStub()
     }
     
     func testErrorResponseWithoutPayload() {
-        self.session.activateStub(stub: Stub(status: 404, json: nil))
-        let handle = self.runTask(pollHandler: self.nonPollingHandler)
+        let suite = self.create()
         
-        XCTAssertEqual(handle.response.statusCode, 404)
+        suite.session.activateStub(stub: Stub(status: 404, json: nil))
+        let handle = self.runTask(api: suite.api, pollHandler: self.nonPollingHandler)
+        
+        XCTAssertNotNil(handle.response)
+        XCTAssertEqual(handle.response!.statusCode, 404)
         
         switch handle.result {
         case .success:
             XCTFail("Expecting an error response.")
-        case .failure(let error):
+        case .failure(let error, _):
             XCTAssertNil(error)
         }
         
-        self.session.deactiveStub()
+        suite.session.deactiveStub()
     }
     
     func testErrorResponseWithPayload() {
         
+        let suite       = self.create()
+        let error       = MockError(code: -100, description: "Something went wrong")
         let id          = "1234"
         let name        = "auth_error"
         let description = "You're not allowed in here"
-        let payload = [
+        let payload     = [
             "request_id" : id,
             "id"         : name,
             "message"    : description
         ]
         
-        self.session.activateStub(stub: Stub(status: 403, json: payload, error: "Something wen't wrong."))
-        let handle = self.runTask(pollHandler: self.nonPollingHandler)
+        suite.session.activateStub(stub: Stub(status: 403, json: payload, error: error))
+        let handle = self.runTask(api: suite.api, pollHandler: self.nonPollingHandler)
         
-        XCTAssertEqual(handle.response.statusCode, 403)
+        XCTAssertNotNil(handle.response)
+        XCTAssertEqual(handle.response!.statusCode, 403)
         
         switch handle.result {
         case .success:
             XCTFail("Expecting an error response.")
-        case .failure(let error):
+        case .failure(let error, _):
             XCTAssertNotNil(error)
-            XCTAssertEqual(error!.code,        handle.response.statusCode)
+            XCTAssertEqual(error!.code,        handle.response!.statusCode)
             XCTAssertEqual(error!.id,          id)
             XCTAssertEqual(error!.name,        name)
             XCTAssertEqual(error!.description, description)
         }
         
-        self.session.deactiveStub()
+        suite.session.deactiveStub()
     }
     
     func testNetworkErrorResponse() {
         
-        let errorDescription = "Network failed"
-        self.session.activateStub(stub: Stub(status: 500, json: nil, error: errorDescription))
-        let handle = self.runTask(pollHandler: self.nonPollingHandler)
+        let suite = self.create()
+        let error = MockError(code: NSURLErrorNotConnectedToInternet)
         
-        XCTAssertEqual(handle.response.statusCode, 500)
+        suite.session.activateStub(stub: Stub(error: error))
+        let handle = self.runTask(api: suite.api, pollHandler: self.nonPollingHandler)
+        
+        XCTAssertNil(handle.response)
         
         switch handle.result {
         case .success:
             XCTFail("Expecting an error response.")
-        case .failure(let error):
+        case .failure(let error, let reason):
             
-            XCTAssertNotNil(error)
-            XCTAssertEqual(error!.description, errorDescription)
+            XCTAssertNil(error)
+            XCTAssertEqual(reason, .notConnectedToInternet)
         }
         
-        self.session.deactiveStub()
+        suite.session.deactiveStub()
     }
     
     func testPolling() {
+        let suite = self.create()
         
         let assertResult: (Result<Any>) -> Void = { result in
             
@@ -270,8 +283,8 @@ class APITests: XCTestCase {
         let payload = ["message" : "OK"]
         var count   = 0
         
-        self.session.activateStub(stub: Stub(status: 204, json: payload))
-        let handle = self.runTask(pollHandler: { result, response in
+        suite.session.activateStub(stub: Stub(status: 204, json: payload))
+        let handle = self.runTask(api: suite.api, pollHandler: { result, response in
             
             assertResult(result)
             count += 1
@@ -283,7 +296,40 @@ class APITests: XCTestCase {
         XCTAssertEqual(count, 3)
         assertResult(handle.result)
         
-        self.session.deactiveStub()
+        suite.session.deactiveStub()
+    }
+    
+    func testPollingCancellationBeforeRequest() {
+        
+        let suite = self.create()
+        let error = MockError(domain: NSCocoaErrorDomain, code: NSURLErrorCancelled, description: "Request was cancelled")
+        
+        suite.session.activateStub(stub: Stub(error: error))
+        let e = self.expectation(description: "")
+        
+        let request           = suite.api.requestTo(endpoint: .account, method: .get) // overriden by mock
+        let task: Handle<Any> = suite.api.taskWith(request: request, pollHandler: { result, response in
+            
+            XCTFail("Cancelled request should not execute the polling handler.")
+            return true
+            
+        }, completion: { result, response in
+            
+            switch result {
+            case .success:
+                XCTFail("Expecting a failure response.")
+            case .failure(let error, let reason):
+                XCTAssertNil(error)
+                XCTAssertEqual(reason, .cancelled)
+            }
+            e.fulfill()
+        })
+        
+        task.resume()
+        task.cancel()
+        
+        self.waitForExpectations(timeout: 10.0, handler: nil)
+        suite.session.deactiveStub()
     }
     
     // ----------------------------------
@@ -291,13 +337,14 @@ class APITests: XCTestCase {
     //
     func testModelSingleResponse() {
         
+        let suite   = self.create()
         let payload = [
             "firstName" : "John",
             "lastName"  : "Smith",
         ]
         
-        self.session.activateStub(stub: Stub(status: 200, json: payload))
-        let result: Result<Person> = self.runObjectTask()
+        suite.session.activateStub(stub: Stub(status: 200, json: payload))
+        let result: Result<Person> = self.runObjectTask(api: suite.api)
         
         switch result {
         case .success(let person):
@@ -309,26 +356,28 @@ class APITests: XCTestCase {
             XCTFail("Expecting a success response.")
         }
         
-        self.session.deactiveStub()
+        suite.session.deactiveStub()
     }
     
     func testModelSingleError() {
+        let suite = self.create()
         
-        self.session.activateStub(stub: Stub(status: 404, json: nil))
-        let result: Result<Person> = self.runObjectTask()
+        suite.session.activateStub(stub: Stub(status: 404, json: nil))
+        let result: Result<Person> = self.runObjectTask(api: suite.api)
         
         switch result {
         case .success:
             XCTFail("Expecting an error response.")
-        case .failure(let error):
+        case .failure(let error, _):
             XCTAssertNil(error)
         }
         
-        self.session.deactiveStub()
+        suite.session.deactiveStub()
     }
     
     func testModelSinglePolling() {
         
+        let suite   = self.create()
         let payload = [
             "firstName" : "John",
             "lastName"  : "Smith",
@@ -350,8 +399,8 @@ class APITests: XCTestCase {
         
         var count = 0
         
-        self.session.activateStub(stub: Stub(status: 200, json: payload))
-        let result: Result<Person> = self.runObjectTask(pollHandler: { result in
+        suite.session.activateStub(stub: Stub(status: 200, json: payload))
+        let result: Result<Person> = self.runObjectTask(api: suite.api, pollHandler: { result in
             
             assertResult(result)
             count += 1
@@ -363,11 +412,12 @@ class APITests: XCTestCase {
         XCTAssertEqual(count, 3)
         assertResult(result)
         
-        self.session.deactiveStub()
+        suite.session.deactiveStub()
     }
     
     func testModelArrayResponse() {
         
+        let suite   = self.create()
         let payload = [
             "people": [
                 [
@@ -381,8 +431,8 @@ class APITests: XCTestCase {
             ]
         ]
         
-        self.session.activateStub(stub: Stub(status: 200, json: payload))
-        let result: Result<[Person]> = self.runObjectTask(keyPath: "people")
+        suite.session.activateStub(stub: Stub(status: 200, json: payload))
+        let result: Result<[Person]> = self.runObjectTask(api: suite.api, keyPath: "people")
         
         switch result {
         case .success(let people):
@@ -400,26 +450,27 @@ class APITests: XCTestCase {
             XCTFail("Expecting a success response.")
         }
         
-        self.session.deactiveStub()
+        suite.session.deactiveStub()
     }
     
     func testModelArrayError() {
+        let suite = self.create()
         
-        self.session.activateStub(stub: Stub(status: 404, json: nil))
-        let result: Result<[Person]> = self.runObjectTask()
+        suite.session.activateStub(stub: Stub(status: 404, json: nil))
+        let result: Result<[Person]> = self.runObjectTask(api: suite.api)
         
         switch result {
         case .success:
             XCTFail("Expecting an error response.")
-        case .failure(let error):
+        case .failure(let error, _):
             XCTAssertNil(error)
         }
         
-        self.session.deactiveStub()
+        suite.session.deactiveStub()
     }
     
     func testModelArrayPolling() {
-        
+        let suite   = self.create()
         let payload = [
             "people": [
                 [
@@ -455,8 +506,8 @@ class APITests: XCTestCase {
         
         var count = 0
         
-        self.session.activateStub(stub: Stub(status: 200, json: payload))
-        let result: Result<[Person]> = self.runObjectTask(keyPath: "people", pollHandler: { result in
+        suite.session.activateStub(stub: Stub(status: 200, json: payload))
+        let result: Result<[Person]> = self.runObjectTask(api: suite.api, keyPath: "people", pollHandler: { result in
             
             assertResult(result)
             count += 1
@@ -468,15 +519,13 @@ class APITests: XCTestCase {
         XCTAssertEqual(count, 3)
         assertResult(result)
         
-        self.session.deactiveStub()
+        suite.session.deactiveStub()
     }
     
     // ----------------------------------
     //  MARK: - Conveniences -
     //
-    private func runObjectTask(keyPath: String? = nil, pollHandler: ((Result<Person>) -> Bool)? = nil) -> Result<Person> {
-        let api = self.createAPI()
-        
+    private func runObjectTask(api: API, keyPath: String? = nil, pollHandler: ((Result<Person>) -> Bool)? = nil) -> Result<Person> {
         var resultOut: Result<Person>!
         
         let e       = self.expectation(description: "")
@@ -492,9 +541,7 @@ class APITests: XCTestCase {
         return resultOut
     }
     
-    private func runObjectTask(keyPath: String? = nil, pollHandler: ((Result<[Person]>) -> Bool)? = nil) -> Result<[Person]> {
-        let api = self.createAPI()
-        
+    private func runObjectTask(api: API, keyPath: String? = nil, pollHandler: ((Result<[Person]>) -> Bool)? = nil) -> Result<[Person]> {
         var resultOut: Result<[Person]>!
         
         let e       = self.expectation(description: "")
@@ -510,11 +557,9 @@ class APITests: XCTestCase {
         return resultOut
     }
     
-    private func runTask(keyPath: String? = nil, pollHandler: @escaping API.PollingHandler) -> (result: Result<Any>, response: HTTPURLResponse) {
-        let api = self.createAPI()
-        
+    private func runTask(api: API, keyPath: String? = nil, pollHandler: @escaping API.PollingHandler) -> (result: Result<Any>, response: HTTPURLResponse?) {
         var resultOut:   Result<Any>!
-        var responseOut: HTTPURLResponse!
+        var responseOut: HTTPURLResponse?
         
         let e                 = self.expectation(description: "")
         let request           = api.requestTo(endpoint: .account, method: .get) // overriden by mock
@@ -533,7 +578,10 @@ class APITests: XCTestCase {
     // ----------------------------------
     //  MARK: - Creating API -
     //
-    private func createAPI() -> API {
-        return API(version: .v2, token: self.token, session: self.session)
+    private func create() -> (api: API, session: MockSession) {
+        let session = MockSession()
+        let api     = API(version: .v2, token: self.token, session: session)
+        
+        return (api, session)
     }
 }

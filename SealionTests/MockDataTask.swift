@@ -36,8 +36,16 @@ class MockDataTask: URLSessionDataTask {
     
     override func resume() {
         self.customState = .running
-        self.customState = .completed
-        self.resumeHandler?()
+        
+        /* -----------------------------------
+         ** Mimic an async request by delaying
+         ** the completion until the next run
+         ** loop.
+         */
+        DispatchQueue.main.async {
+            self.customState = .completed
+            self.resumeHandler?()
+        }
     }
     
     override var state: URLSessionTask.State {

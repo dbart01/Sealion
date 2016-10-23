@@ -17,24 +17,9 @@ class MockSession: URLSession {
     // ----------------------------------
     //  MARK: - Init -
     //
-    init(stubsNamed stubsName: String) {
-        self.stubs = MockSession.loadStubsNamed(stubsName: stubsName)
-    }
-    
-    // ----------------------------------
-    //  MARK: - Loading Responses -
-    //
-    private static func loadStubsNamed(stubsName: String) -> [String : Stub] {
-        
-        let stubsURL  = Bundle(for: MockSession.self).url(forResource: stubsName, withExtension: "json")!
-        let stubsData = try! Data(contentsOf: stubsURL)
-        let stubsDict = try! JSONSerialization.jsonObject(with: stubsData, options: []) as! JSON
-        
-        var responses = [String: Stub]()
-        for (url, dictionary) in stubsDict {
-            responses[url] = Stub(json: dictionary as! JSON)
-        }
-        return responses
+    override init() {
+        print("Creating MockSession...")
+        self.stubs = [:]
     }
     
     // ----------------------------------
@@ -47,10 +32,12 @@ class MockSession: URLSession {
     }
     
     func activateStub(stub: Stub) {
+        print("Activating stub for MockSession... \(self)")
         self.activeStub = stub
     }
     
     func deactiveStub() {
+        print("Deactivating stub for MockSession... \(self)")
         self.activeStub = nil
     }
 
@@ -94,17 +81,15 @@ class MockSession: URLSession {
         return task
     }
     
-    private func mockResponseForStub(stub: Stub, url: URL) -> (response: URLResponse, data: Data?, error: Error?) {
-        let httpResponse = HTTPURLResponse(url: url, statusCode: stub.status, httpVersion: "1.1", headerFields: stub.headers)!
-        let httpData     = stub.jsonData
+    private func mockResponseForStub(stub: Stub, url: URL) -> (response: URLResponse?, data: Data?, error: Error?) {
         
-        var error: NSError?
-        if let stubError = stub.error{
-            error = NSError(domain: "MockDomain", code: 500, userInfo: [
-                NSLocalizedDescriptionKey : stubError
-            ])
+        var httpResponse: HTTPURLResponse?
+        if let status = stub.status {
+            httpResponse = HTTPURLResponse(url: url, statusCode: status, httpVersion: "1.1", headerFields: stub.headers)!
         }
         
-        return (response: httpResponse, data: httpData, error: error)
+        let httpData = stub.jsonData
+        
+        return (response: httpResponse, data: httpData, error: stub.error?.cocoaError())
     }
 }
