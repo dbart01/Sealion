@@ -211,7 +211,7 @@ public class API {
             } else {
                 var errorJSON     = parsedJson as! JSON
                 errorJSON["code"] = response.statusCode
-                error       = RequestError(json: errorJSON)
+                error             = RequestError(json: errorJSON)
             }
         }
         

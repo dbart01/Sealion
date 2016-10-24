@@ -44,7 +44,7 @@ class MockDataTask: URLSessionDataTask {
          ** the completion by the execution
          ** time provided in the stub.
          */
-        DispatchQueue.global().asyncAfter(deadline: .now() + self.stub.executionTime) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + self.stub.executionTime) {
             self.customState = .completed
             self.resumeHandler?()
         }

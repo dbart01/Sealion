@@ -7,7 +7,7 @@
 //
 
 import XCTest
-import Sealion
+@testable import Sealion
 
 class RequestErrorTests: ModelTestCase {
     
@@ -17,9 +17,28 @@ class RequestErrorTests: ModelTestCase {
     func testJsonCreation() {
         let model: RequestError = self.modelNamed(name: "error")
         
+        XCTAssertEqual(model.code,        403)
         XCTAssertEqual(model.id,          "request_id")
         XCTAssertEqual(model.name,        "error_id")
         XCTAssertEqual(model.description, "Error message")
+    }
+    
+    func testDefaultCreation() {
+        let id          = "request_id"
+        let name        = "error_id"
+        let description = "Error message"
+        
+        let error = RequestError(
+            code:        400,
+            id:          id,
+            name:        name,
+            description: description
+        )
+
+        XCTAssertEqual(error.code,        400)
+        XCTAssertEqual(error.id,          id)
+        XCTAssertEqual(error.name,        name)
+        XCTAssertEqual(error.description, description)
     }
     
     func testEquality() {
