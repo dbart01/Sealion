@@ -45,11 +45,11 @@ class MockSession: URLSession {
     //  MARK: - Data Task Overrides -
     //
     override func dataTask(with url: URL) -> URLSessionDataTask {
-        return MockDataTask(resumeHandler: nil)
+        fatalError("Unimplemented")
     }
     
     override func dataTask(with request: URLRequest) -> URLSessionDataTask {
-        return MockDataTask(resumeHandler: nil)
+        fatalError("Unimplemented")
     }
     
     override func dataTask(with url: URL, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
@@ -75,7 +75,7 @@ class MockSession: URLSession {
     //
     private func mockDataTaskWith(stub: Stub, url: URL, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> MockDataTask {
         let mock = self.mockResponseForStub(stub: stub, url: url)
-        let task = MockDataTask {
+        let task = MockDataTask(stub: stub) {
             completionHandler(mock.data, mock.response, mock.error)
         }
         return task

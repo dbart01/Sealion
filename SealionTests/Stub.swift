@@ -41,6 +41,8 @@ struct Stub {
     let error:   MockError?
     let headers: [String : String]?
     
+    var executionTime = 0.0
+    
     var jsonData: Data? {
         if let json = self.json {
             return try? JSONSerialization.data(withJSONObject: json, options: [])

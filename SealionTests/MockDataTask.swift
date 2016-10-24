@@ -12,12 +12,14 @@ class MockDataTask: URLSessionDataTask {
     
     typealias ResumeHandler = () -> Void
     
+    let stub:          Stub
     let resumeHandler: ResumeHandler?
     
     // ----------------------------------
     //  MARK: - Init -
     //
-    init(resumeHandler: ResumeHandler? = nil) {
+    init(stub: Stub, resumeHandler: ResumeHandler? = nil) {
+        self.stub          = stub
         self.resumeHandler = resumeHandler
     }
     
@@ -39,10 +41,10 @@ class MockDataTask: URLSessionDataTask {
         
         /* -----------------------------------
          ** Mimic an async request by delaying
-         ** the completion until the next run
-         ** loop.
+         ** the completion by the execution
+         ** time provided in the stub.
          */
-        DispatchQueue.main.async {
+        DispatchQueue.global().asyncAfter(deadline: .now() + self.stub.executionTime) {
             self.customState = .completed
             self.resumeHandler?()
         }
