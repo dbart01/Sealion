@@ -10,10 +10,17 @@ import Foundation
 
 public struct Droplet: JsonCreatable, Equatable {
     
+    public enum Status: String {
+        case new     = "new"
+        case off     = "off"
+        case active  = "active"
+        case archive = "archive"
+    }
+    
     public let id:          Int
     public let name:        String
     public let locked:      Bool
-    public let status:      String
+    public let status:      Status
     public let features:    [String]
     public let tags:        [String]
     public let backupIDs:   [Int]
@@ -32,15 +39,15 @@ public struct Droplet: JsonCreatable, Equatable {
     //  MARK: - JsonCreatable -
     //
     public init(json: JSON) {
-        self.id          = json["id"]          as! Int
-        self.name        = json["name"]        as! String
-        self.locked      = json["locked"]      as! Bool
-        self.status      = json["status"]      as! String
-        self.features    = json["features"]    as! [String]
-        self.tags        = json["tags"]        as! [String]
+        self.id          = json["id"]           as! Int
+        self.name        = json["name"]         as! String
+        self.locked      = json["locked"]       as! Bool
+        self.features    = json["features"]     as! [String]
+        self.tags        = json["tags"]         as! [String]
         self.backupIDs   = json["backup_ids"]   as! [Int]
         self.snapshotIDs = json["snapshot_ids"] as! [Int]
         self.volumeIDs   = json["volume_ids"]   as! [Int]
+        self.status      = Status(rawValue:   json["status"]             as! String)!
         self.kernel      = Kernel(json:       json["kernel"]             as? JSON)
         self.nextWindow  = BackupWindow(json: json["next_backup_window"] as? JSON)
         self.image       = Image(json:        json["image"]              as! JSON)

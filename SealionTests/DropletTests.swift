@@ -25,7 +25,7 @@ class DropletTests: ModelTestCase {
         XCTAssertEqual(model.id,          123)
         XCTAssertEqual(model.name,        "some.droplet.com")
         XCTAssertEqual(model.locked,      false)
-        XCTAssertEqual(model.status,      "active")
+        XCTAssertEqual(model.status,      .active)
         XCTAssertEqual(model.features,    ["virtio"])
         XCTAssertEqual(model.tags,        ["awesome"])
         XCTAssertEqual(model.backupIDs,   [123, 234])
