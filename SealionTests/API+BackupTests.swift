@@ -19,7 +19,7 @@ class API_BackupTests: APITestCase {
         self.assertMethod(handle, method: .get)
         self.assertBody(handle, data: nil)
         self.assertHeaders(handle)
-        self.assertEndpoint(handle, endpoint: .snapshotsForDroplet(id))
+        self.assertEndpoint(handle, endpoint: .backupsForDroplet(id))
         self.assertKeyPath(handle, keyPath: "backups")
         self.assertParameters(handle, parameters: nil)
     }
