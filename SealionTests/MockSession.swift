@@ -18,7 +18,6 @@ class MockSession: URLSession {
     //  MARK: - Init -
     //
     override init() {
-        print("Creating MockSession...")
         self.stubs = [:]
     }
     
@@ -32,12 +31,10 @@ class MockSession: URLSession {
     }
     
     func activateStub(stub: Stub) {
-        print("Activating stub for MockSession... \(self)")
         self.activeStub = stub
     }
     
     func deactiveStub() {
-        print("Deactivating stub for MockSession... \(self)")
         self.activeStub = nil
     }
 
