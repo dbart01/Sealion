@@ -302,7 +302,7 @@ class APITests: XCTestCase {
         suite.session.deactiveStub()
     }
     
-    func testPollingCancellationBeforeRequest() {
+    func testCancellationBeforePolling() {
         
         let suite = self.create()
         let error = MockError(domain: NSCocoaErrorDomain, code: NSURLErrorCancelled, description: "Request was cancelled")
@@ -330,6 +330,48 @@ class APITests: XCTestCase {
         
         task.resume()
         task.cancel()
+        
+        self.waitForExpectations(timeout: 10.0, handler: nil)
+        suite.session.deactiveStub()
+    }
+    
+    func testCancellationDuringPolling() {
+        
+        let suite  = self.create()
+        var polled = 0
+        
+        suite.session.activateStub(stub: Stub(status: 204))
+        
+        let e       = self.expectation(description: "")
+        let request = suite.api.requestTo(endpoint: .account, method: .get) // overriden by mock
+        
+        var task: Handle<Any>!
+        task = suite.api.taskWith(request: request, transformer: APITests.passthroughTransformer(self), pollHandler: { result in
+            
+            polled += 1
+            if polled == 1 {
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                    task.cancel()
+                }
+                
+            } else {
+                XCTFail("Cancelled request should not execute the polling handler again.")
+            }
+            return polled == 1
+            
+        }, completion: { result in
+            
+            switch result {
+            case .success:
+                XCTAssertEqual(polled, 1)
+            case .failure:
+                XCTFail("Expecting a failure response.")
+            }
+            e.fulfill()
+        })
+        
+        task.resume()
         
         self.waitForExpectations(timeout: 10.0, handler: nil)
         suite.session.deactiveStub()
@@ -535,7 +577,7 @@ class APITests: XCTestCase {
         
         let e       = self.expectation(description: "")
         let request = api.requestTo(endpoint: .account, method: .get) // overriden by mock
-        let task    = api.taskWith(request: request, keyPath: keyPath, pollHandler: pollHandler) { (result: Result<Person>) in
+        let task    = api.taskWith(request: request, keyPath: keyPath, pollHandler: pollHandler, pollInterval: 0.5) { (result: Result<Person>) in
             
             resultOut = result
             e.fulfill()
@@ -551,7 +593,7 @@ class APITests: XCTestCase {
         
         let e       = self.expectation(description: "")
         let request = api.requestTo(endpoint: .account, method: .get) // overriden by mock
-        let task    = api.taskWith(request: request, keyPath: keyPath, pollHandler: pollHandler) { (result: Result<[Person]>) in
+        let task    = api.taskWith(request: request, keyPath: keyPath, pollHandler: pollHandler, pollInterval: 0.5) { (result: Result<[Person]>) in
             
             resultOut = result
             e.fulfill()
@@ -571,7 +613,7 @@ class APITests: XCTestCase {
             
             return pollHandler(result)
             
-        }, completion: { result in
+        }, pollInterval: 0.5, completion: { result in
             
             resultOut = result
             e.fulfill()

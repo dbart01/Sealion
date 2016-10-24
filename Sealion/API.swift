@@ -104,31 +104,34 @@ public class API {
     //  MARK: - Request Execution -
     //
     internal func taskWith<T: JsonCreatable>(
-        request:     URLRequest,
-        keyPath:     String? = nil,
-        pollHandler: ((Result<T>) -> Bool)? = nil,
-        completion:  @escaping (Result<T>) -> Void
+        request:      URLRequest,
+        keyPath:      String? = nil,
+        pollHandler:  ((Result<T>) -> Bool)? = nil,
+        pollInterval: Double = 2.0,
+        completion:   @escaping (Result<T>) -> Void
         ) -> Handle<T> {
         
-        return self.taskWith(request: request, keyPath: keyPath, transformer: API.mapModelFrom(self), pollHandler: pollHandler, completion: completion)
+        return self.taskWith(request: request, keyPath: keyPath, transformer: API.mapModelFrom(self), pollHandler: pollHandler, pollInterval: pollInterval, completion: completion)
     }
     
     internal func taskWith<T: JsonCreatable>(
-        request:     URLRequest,
-        keyPath:     String? = nil,
-        pollHandler: ((Result<[T]>) -> Bool)? = nil,
-        completion:  @escaping (Result<[T]>) -> Void
+        request:      URLRequest,
+        keyPath:      String? = nil,
+        pollHandler:  ((Result<[T]>) -> Bool)? = nil,
+        pollInterval: Double = 2.0,
+        completion:   @escaping (Result<[T]>) -> Void
         ) -> Handle<[T]> {
         
-        return self.taskWith(request: request, keyPath: keyPath, transformer: API.mapModelCollectionFrom(self), pollHandler: pollHandler, completion: completion)
+        return self.taskWith(request: request, keyPath: keyPath, transformer: API.mapModelCollectionFrom(self), pollHandler: pollHandler, pollInterval: pollInterval, completion: completion)
     }
     
     internal func taskWith<T>(
-        request:     URLRequest,
-        keyPath:     String? = nil,
-        transformer: @escaping ((Any) -> T?),
-        pollHandler: ((Result<T>) -> Bool)? = nil,
-        completion:  @escaping (Result<T>) -> Void
+        request:      URLRequest,
+        keyPath:      String? = nil,
+        transformer:  @escaping ((Any) -> T?),
+        pollHandler:  ((Result<T>) -> Bool)? = nil,
+        pollInterval: Double = 2.0,
+        completion:   @escaping (Result<T>) -> Void
         ) -> Handle<T> {
         
         var requestHandle: Handle<T>?
@@ -167,9 +170,16 @@ public class API {
              */
             if pollHandler?(result) ?? false {
                 
-                let handle: Handle<T> = self.taskWith(request: request, keyPath: keyPath, transformer: transformer, pollHandler: pollHandler, completion: completion)
-                requestHandle!.setTask(task: handle.task)
-                requestHandle!.resume()
+                DispatchQueue.main.asyncAfter(deadline: .now() + pollInterval) {
+                    guard let requestHandle = requestHandle, requestHandle.state != .cancelling else {
+                        completion(result)
+                        return
+                    }
+                    
+                    let handle: Handle<T> = self.taskWith(request: request, keyPath: keyPath, transformer: transformer, pollHandler: pollHandler, completion: completion)
+                    requestHandle.setTask(task: handle.task)
+                    requestHandle.resume()
+                }
                 
             } else {
                 completion(result)
