@@ -106,30 +106,3 @@ public final class Handle<T> {
         }
     }
 }
-
-private class Sync {
-    
-    weak var target: AnyObject!
-    
-    @discardableResult init(target: AnyObject) {
-        self.target = target
-        objc_sync_enter(target)
-    }
-    
-    deinit {
-        objc_sync_exit(self.target)
-    }
-}
-
-private func sync(_ object: AnyObject, task: () -> Void) {
-    objc_sync_enter(object)
-    task()
-    objc_sync_exit(object)
-}
-
-private func sync<T>(_ object: AnyObject, task: () -> T) -> T {
-    objc_sync_enter(object)
-    let value = task()
-    objc_sync_exit(object)
-    return value
-}
