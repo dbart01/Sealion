@@ -69,18 +69,96 @@ class APITests: XCTestCase {
     // ----------------------------------
     //  MARK: - Result Mapping -
     //
-//    func testResultMappingSingleSuccess() {
-//        let suite = self.create()
-//        
-//        let method: (API) -> ((Result<Any>) -> Result<Droplet>) = API.mapToSingle
-//        let impl = method(suite.api)
-//        
-////        suite.api.mapToSingle(from: <#T##Result<Any>#>)
-//    }
-//    
-//    func testResultMappingCollection() {
-//        
-//    }
+    func testMapModelNonNil() {
+        let suite = self.create()
+        
+        let curried: (API) -> (Any?) -> Domain? = API.mapModelFrom
+        let method = curried(suite.api)
+        
+        let model: JSON = [
+            "name"      : "example.com",
+            "zone_file" : "some zone file",
+            "ttl"       : 1800,
+        ]
+        
+        let domain = method(model)
+        
+        XCTAssertNotNil(domain)
+        XCTAssertEqual(domain!.name, model["name"]      as! String)
+        XCTAssertEqual(domain!.zone, model["zone_file"] as? String)
+        XCTAssertEqual(domain!.ttl,  model["ttl"]       as! Int)
+    }
+    
+    func testMapModelNil() {
+        let suite = self.create()
+        
+        let curried: (API) -> (Any?) -> Domain? = API.mapModelFrom
+        let method = curried(suite.api)
+        
+        /* ---------------------------------
+         ** We have to mascarade the optional
+         ** value as a non-option nil to test
+         ** this method properly.
+         */
+        var model: Any
+        model = Optional<Any>.none
+        
+        let domain = method(model)
+        
+        XCTAssertNil(domain)
+    }
+    
+    func testMapCollectionNonNil() {
+        let suite = self.create()
+        
+        let curried: (API) -> (Any?) -> [Domain]? = API.mapModelCollectionFrom
+        let method = curried(suite.api)
+        
+        let models: [JSON] = [
+            [
+                "name"      : "example.com",
+                "zone_file" : "some zone file",
+                "ttl"       : 1800,
+            ],
+            [
+                "name"      : "other.com",
+                "zone_file" : "some other zone file",
+                "ttl"       : 1800,
+            ],
+        ]
+        
+        let domains = method(models)
+        
+        XCTAssertNotNil(domains)
+        XCTAssertEqual(domains!.count, 2)
+        
+        XCTAssertEqual(domains![0].name, models[0]["name"]      as! String)
+        XCTAssertEqual(domains![0].zone, models[0]["zone_file"] as? String)
+        XCTAssertEqual(domains![0].ttl,  models[0]["ttl"]       as! Int)
+        
+        XCTAssertEqual(domains![1].name, models[1]["name"]      as! String)
+        XCTAssertEqual(domains![1].zone, models[1]["zone_file"] as? String)
+        XCTAssertEqual(domains![1].ttl,  models[1]["ttl"]       as! Int)
+    }
+    
+    func testMapCollectionNil() {
+        let suite = self.create()
+        
+        let curried: (API) -> (Any?) -> [Domain]? = API.mapModelCollectionFrom
+        let method = curried(suite.api)
+        
+        /* ---------------------------------
+         ** We have to mascarade the optional
+         ** value as a non-option nil to test
+         ** this method properly.
+         */
+        var model: Any
+        model = Optional<Any>.none
+        
+        let domains = method(model)
+        
+        XCTAssertNil(domains)
+    }
     
     // ----------------------------------
     //  MARK: - Request Generation -

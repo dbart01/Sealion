@@ -84,8 +84,8 @@ public class API {
     //
     internal func mapModelFrom<T: JsonCreatable>(_ json: Any?) -> T? {
         var object: T?
-        if let json = json {
-            object = T(json: json as! JSON)
+        if let json = json as? JSON {
+            object = T(json: json)
         }
         return object
     }
