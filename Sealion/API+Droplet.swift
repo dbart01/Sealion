@@ -40,4 +40,17 @@ public extension API {
         let request = self.requestTo(endpoint: .droplets, method: .delete, parameters: ["tag_name" : tag])
         return self.taskWith(request: request, completion: completion)
     }
+    
+    public func poll(droplet id: Int, status: Droplet.Status, completion: @escaping (_ result: Result<Droplet>) -> Void) -> Handle<Droplet> {
+        let request = self.requestTo(endpoint: .dropletWithID(id), method: .get)
+        return self.taskWith(request: request, keyPath: "droplet", pollHandler: { result in
+            
+            print("Polling droplet...")
+            if case .success(let droplet) = result, droplet != nil {
+                return droplet!.status != status
+            }
+            return false
+            
+        }, completion: completion)
+    }
 }

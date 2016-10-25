@@ -18,9 +18,10 @@ class IntegrationTests: XCTestCase {
     // ----------------------------------
     //  MARK: - Everything -
     //
-    func _testEverything() {
+    func testEverything() {
         self.fetchImages()
         let droplet = self.createDroplet()
+        _ = self.pollDropletUntilActive(dropletToPoll: droplet)
         self.deleteDroplet(droplet: droplet)
     }
     
@@ -45,13 +46,13 @@ class IntegrationTests: XCTestCase {
     private func createDroplet() -> Droplet {
         let e = self.expectation(description: "Create droplet")
         
-        var createdDroplet: Droplet?
+        var droplet: Droplet?
         
         let request = Droplet.CreateRequest(name: "test-droplet", region: "nyc3", size: "512mb", image: "ubuntu-14-04-x64")
         let handle  = self.api.create(droplet: request) { result in
             switch result {
-            case .success(let droplet):
-                createdDroplet = droplet!
+            case .success(let d):
+                droplet = d!
             case .failure(let error, _):
                 XCTFail(error?.description ?? "Failed to create droplet")
             }
@@ -60,7 +61,27 @@ class IntegrationTests: XCTestCase {
         handle.resume()
     
         self.waitForExpectations(timeout: 10.0, handler: nil)
-        return createdDroplet!
+        return droplet!
+    }
+    
+    private func pollDropletUntilActive(dropletToPoll: Droplet) -> Droplet {
+        let e = self.expectation(description: "Poll droplet")
+        
+        var droplet: Droplet?
+        
+        let handle  = self.api.poll(droplet: dropletToPoll.id, status: .active) { result in
+            switch result {
+            case .success(let d):
+                droplet = d!
+            case .failure(let error, _):
+                XCTFail(error?.description ?? "Failed to poll droplet")
+            }
+            e.fulfill()
+        }
+        handle.resume()
+        
+        self.waitForExpectations(timeout: 300.0, handler: nil)
+        return droplet!
     }
     
     private func deleteDroplet(droplet: Droplet) {
