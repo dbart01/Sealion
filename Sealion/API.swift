@@ -128,7 +128,7 @@ public class API {
     internal func taskWith<T>(
         request:      URLRequest,
         keyPath:      String? = nil,
-        transformer:  @escaping ((Any) -> T?),
+        transformer:  @escaping ((Any?) -> T?),
         pollHandler:  ((Result<T>) -> Bool)? = nil,
         pollInterval: Double = 2.0,
         completion:   @escaping (Result<T>) -> Void
@@ -158,7 +158,7 @@ public class API {
             let result: Result<T>
             
             if response.successful {
-                result = .success(object: transformer(json))
+                result = .success(object: transformer(json ?? nil))
             } else {
                 result = .failure(error: error, reason: reason)
             }
@@ -213,7 +213,7 @@ public class API {
                 if let keyPath = keyPath {
                     let components = keyPath.components(separatedBy: ".")
                     for component in components {
-                        parsedJson = (parsedJson as! JSON)[component]
+                        parsedJson = (parsedJson as! JSON)[component]!
                     }
                 }
                 json = parsedJson
