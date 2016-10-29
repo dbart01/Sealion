@@ -19,29 +19,37 @@ class IntegrationTests: XCTestCase {
     //  MARK: - Everything -
     //
     func testEverything() {
-        self.fetchImages()
+        
+        /* ---------------------------------
+         ** Create resources that we'll need
+         ** to conduct the tests.
+         */
         let droplet = self.createDroplet()
+        let tags    = self.createTags()
+        
+        /* ---------------------------------
+         ** Wait for all the resources to
+         ** finish initializing before
+         ** running tests.
+         */
         _ = self.pollDropletUntilActive(dropletToPoll: droplet)
+        
+        /* ---------------------------------
+         ** Test fetching resources after they
+         ** have been successfully created.
+         */
+        self.fetchDropletsLookingFor(dropletToFind: droplet)
+        self.fetchDroplet(droplet: droplet)
+        
+        /* ---------------------------------
+         ** Clean up all the resources that
+         ** were used in the tests.
+         */
         self.deleteDroplet(droplet: droplet)
     }
     
     // ----------------------------------
-    //  MARK: - Images -
-    //
-    private func fetchImages() {
-        let e = self.expectation(description: "Fetch Images")
-        
-        let handle = self.api.images(type: .distribution, page: Page(index: 0, count: 200)) { result in
-            print("Result: \(result)")
-            e.fulfill()
-        }
-        handle.resume()
-        
-        self.waitForExpectations(timeout: 10.0, handler: nil)
-    }
-    
-    // ----------------------------------
-    //  MARK: - Droplet -
+    //  MARK: - Creating Resources -
     //
     private func createDroplet() -> Droplet {
         let e = self.expectation(description: "Create droplet")
@@ -59,11 +67,51 @@ class IntegrationTests: XCTestCase {
             e.fulfill()
         }
         handle.resume()
-    
+        
         self.waitForExpectations(timeout: 10.0, handler: nil)
         return droplet!
     }
     
+    private func createTags() -> [Tag] {
+        let e = self.expectation(description: "Create tags")
+        
+        let count = 2
+        var tags  = [Tag]()
+        let group = DispatchGroup()
+        
+        for i in 0..<count {
+            
+            group.enter()
+            let request = Tag.CreateRequest(name: "test-tag-\(i)")
+            let handle  = self.api.create(tag: request) { result in
+                
+                DispatchQueue.main.async {
+                    switch result {
+                    case .success(let tag):
+                        
+                        XCTAssertNotNil(tag)
+                        tags.append(tag!)
+                        
+                    case .failure(let error, _):
+                        XCTFail(error?.description ?? "Failed to create tag: \(request.name)")
+                    }
+                    group.leave()
+                }
+            }
+            handle.resume()
+        }
+        
+        group.notify(queue: DispatchQueue.main) {
+            e.fulfill()
+        }
+        
+        self.waitForExpectations(timeout: 10.0, handler: nil)
+        return tags
+    }
+    
+    // ----------------------------------
+    //  MARK: - Polling Resources -
+    //
     private func pollDropletUntilActive(dropletToPoll: Droplet) -> Droplet {
         let e = self.expectation(description: "Poll droplet")
         
@@ -84,6 +132,66 @@ class IntegrationTests: XCTestCase {
         return droplet!
     }
     
+    // ----------------------------------
+    //  MARK: - Fetching Resources -
+    //
+//    private func fetchImages() {
+//        let e = self.expectation(description: "Fetch Images")
+//        
+//        let handle = self.api.images(type: .distribution, page: Page(index: 0, count: 200)) { result in
+//            e.fulfill()
+//        }
+//        handle.resume()
+//        
+//        self.waitForExpectations(timeout: 10.0, handler: nil)
+//    }
+    
+    
+    private func fetchDropletsLookingFor(dropletToFind: Droplet) {
+        let e = self.expectation(description: "Fetch droplets")
+        
+        let handle  = self.api.droplets { result in
+        switch result {
+        case .success(let droplets):
+            
+            XCTAssertNotNil(droplets)
+            let foundDroplet = droplets!.filter { $0.id == dropletToFind.id }.first
+            
+            XCTAssertNotNil(foundDroplet)
+            
+        case .failure(let error, _):
+            XCTFail(error?.description ?? "Failed to fetch droplets")
+        }
+            e.fulfill()
+        }
+        handle.resume()
+        
+        self.waitForExpectations(timeout: 10.0, handler: nil)
+    }
+    
+    private func fetchDroplet(droplet: Droplet) {
+        let e = self.expectation(description: "Fetch droplet")
+        
+        let handle  = self.api.dropletWith(id: droplet.id) { result in
+            switch result {
+            case .success(let fetchedDroplet):
+                
+                XCTAssertNotNil(fetchedDroplet)
+                XCTAssertEqual(fetchedDroplet!.id, droplet.id)
+                
+            case .failure(let error, _):
+                XCTFail(error?.description ?? "Failed to fetch droplet")
+            }
+            e.fulfill()
+        }
+        handle.resume()
+        
+        self.waitForExpectations(timeout: 10.0, handler: nil)
+    }
+
+    // ----------------------------------
+    //  MARK: - Cleaning Up Resources -
+    //
     private func deleteDroplet(droplet: Droplet) {
         let e = self.expectation(description: "Delete droplet")
         
