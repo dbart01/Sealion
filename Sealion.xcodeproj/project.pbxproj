@@ -72,7 +72,6 @@
 		9A4AC67E1DAFAFF30003553E /* API+FloatingIP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4AC67D1DAFAFF30003553E /* API+FloatingIP.swift */; };
 		9A4AC6801DAFB08F0003553E /* FloatingIPTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4AC67F1DAFB08F0003553E /* FloatingIPTests.swift */; };
 		9A5AFC471DA83EDA005FCFA1 /* DropletTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5AFC461DA83EDA005FCFA1 /* DropletTests.swift */; };
-		9A67098E1DB45B26005CFB52 /* IntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A67098D1DB45B26005CFB52 /* IntegrationTests.swift */; };
 		9A950B731DA05DC20068DFF8 /* Sealion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A950B691DA05DC20068DFF8 /* Sealion.framework */; };
 		9A950B781DA05DC20068DFF8 /* API+AccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A950B771DA05DC20068DFF8 /* API+AccountTests.swift */; };
 		9A950B7A1DA05DC20068DFF8 /* Sealion.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A950B6C1DA05DC20068DFF8 /* Sealion.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -107,6 +106,8 @@
 		9AA5DD9A1DA5216D003FEFCF /* API+Droplet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA5DD991DA5216D003FEFCF /* API+Droplet.swift */; };
 		9AA5DD9C1DA52292003FEFCF /* API+DropletTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA5DD9B1DA52292003FEFCF /* API+DropletTests.swift */; };
 		9AA5DDAF1DA59CD9003FEFCF /* APITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA5DDAE1DA59CD9003FEFCF /* APITests.swift */; };
+		9AB06EE11DC4E22B0089ECCA /* Sealion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A950B691DA05DC20068DFF8 /* Sealion.framework */; };
+		9AB06EE71DC4F1260089ECCA /* IntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A67098D1DB45B26005CFB52 /* IntegrationTests.swift */; };
 		9AC487C91DABD2C0006E459A /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC487C81DABD2C0006E459A /* Page.swift */; };
 		9AC487CB1DABD4A3006E459A /* ParameterConvertibleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC487CA1DABD4A3006E459A /* ParameterConvertibleTests.swift */; };
 		9AC487CE1DABF0B9006E459A /* API+DropletAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC487CD1DABF0B9006E459A /* API+DropletAction.swift */; };
@@ -124,6 +125,13 @@
 
 /* Begin PBXContainerItemProxy section */
 		9A950B741DA05DC20068DFF8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A950B601DA05DC20068DFF8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A950B681DA05DC20068DFF8;
+			remoteInfo = Sealion;
+		};
+		9AB06EE21DC4E22B0089ECCA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9A950B601DA05DC20068DFF8 /* Project object */;
 			proxyType = 1;
@@ -236,6 +244,8 @@
 		9AA5DD991DA5216D003FEFCF /* API+Droplet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "API+Droplet.swift"; sourceTree = "<group>"; };
 		9AA5DD9B1DA52292003FEFCF /* API+DropletTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "API+DropletTests.swift"; sourceTree = "<group>"; };
 		9AA5DDAE1DA59CD9003FEFCF /* APITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APITests.swift; sourceTree = "<group>"; };
+		9AB06EDC1DC4E22B0089ECCA /* SealionIntegration.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SealionIntegration.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AB06EE01DC4E22B0089ECCA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9AC487C81DABD2C0006E459A /* Page.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
 		9AC487CA1DABD4A3006E459A /* ParameterConvertibleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParameterConvertibleTests.swift; sourceTree = "<group>"; };
 		9AC487CD1DABF0B9006E459A /* API+DropletAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "API+DropletAction.swift"; sourceTree = "<group>"; };
@@ -264,6 +274,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A950B731DA05DC20068DFF8 /* Sealion.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9AB06ED91DC4E22B0089ECCA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9AB06EE11DC4E22B0089ECCA /* Sealion.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -393,7 +411,6 @@
 		9A67098C1DB45B14005CFB52 /* Integration */ = {
 			isa = PBXGroup;
 			children = (
-				9A67098D1DB45B26005CFB52 /* IntegrationTests.swift */,
 			);
 			name = Integration;
 			sourceTree = "<group>";
@@ -403,6 +420,7 @@
 			children = (
 				9A950B6B1DA05DC20068DFF8 /* Sealion */,
 				9A950B761DA05DC20068DFF8 /* SealionTests */,
+				9AB06EDD1DC4E22B0089ECCA /* SealionIntegration */,
 				9A950B6A1DA05DC20068DFF8 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -412,6 +430,7 @@
 			children = (
 				9A950B691DA05DC20068DFF8 /* Sealion.framework */,
 				9A950B721DA05DC20068DFF8 /* SealionTests.xctest */,
+				9AB06EDC1DC4E22B0089ECCA /* SealionIntegration.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -536,6 +555,15 @@
 			name = Mocks;
 			sourceTree = "<group>";
 		};
+		9AB06EDD1DC4E22B0089ECCA /* SealionIntegration */ = {
+			isa = PBXGroup;
+			children = (
+				9A67098D1DB45B26005CFB52 /* IntegrationTests.swift */,
+				9AB06EE01DC4E22B0089ECCA /* Info.plist */,
+			);
+			path = SealionIntegration;
+			sourceTree = "<group>";
+		};
 		9AC487CC1DABD4A6006E459A /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
@@ -594,24 +622,46 @@
 			productReference = 9A950B721DA05DC20068DFF8 /* SealionTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		9AB06EDB1DC4E22B0089ECCA /* SealionIntegration */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9AB06EE61DC4E22B0089ECCA /* Build configuration list for PBXNativeTarget "SealionIntegration" */;
+			buildPhases = (
+				9AB06ED81DC4E22B0089ECCA /* Sources */,
+				9AB06ED91DC4E22B0089ECCA /* Frameworks */,
+				9AB06EDA1DC4E22B0089ECCA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9AB06EE31DC4E22B0089ECCA /* PBXTargetDependency */,
+			);
+			name = SealionIntegration;
+			productName = SealionIntegration;
+			productReference = 9AB06EDC1DC4E22B0089ECCA /* SealionIntegration.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		9A950B601DA05DC20068DFF8 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0800;
+				LastSwiftUpdateCheck = 0810;
 				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "Dima Bart";
 				TargetAttributes = {
 					9A950B681DA05DC20068DFF8 = {
 						CreatedOnToolsVersion = 8.0;
 						LastSwiftMigration = 0800;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 					9A950B711DA05DC20068DFF8 = {
 						CreatedOnToolsVersion = 8.0;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
+					};
+					9AB06EDB1DC4E22B0089ECCA = {
+						CreatedOnToolsVersion = 8.1;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -629,6 +679,7 @@
 			targets = (
 				9A950B681DA05DC20068DFF8 /* Sealion */,
 				9A950B711DA05DC20068DFF8 /* SealionTests */,
+				9AB06EDB1DC4E22B0089ECCA /* SealionIntegration */,
 			);
 		};
 /* End PBXProject section */
@@ -647,6 +698,13 @@
 			files = (
 				9A950B9E1DA281F10068DFF8 /* mocks.json in Resources */,
 				9A0586911DA5EE5300265B2A /* models.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9AB06EDA1DC4E22B0089ECCA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -717,7 +775,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A67098E1DB45B26005CFB52 /* IntegrationTests.swift in Sources */,
 				9A0586BD1DA7C1E600265B2A /* ActionTests.swift in Sources */,
 				9A34D6941DB02F5C00DA7CFE /* API+FloatingIPActionTests.swift in Sources */,
 				9A34D6B81DB29C4E00DA7CFE /* API+ImageActionTests.swift in Sources */,
@@ -776,6 +833,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9AB06ED81DC4E22B0089ECCA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9AB06EE71DC4F1260089ECCA /* IntegrationTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -783,6 +848,11 @@
 			isa = PBXTargetDependency;
 			target = 9A950B681DA05DC20068DFF8 /* Sealion */;
 			targetProxy = 9A950B741DA05DC20068DFF8 /* PBXContainerItemProxy */;
+		};
+		9AB06EE31DC4E22B0089ECCA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9A950B681DA05DC20068DFF8 /* Sealion */;
+			targetProxy = 9AB06EE21DC4E22B0089ECCA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -892,8 +962,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -913,8 +984,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -933,6 +1005,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = SealionTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dimabart.SealionTests;
@@ -945,9 +1020,42 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = SealionTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dimabart.SealionTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		9AB06EE41DC4E22B0089ECCA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = SealionIntegration/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.dimabart.SealionIntegration;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		9AB06EE51DC4E22B0089ECCA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = SealionIntegration/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.dimabart.SealionIntegration;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -982,6 +1090,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		9AB06EE61DC4E22B0089ECCA /* Build configuration list for PBXNativeTarget "SealionIntegration" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9AB06EE41DC4E22B0089ECCA /* Debug */,
+				9AB06EE51DC4E22B0089ECCA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

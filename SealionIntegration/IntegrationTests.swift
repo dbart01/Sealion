@@ -13,7 +13,20 @@ class IntegrationTests: XCTestCase {
     
     typealias Block = () -> Void
     
-    let api = API(version: .v2, token: "a4b2f1b7e1f10dab178375189f2a285a18abee5f4e353dcfedae7087e9e25463")
+    var api: API!
+    
+    // ----------------------------------
+    //  MARK: - Setup -
+    //
+    override func setUp() {
+        super.setUp()
+        
+        if let token = ProcessInfo.processInfo.environment["AUTH_TOKEN"], !token.isEmpty {
+            self.api = API(version: .v2, token: token)
+        } else {
+            fatalError("Failed run integration tests. Missing `AUTH_TOKEN` in current environment. Provide your Digital Ocean OAuth token to run integration tests.")
+        }
+    }
     
     // ----------------------------------
     //  MARK: - Everything -
