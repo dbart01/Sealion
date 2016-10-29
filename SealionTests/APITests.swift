@@ -94,16 +94,7 @@ class APITests: XCTestCase {
         
         let curried: (API) -> (Any?) -> Domain? = API.mapModelFrom
         let method = curried(suite.api)
-        
-        /* ---------------------------------
-         ** We have to mascarade the optional
-         ** value as a non-option nil to test
-         ** this method properly.
-         */
-        var model: Any
-        model = Optional<Any>.none
-        
-        let domain = method(model)
+        let domain = method(nil)
         
         XCTAssertNil(domain)
     }
@@ -145,17 +136,8 @@ class APITests: XCTestCase {
         let suite = self.create()
         
         let curried: (API) -> (Any?) -> [Domain]? = API.mapModelCollectionFrom
-        let method = curried(suite.api)
-        
-        /* ---------------------------------
-         ** We have to mascarade the optional
-         ** value as a non-option nil to test
-         ** this method properly.
-         */
-        var model: Any
-        model = Optional<Any>.none
-        
-        let domains = method(model)
+        let method  = curried(suite.api)
+        let domains = method(nil)
         
         XCTAssertNil(domains)
     }
@@ -715,7 +697,7 @@ class APITests: XCTestCase {
     // ----------------------------------
     //  MARK: - Transformer -
     //
-    private func passthroughTransformer<T>(json: Any) -> T {
-        return json as! T
+    private func passthroughTransformer<T>(json: Any?) -> T? {
+        return json as? T
     }
 }
