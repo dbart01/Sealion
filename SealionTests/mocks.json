@@ -1,0 +1,16 @@
+{
+   "https://api.digitalocean.com/v2/account": {
+      "status": 200, 
+      "json": {
+         "account": {
+            "status": "active", 
+            "uuid": "a1831c92489991c9797ef6e67e206f822d7a3fc2", 
+            "floating_ip_limit": 3, 
+            "email_verified": true, 
+            "droplet_limit": 25, 
+            "status_message": "", 
+            "email": "john.smith@gmail.com"
+         }
+      }
+   }
+}

@@ -29,12 +29,20 @@ public class API {
     // ----------------------------------
     //  MARK: - Init -
     //
-    public init(version: Version, token: String) {
+    public convenience init(version: Version, token: String) {
+        
+        let queue   = OperationQueue()
+        let session = URLSession(configuration: URLSessionConfiguration.default, delegate: nil, delegateQueue: queue)
+        
+        self.init(version: version, token: token, session: session, queue: queue)
+    }
+    
+    internal init(version: Version, token: String, session: URLSession, queue: OperationQueue) {
         self.version = version
         self.token   = token
+        self.session = session
+        self.queue   = queue
         self.apiRoot = URL(string: self.version.rawValue)!
-        self.queue   = OperationQueue()
-        self.session = URLSession(configuration: URLSessionConfiguration.default, delegate: nil, delegateQueue: self.queue)
     }
     
     // ----------------------------------

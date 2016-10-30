@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9A950B731DA05DC20068DFF8 /* Sealion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A950B691DA05DC20068DFF8 /* Sealion.framework */; };
-		9A950B781DA05DC20068DFF8 /* SealionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A950B771DA05DC20068DFF8 /* SealionTests.swift */; };
+		9A950B781DA05DC20068DFF8 /* API+AccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A950B771DA05DC20068DFF8 /* API+AccountTests.swift */; };
 		9A950B7A1DA05DC20068DFF8 /* Sealion.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A950B6C1DA05DC20068DFF8 /* Sealion.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9A950B851DA1D1F30068DFF8 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A950B841DA1D1F30068DFF8 /* API.swift */; };
 		9A950B871DA1D2680068DFF8 /* API+Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A950B861DA1D2680068DFF8 /* API+Account.swift */; };
@@ -16,6 +16,11 @@
 		9A950B8D1DA1D3D10068DFF8 /* JsonCreatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A950B8C1DA1D3D10068DFF8 /* JsonCreatable.swift */; };
 		9A950B901DA1D8610068DFF8 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A950B8F1DA1D8610068DFF8 /* Endpoint.swift */; };
 		9A950B921DA1D99A0068DFF8 /* Method.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A950B911DA1D99A0068DFF8 /* Method.swift */; };
+		9A950B941DA2796B0068DFF8 /* APITestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A950B931DA2796B0068DFF8 /* APITestCase.swift */; };
+		9A950B971DA279C20068DFF8 /* MockSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A950B961DA279C20068DFF8 /* MockSession.swift */; };
+		9A950B991DA27CFA0068DFF8 /* MockDataTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A950B981DA27CFA0068DFF8 /* MockDataTask.swift */; };
+		9A950B9B1DA27D160068DFF8 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A950B9A1DA27D160068DFF8 /* Response.swift */; };
+		9A950B9E1DA281F10068DFF8 /* mocks.json in Resources */ = {isa = PBXBuildFile; fileRef = 9A950B9D1DA281F10068DFF8 /* mocks.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,7 +38,7 @@
 		9A950B6C1DA05DC20068DFF8 /* Sealion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Sealion.h; sourceTree = "<group>"; };
 		9A950B6D1DA05DC20068DFF8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9A950B721DA05DC20068DFF8 /* SealionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SealionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A950B771DA05DC20068DFF8 /* SealionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SealionTests.swift; sourceTree = "<group>"; };
+		9A950B771DA05DC20068DFF8 /* API+AccountTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "API+AccountTests.swift"; sourceTree = "<group>"; };
 		9A950B791DA05DC20068DFF8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9A950B841DA1D1F30068DFF8 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		9A950B861DA1D2680068DFF8 /* API+Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "API+Account.swift"; sourceTree = "<group>"; };
@@ -41,6 +46,11 @@
 		9A950B8C1DA1D3D10068DFF8 /* JsonCreatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonCreatable.swift; sourceTree = "<group>"; };
 		9A950B8F1DA1D8610068DFF8 /* Endpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		9A950B911DA1D99A0068DFF8 /* Method.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Method.swift; sourceTree = "<group>"; };
+		9A950B931DA2796B0068DFF8 /* APITestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APITestCase.swift; sourceTree = "<group>"; };
+		9A950B961DA279C20068DFF8 /* MockSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockSession.swift; sourceTree = "<group>"; };
+		9A950B981DA27CFA0068DFF8 /* MockDataTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockDataTask.swift; sourceTree = "<group>"; };
+		9A950B9A1DA27D160068DFF8 /* Response.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
+		9A950B9D1DA281F10068DFF8 /* mocks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = mocks.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,7 +106,9 @@
 		9A950B761DA05DC20068DFF8 /* SealionTests */ = {
 			isa = PBXGroup;
 			children = (
-				9A950B771DA05DC20068DFF8 /* SealionTests.swift */,
+				9A950B951DA279A40068DFF8 /* Mocks */,
+				9A950B931DA2796B0068DFF8 /* APITestCase.swift */,
+				9A950B771DA05DC20068DFF8 /* API+AccountTests.swift */,
 				9A950B791DA05DC20068DFF8 /* Info.plist */,
 			);
 			path = SealionTests;
@@ -134,6 +146,25 @@
 				9A950B911DA1D99A0068DFF8 /* Method.swift */,
 			);
 			name = Utilities;
+			sourceTree = "<group>";
+		};
+		9A950B951DA279A40068DFF8 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				9A950B9C1DA27D1B0068DFF8 /* Models */,
+				9A950B981DA27CFA0068DFF8 /* MockDataTask.swift */,
+				9A950B961DA279C20068DFF8 /* MockSession.swift */,
+				9A950B9D1DA281F10068DFF8 /* mocks.json */,
+			);
+			name = Mocks;
+			sourceTree = "<group>";
+		};
+		9A950B9C1DA27D1B0068DFF8 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				9A950B9A1DA27D160068DFF8 /* Response.swift */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -237,6 +268,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A950B9E1DA281F10068DFF8 /* mocks.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -260,7 +292,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A950B781DA05DC20068DFF8 /* SealionTests.swift in Sources */,
+				9A950B991DA27CFA0068DFF8 /* MockDataTask.swift in Sources */,
+				9A950B971DA279C20068DFF8 /* MockSession.swift in Sources */,
+				9A950B941DA2796B0068DFF8 /* APITestCase.swift in Sources */,
+				9A950B781DA05DC20068DFF8 /* API+AccountTests.swift in Sources */,
+				9A950B9B1DA27D160068DFF8 /* Response.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

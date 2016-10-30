@@ -1,5 +1,5 @@
 //
-//  SealionTests.swift
+//  API+AccountTests.swift
 //  SealionTests
 //
 //  Created by Dima Bart on 2016-10-01.
@@ -9,14 +9,13 @@
 import XCTest
 @testable import Sealion
 
-class SealionTests: XCTestCase {
+class API_AccountTests: APITestCase {
     
-    func testExample() {
+    func testSample() {
         let e = self.expectation(description: "")
         
-        let api = API(version: .v2, token: "a4b2f1b7e1f10dab178375189f2a285a18abee5f4e353dcfedae7087e9e25463")
-        api.account { (response: Response<Account>) in
-            switch response {
+        self.api.account { result in
+            switch result {
             case .success(let account):
                 print("Account: \(account!)")
             case .failure(let message):
