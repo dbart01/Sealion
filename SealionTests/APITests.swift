@@ -426,7 +426,6 @@ class APITests: XCTestCase {
         
         suite.session.activateStub(stub: Stub(status: 204))
         
-        let e       = self.expectation(description: "")
         let request = suite.api.requestTo(endpoint: .account, method: .get) // overriden by mock
         
         var task: Handle<Any>!
@@ -435,16 +434,14 @@ class APITests: XCTestCase {
             polled += 1
             if polled == 1 {
                 
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                    task.cancel()
-                }
+                task.cancel()
                 
             } else {
                 XCTFail("Cancelled request should not execute the polling handler again.")
             }
             return polled == 1
             
-        }, completion: { result in
+        }, pollInterval: 0.0, completion: { result in
             
             switch result {
             case .success:
@@ -452,12 +449,10 @@ class APITests: XCTestCase {
             case .failure:
                 XCTFail("Expecting a failure response.")
             }
-            e.fulfill()
         })
         
         task.resume()
         
-        self.waitForExpectations(timeout: 10.0, handler: nil)
         suite.session.deactiveStub()
     }
     
@@ -659,52 +654,42 @@ class APITests: XCTestCase {
     private func runObjectTask(api: API, keyPath: String? = nil, pollHandler: ((Result<Person>) -> Bool)? = nil) -> Result<Person> {
         var resultOut: Result<Person>!
         
-        let e       = self.expectation(description: "")
         let request = api.requestTo(endpoint: .account, method: .get) // overriden by mock
-        let task    = api.taskWith(request: request, keyPath: keyPath, pollHandler: pollHandler, pollInterval: 0.5) { (result: Result<Person>) in
+        let task    = api.taskWith(request: request, keyPath: keyPath, pollHandler: pollHandler, pollInterval: 0.0) { (result: Result<Person>) in
             
             resultOut = result
-            e.fulfill()
         }
         task.resume()
         
-        self.waitForExpectations(timeout: 10.0, handler: nil)
         return resultOut
     }
     
     private func runObjectTask(api: API, keyPath: String? = nil, pollHandler: ((Result<[Person]>) -> Bool)? = nil) -> Result<[Person]> {
         var resultOut: Result<[Person]>!
         
-        let e       = self.expectation(description: "")
         let request = api.requestTo(endpoint: .account, method: .get) // overriden by mock
-        let task    = api.taskWith(request: request, keyPath: keyPath, pollHandler: pollHandler, pollInterval: 0.5) { (result: Result<[Person]>) in
+        let task    = api.taskWith(request: request, keyPath: keyPath, pollHandler: pollHandler, pollInterval: 0.0) { (result: Result<[Person]>) in
             
             resultOut = result
-            e.fulfill()
         }
         task.resume()
         
-        self.waitForExpectations(timeout: 10.0, handler: nil)
         return resultOut
     }
     
     private func runTask(api: API, keyPath: String? = nil, pollHandler: @escaping (Result<Any>) -> Bool) -> Result<Any> {
         var resultOut: Result<Any>!
         
-        let e                 = self.expectation(description: "")
         let request           = api.requestTo(endpoint: .account, method: .get) // overriden by mock
         let task: Handle<Any> = api.taskWith(request: request, keyPath: keyPath, transformer: APITests.passthroughTransformer(self), pollHandler: { result in
             
             return pollHandler(result)
             
-        }, pollInterval: 0.5, completion: { result in
-            
+        }, pollInterval: 0.0, completion: { result in
             resultOut = result
-            e.fulfill()
         })
         task.resume()
         
-        self.waitForExpectations(timeout: 10.0, handler: nil)
         return resultOut
     }
     

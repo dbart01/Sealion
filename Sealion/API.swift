@@ -194,17 +194,27 @@ public class API {
              */
             if pollHandler?(result) ?? false {
                 
-                DispatchQueue.main.asyncAfter(deadline: .now() + pollInterval) {
+                let poll = {
                     guard let requestHandle = requestHandle, requestHandle.state != .cancelling else {
                         completion(result)
                         return
                     }
                     
-                    let handle: Handle<T> = self.taskWith(request: request, keyPath: keyPath, transformer: transformer, pollHandler: pollHandler, completion: completion)
+                    let handle: Handle<T> = self.taskWith(request: request, keyPath: keyPath, transformer: transformer, pollHandler: pollHandler, pollInterval: pollInterval, completion: completion)
                     requestHandle.setTask(task: handle.task)
                     requestHandle.resume()
                 }
-                
+            
+            
+                if pollInterval > 0.0 {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + pollInterval) {
+                        poll()
+                    }
+                    
+                } else {
+                    poll()
+                }
+            
             } else {
                 completion(result)
             }
