@@ -1,4 +1,8 @@
 # Sealion
+
+[![Build Status](https://travis-ci.org/dbart01/Sealion.svg?branch=master)](https://travis-ci.org/dbart01/Sealion)
+[![codecov](https://codecov.io/gh/dbart01/Sealion/branch/master/graph/badge.svg)](https://codecov.io/gh/dbart01/Sealion)
+
 A fast, easy-to-use client for Digital Ocean API v2 written in Swift.
 
 ### Getting started
