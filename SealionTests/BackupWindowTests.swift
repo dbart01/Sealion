@@ -1,5 +1,5 @@
 //
-//  Sealion.h
+//  BackupWindowTests.swift
 //  Sealion
 //
 //  Copyright (c) 2016 Dima Bart
@@ -30,10 +30,22 @@
 //  either expressed or implied, of the FreeBSD Project.
 //
 
-#import <UIKit/UIKit.h>
+import XCTest
+import Sealion
 
-//! Project version number for Sealion.
-FOUNDATION_EXPORT double SealionVersionNumber;
-
-//! Project version string for Sealion.
-FOUNDATION_EXPORT const unsigned char SealionVersionString[];
+class BackupWindowTests: ModelTestCase {
+    
+    // ----------------------------------
+    //  MARK: - JsonCreatable -
+    //
+    func testJsonCreation() {
+        let model: BackupWindow = self.modelNamed(name: "backupWindow")
+        
+        XCTAssertEqual(model.start, Date(ISOString: "2016-09-26T00:00:00Z"))
+        XCTAssertEqual(model.end,   Date(ISOString: "2016-09-26T23:00:00Z"))
+    }
+    
+    func testEquality() {
+        self.assertEqualityForModelNamed(type: BackupWindow.self, name: "backupWindow")
+    }
+}

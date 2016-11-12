@@ -1,5 +1,5 @@
 //
-//  Sealion.h
+//  DropletSize.swift
 //  Sealion
 //
 //  Copyright (c) 2016 Dima Bart
@@ -30,10 +30,44 @@
 //  either expressed or implied, of the FreeBSD Project.
 //
 
-#import <UIKit/UIKit.h>
+import Foundation
 
-//! Project version number for Sealion.
-FOUNDATION_EXPORT double SealionVersionNumber;
+public struct DropletSize: JsonCreatable, Equatable {
+    
+    public let slug:         String
+    public let available:    Bool
+    public let memory:       Int
+    public let vcpus:        Int
+    public let disk:         Int
+    public let transfer:     Int
+    public let priceMonthly: Double
+    public let priceHourly:  Double
+    public let regions:      [String]
+    
+    // ----------------------------------
+    //  MARK: - JsonCreatable -
+    //
+    public init(json: JSON) {
+        self.slug         = json["slug"]          as! String
+        self.available    = json["available"]     as! Bool
+        self.memory       = json["memory"]        as! Int
+        self.vcpus        = json["vcpus"]         as! Int
+        self.disk         = json["disk"]          as! Int
+        self.transfer     = json["transfer"]      as! Int
+        self.priceMonthly = json["price_monthly"] as! Double
+        self.priceHourly  = json["price_hourly"]  as! Double
+        self.regions      = json["regions"]       as! [String]
+    }
+}
 
-//! Project version string for Sealion.
-FOUNDATION_EXPORT const unsigned char SealionVersionString[];
+public func ==(lhs: DropletSize, rhs: DropletSize) -> Bool {
+    return (lhs.slug == rhs.slug) &&
+        (lhs.available    == rhs.available) &&
+        (lhs.memory       == rhs.memory) &&
+        (lhs.vcpus        == rhs.vcpus) &&
+        (lhs.disk         == rhs.disk) &&
+        (lhs.transfer     == rhs.transfer) &&
+        (lhs.priceMonthly == rhs.priceMonthly) &&
+        (lhs.priceHourly  == rhs.priceHourly) &&
+        (lhs.regions      == rhs.regions)
+}

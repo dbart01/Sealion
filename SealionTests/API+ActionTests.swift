@@ -1,5 +1,5 @@
 //
-//  Sealion.h
+//  API+ActionTests.swift
 //  Sealion
 //
 //  Copyright (c) 2016 Dima Bart
@@ -30,10 +30,33 @@
 //  either expressed or implied, of the FreeBSD Project.
 //
 
-#import <UIKit/UIKit.h>
+import XCTest
+import Sealion
 
-//! Project version number for Sealion.
-FOUNDATION_EXPORT double SealionVersionNumber;
-
-//! Project version string for Sealion.
-FOUNDATION_EXPORT const unsigned char SealionVersionString[];
+class API_ActionTests: APITestCase {
+    
+    func testActionsList() {
+        let handle = self.api.actions { result in }
+        
+        self.assertType(handle, type: [Action].self)
+        self.assertMethod(handle, method: .get)
+        self.assertBody(handle, data: nil)
+        self.assertHeaders(handle)
+        self.assertEndpoint(handle, endpoint: .actions)
+        self.assertKeyPath(handle, keyPath: "actions")
+        self.assertParameters(handle, parameters: nil)
+    }
+    
+    func testActionWithID() {
+        let id     = 123
+        let handle = self.api.actionWith(id: id) { result in }
+        
+        self.assertType(handle, type: Action.self)
+        self.assertMethod(handle, method: .get)
+        self.assertBody(handle, data: nil)
+        self.assertHeaders(handle)
+        self.assertEndpoint(handle, endpoint: .actionWithID(id))
+        self.assertKeyPath(handle, keyPath: "action")
+        self.assertParameters(handle, parameters: nil)
+    }
+}

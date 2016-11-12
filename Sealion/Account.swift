@@ -1,5 +1,5 @@
 //
-//  Sealion.h
+//  Account.swift
 //  Sealion
 //
 //  Copyright (c) 2016 Dima Bart
@@ -30,10 +30,38 @@
 //  either expressed or implied, of the FreeBSD Project.
 //
 
-#import <UIKit/UIKit.h>
+import Foundation
 
-//! Project version number for Sealion.
-FOUNDATION_EXPORT double SealionVersionNumber;
+public struct Account: JsonCreatable, Equatable {
+    
+    public let dropletLimit:    Int
+    public let floatingIPLimit: Int
+    public let verified:        Bool
+    public let email:           String
+    public let uuid:            String
+    public let status:          String
+    public let message:         String
+    
+    // ----------------------------------
+    //  MARK: - JsonCreatable -
+    //
+    public init(json: JSON) {
+        self.dropletLimit    = json["droplet_limit"]     as! Int
+        self.floatingIPLimit = json["floating_ip_limit"] as! Int
+        self.verified        = json["email_verified"]    as! Bool
+        self.email           = json["email"]             as! String
+        self.uuid            = json["uuid"]              as! String
+        self.status          = json["status"]            as! String
+        self.message         = json["status_message"]    as! String
+    }
+}
 
-//! Project version string for Sealion.
-FOUNDATION_EXPORT const unsigned char SealionVersionString[];
+public func ==(lhs: Account, rhs: Account) -> Bool {
+    return (lhs.dropletLimit == rhs.dropletLimit) &&
+    (lhs.floatingIPLimit == rhs.floatingIPLimit) &&
+    (lhs.verified        == rhs.verified) &&
+    (lhs.email           == rhs.email) &&
+    (lhs.uuid            == rhs.uuid) &&
+    (lhs.status          == rhs.status) &&
+    (lhs.message         == rhs.message)
+}

@@ -1,5 +1,5 @@
 //
-//  Sealion.h
+//  API+Action.swift
 //  Sealion
 //
 //  Copyright (c) 2016 Dima Bart
@@ -30,10 +30,17 @@
 //  either expressed or implied, of the FreeBSD Project.
 //
 
-#import <UIKit/UIKit.h>
+import Foundation
 
-//! Project version number for Sealion.
-FOUNDATION_EXPORT double SealionVersionNumber;
-
-//! Project version string for Sealion.
-FOUNDATION_EXPORT const unsigned char SealionVersionString[];
+public extension API {
+    
+    public func actions(page: Page? = nil, completion: @escaping (_ result: Result<[Action]>) -> Void) -> Handle<[Action]> {
+        let request = self.requestTo(endpoint: .actions, method: .get, page: page)
+        return self.taskWith(request: request, keyPath: "actions", completion: completion)
+    }
+    
+    public func actionWith(id: Int, completion: @escaping (_ result: Result<Action>) -> Void) -> Handle<Action> {
+        let request = self.requestTo(endpoint: .actionWithID(id), method: .get)
+        return self.taskWith(request: request, keyPath: "action", completion: completion)
+    }
+}

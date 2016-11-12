@@ -1,5 +1,5 @@
 //
-//  Sealion.h
+//  ActionTests.swift
 //  Sealion
 //
 //  Copyright (c) 2016 Dima Bart
@@ -30,10 +30,28 @@
 //  either expressed or implied, of the FreeBSD Project.
 //
 
-#import <UIKit/UIKit.h>
+import XCTest
+import Sealion
 
-//! Project version number for Sealion.
-FOUNDATION_EXPORT double SealionVersionNumber;
-
-//! Project version string for Sealion.
-FOUNDATION_EXPORT const unsigned char SealionVersionString[];
+class ActionTests: ModelTestCase {
+    
+    // ----------------------------------
+    //  MARK: - JsonCreatable -
+    //
+    func testJsonCreation() {
+        let model: Action = self.modelNamed(name: "action")
+        
+        XCTAssertEqual(model.id,           123)
+        XCTAssertEqual(model.resourceID,   456)
+        XCTAssertEqual(model.status,       "completed")
+        XCTAssertEqual(model.type,         "image_destroy")
+        XCTAssertEqual(model.resourceType, "image")
+        XCTAssertEqual(model.region,       "nyc3")
+        XCTAssertEqual(model.startedAt,    Date(ISOString: "2016-09-30T19:52:21Z"))
+        XCTAssertEqual(model.finishedAt,   Date(ISOString: "2016-09-30T19:52:21Z"))
+    }
+    
+    func testEquality() {
+        self.assertEqualityForModelNamed(type: Action.self, name: "action")
+    }
+}

@@ -1,5 +1,5 @@
 //
-//  Sealion.h
+//  RequestError.swift
 //  Sealion
 //
 //  Copyright (c) 2016 Dima Bart
@@ -30,10 +30,39 @@
 //  either expressed or implied, of the FreeBSD Project.
 //
 
-#import <UIKit/UIKit.h>
+import Foundation
 
-//! Project version number for Sealion.
-FOUNDATION_EXPORT double SealionVersionNumber;
+public struct RequestError: JsonCreatable, Equatable {
+    
+    public let code:        Int
+    public let id:          String?
+    public let name:        String
+    public let description: String
+    
+    // ----------------------------------
+    //  MARK: - Init -
+    //
+    internal init(code: Int, id: String, name: String, description: String) {
+        self.code        = code
+        self.id          = id
+        self.name        = name
+        self.description = description
+    }
+    
+    // ----------------------------------
+    //  MARK: - JsonCreatable -
+    //
+    public init(json: JSON) {
+        self.code        = json["code"]       as! Int
+        self.id          = json["request_id"] as? String
+        self.name        = json["id"]         as! String
+        self.description = json["message"]    as! String
+    }
+}
 
-//! Project version string for Sealion.
-FOUNDATION_EXPORT const unsigned char SealionVersionString[];
+public func ==(lhs: RequestError, rhs: RequestError) -> Bool {
+    return (lhs.code     == rhs.code) &&
+        (lhs.id          == rhs.id) &&
+        (lhs.name        == rhs.name) &&
+        (lhs.description == rhs.description)
+}

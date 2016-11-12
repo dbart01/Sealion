@@ -1,5 +1,5 @@
 //
-//  Sealion.h
+//  API+Kernel.swift
 //  Sealion
 //
 //  Copyright (c) 2016 Dima Bart
@@ -30,10 +30,12 @@
 //  either expressed or implied, of the FreeBSD Project.
 //
 
-#import <UIKit/UIKit.h>
+import Foundation
 
-//! Project version number for Sealion.
-FOUNDATION_EXPORT double SealionVersionNumber;
-
-//! Project version string for Sealion.
-FOUNDATION_EXPORT const unsigned char SealionVersionString[];
+public extension API {
+    
+    public func kernelsFor(droplet: Int, page: Page? = nil, completion: @escaping (_ result: Result<[Kernel]>) -> Void) -> Handle<[Kernel]> {
+        let request = self.requestTo(endpoint: .kernelsForDroplet(droplet), method: .get, page: page)
+        return self.taskWith(request: request, keyPath: "kernels", completion: completion)
+    }
+}

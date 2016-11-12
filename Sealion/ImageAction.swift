@@ -1,5 +1,5 @@
 //
-//  Sealion.h
+//  ImageAction.swift
 //  Sealion
 //
 //  Copyright (c) 2016 Dima Bart
@@ -30,10 +30,32 @@
 //  either expressed or implied, of the FreeBSD Project.
 //
 
-#import <UIKit/UIKit.h>
+import Foundation
 
-//! Project version number for Sealion.
-FOUNDATION_EXPORT double SealionVersionNumber;
-
-//! Project version string for Sealion.
-FOUNDATION_EXPORT const unsigned char SealionVersionString[];
+public enum ImageAction: JsonConvertible {
+    
+    case transferTo(region: String)
+    case convert
+    
+    public var json: JSON {
+        var container: JSON = [
+            "type" : self.type,
+        ]
+        
+        switch self {
+        case .transferTo(let region):
+            container["region"] = region
+        default:
+            break
+        }
+        
+        return container
+    }
+    
+    internal var type: String {
+        switch self {
+        case .transferTo: return "transfer"
+        case .convert:    return "convert"
+        }
+    }
+}

@@ -1,5 +1,5 @@
 //
-//  Sealion.h
+//  Stub.swift
 //  Sealion
 //
 //  Copyright (c) 2016 Dima Bart
@@ -30,10 +30,57 @@
 //  either expressed or implied, of the FreeBSD Project.
 //
 
-#import <UIKit/UIKit.h>
+import Foundation
+import Sealion
 
-//! Project version number for Sealion.
-FOUNDATION_EXPORT double SealionVersionNumber;
+// ----------------------------------
+//  MARK: - Error Json -
+//
+struct MockError {
+    
+    let code:        Int
+    let domain:      String
+    let description: String
+    
+    init(domain: String = "MockErrorDomain", code: Int, description: String = "No description") {
+        self.code        = code
+        self.domain      = domain
+        self.description = description
+    }
+    
+    func cocoaError() -> NSError {
+        return NSError(domain: self.domain, code: self.code, userInfo: [
+            NSLocalizedDescriptionKey : self.description,
+        ])
+    }
+}
 
-//! Project version string for Sealion.
-FOUNDATION_EXPORT const unsigned char SealionVersionString[];
+// ----------------------------------
+//  MARK: - Stub -
+//
+struct Stub {
+    
+    let status:  Int?
+    let json:    JSON?
+    let error:   MockError?
+    let headers: [String : String]?
+    
+    var executionTime = 0.0
+    
+    var jsonData: Data? {
+        if let json = self.json {
+            return try? JSONSerialization.data(withJSONObject: json, options: [])
+        }
+        return nil
+    }
+    
+    // ----------------------------------
+    //  MARK: - Init -
+    //
+    init(status: Int? = nil, json: JSON? = nil, error: MockError? = nil, headers: [String : String]? = nil) {
+        self.status  = status
+        self.json    = json
+        self.error   = error
+        self.headers = headers
+    }
+}

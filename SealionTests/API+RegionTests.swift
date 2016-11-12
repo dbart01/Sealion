@@ -1,5 +1,5 @@
 //
-//  Sealion.h
+//  API+RegionTests.swift
 //  Sealion
 //
 //  Copyright (c) 2016 Dima Bart
@@ -30,10 +30,20 @@
 //  either expressed or implied, of the FreeBSD Project.
 //
 
-#import <UIKit/UIKit.h>
+import XCTest
+import Sealion
 
-//! Project version number for Sealion.
-FOUNDATION_EXPORT double SealionVersionNumber;
-
-//! Project version string for Sealion.
-FOUNDATION_EXPORT const unsigned char SealionVersionString[];
+class API_RegionTests: APITestCase {
+    
+    func testRegionList() {
+        let handle = self.api.regions { result in }
+        
+        self.assertType(handle, type: [Region].self)
+        self.assertMethod(handle, method: .get)
+        self.assertBody(handle, data: nil)
+        self.assertHeaders(handle)
+        self.assertEndpoint(handle, endpoint: .regions)
+        self.assertKeyPath(handle, keyPath: "regions")
+        self.assertParameters(handle, parameters: nil)
+    }
+}

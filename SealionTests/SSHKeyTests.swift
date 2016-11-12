@@ -1,5 +1,5 @@
 //
-//  Sealion.h
+//  SSHKeyTests.swift
 //  Sealion
 //
 //  Copyright (c) 2016 Dima Bart
@@ -30,10 +30,38 @@
 //  either expressed or implied, of the FreeBSD Project.
 //
 
-#import <UIKit/UIKit.h>
+import XCTest
+import Sealion
 
-//! Project version number for Sealion.
-FOUNDATION_EXPORT double SealionVersionNumber;
-
-//! Project version string for Sealion.
-FOUNDATION_EXPORT const unsigned char SealionVersionString[];
+class SSHKeyTests: ModelTestCase {
+    
+    // ----------------------------------
+    //  MARK: - JsonCreatable -
+    //
+    func testJsonCreationForV4() {
+        let model: SSHKey = self.modelNamed(name: "key")
+        
+        XCTAssertEqual(model.id,          123)
+        XCTAssertEqual(model.name,        "john@John-Smiths-MBP")
+        XCTAssertEqual(model.publicKey,   "ssh-rsa AB3")
+        XCTAssertEqual(model.fingerprint, "b7:40")
+    }
+    
+    func testEquality() {
+        self.assertEqualityForModelNamed(type: SSHKey.self, name: "key")
+    }
+    
+    // ----------------------------------
+    //  MARK: - Create Request -
+    //
+    func testCreateRequest() {
+        let name      = "My Key"
+        let publicKey = "ssh-key asdf"
+        let request   = SSHKey.CreateRequest(name: name, publicKey: publicKey)
+        
+        let json = request.json
+        
+        XCTAssertEqual(json["name"]       as! String, name)
+        XCTAssertEqual(json["public_key"] as! String, publicKey)
+    }
+}

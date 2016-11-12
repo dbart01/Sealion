@@ -1,5 +1,5 @@
 //
-//  Sealion.h
+//  ModelTestCase.swift
 //  Sealion
 //
 //  Copyright (c) 2016 Dima Bart
@@ -30,10 +30,28 @@
 //  either expressed or implied, of the FreeBSD Project.
 //
 
-#import <UIKit/UIKit.h>
+import XCTest
+import Sealion
 
-//! Project version number for Sealion.
-FOUNDATION_EXPORT double SealionVersionNumber;
-
-//! Project version string for Sealion.
-FOUNDATION_EXPORT const unsigned char SealionVersionString[];
+class ModelTestCase: APITestCase {
+    
+    private let jsonManager = JsonManager(jsonNamed: "models")
+    
+    // ----------------------------------
+    //  MARK: - Json Models -
+    //
+    func modelNamed<T>(name: String, expandAliases: Bool = true) -> T where T: JsonCreatable {
+        let json = self.jsonManager.modelJsonFor(key: name, expandAliases: expandAliases)
+        return T(json: json)
+    }
+    
+    // ----------------------------------
+    //  MARK: - Assertions -
+    //
+    func assertEqualityForModelNamed<T>(type: T.Type, name: String) where T: JsonCreatable, T: Equatable {
+        let model1: T = self.modelNamed(name: name)
+        let model2: T = self.modelNamed(name: name)
+        
+        XCTAssertEqual(model1, model2)
+    }
+}

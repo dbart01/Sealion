@@ -1,5 +1,5 @@
 //
-//  Sealion.h
+//  KernelTests.swift
 //  Sealion
 //
 //  Copyright (c) 2016 Dima Bart
@@ -30,10 +30,23 @@
 //  either expressed or implied, of the FreeBSD Project.
 //
 
-#import <UIKit/UIKit.h>
+import XCTest
+import Sealion
 
-//! Project version number for Sealion.
-FOUNDATION_EXPORT double SealionVersionNumber;
-
-//! Project version string for Sealion.
-FOUNDATION_EXPORT const unsigned char SealionVersionString[];
+class KernelTests: ModelTestCase {
+    
+    // ----------------------------------
+    //  MARK: - JsonCreatable -
+    //
+    func testJsonCreation() {
+        let model: Kernel = self.modelNamed(name: "kernel")
+        
+        XCTAssertEqual(model.id,      123)
+        XCTAssertEqual(model.name,    "Ubuntu")
+        XCTAssertEqual(model.version, "generic")
+    }
+    
+    func testEquality() {
+        self.assertEqualityForModelNamed(type: Kernel.self, name: "kernel")
+    }
+}

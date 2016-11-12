@@ -1,5 +1,5 @@
 //
-//  Sealion.h
+//  BackupWindow.swift
 //  Sealion
 //
 //  Copyright (c) 2016 Dima Bart
@@ -30,10 +30,23 @@
 //  either expressed or implied, of the FreeBSD Project.
 //
 
-#import <UIKit/UIKit.h>
+import Foundation
 
-//! Project version number for Sealion.
-FOUNDATION_EXPORT double SealionVersionNumber;
+public struct BackupWindow: JsonCreatable, Equatable {
+    
+    public let start: Date
+    public let end:   Date
+    
+    // ----------------------------------
+    //  MARK: - JsonCreatable -
+    //
+    public init(json: JSON) {
+        self.start = Date(ISOString: json["start"] as! String)!
+        self.end   = Date(ISOString: json["end"]   as! String)!
+    }
+}
 
-//! Project version string for Sealion.
-FOUNDATION_EXPORT const unsigned char SealionVersionString[];
+public func ==(lhs: BackupWindow, rhs: BackupWindow) -> Bool {
+    return (lhs.start == rhs.start) &&
+        (lhs.end == rhs.end)
+}

@@ -1,5 +1,5 @@
 //
-//  Sealion.h
+//  RegionTests.swift
 //  Sealion
 //
 //  Copyright (c) 2016 Dima Bart
@@ -30,10 +30,29 @@
 //  either expressed or implied, of the FreeBSD Project.
 //
 
-#import <UIKit/UIKit.h>
+import XCTest
+import Sealion
 
-//! Project version number for Sealion.
-FOUNDATION_EXPORT double SealionVersionNumber;
-
-//! Project version string for Sealion.
-FOUNDATION_EXPORT const unsigned char SealionVersionString[];
+class RegionTests: ModelTestCase {
+    
+    // ----------------------------------
+    //  MARK: - JsonCreatable -
+    //
+    func testJsonCreation() {
+        let model: Region = self.modelNamed(name: "region")
+        
+        XCTAssertEqual(model.available, true)
+        XCTAssertEqual(model.name,      "New York 3")
+        XCTAssertEqual(model.slug,      "nyc3")
+        XCTAssertEqual(model.sizes, [
+            "2gb", "4gb", "8gb",
+        ])
+        XCTAssertEqual(model.features, [
+            "backups", "ipv6",
+        ])
+    }
+    
+    func testEquality() {
+        self.assertEqualityForModelNamed(type: Region.self, name: "region")
+    }
+}

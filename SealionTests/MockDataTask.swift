@@ -1,5 +1,5 @@
 //
-//  Sealion.h
+//  MockDataTask.swift
 //  Sealion
 //
 //  Copyright (c) 2016 Dima Bart
@@ -30,10 +30,44 @@
 //  either expressed or implied, of the FreeBSD Project.
 //
 
-#import <UIKit/UIKit.h>
+import Foundation
 
-//! Project version number for Sealion.
-FOUNDATION_EXPORT double SealionVersionNumber;
-
-//! Project version string for Sealion.
-FOUNDATION_EXPORT const unsigned char SealionVersionString[];
+class MockDataTask: URLSessionDataTask {
+    
+    typealias ResumeHandler = () -> Void
+    
+    let stub:          Stub
+    let resumeHandler: ResumeHandler?
+    
+    // ----------------------------------
+    //  MARK: - Init -
+    //
+    init(stub: Stub, resumeHandler: ResumeHandler? = nil) {
+        self.stub          = stub
+        self.resumeHandler = resumeHandler
+    }
+    
+    // ----------------------------------
+    //  MARK: - Overrides -
+    //
+    private var customState: URLSessionDataTask.State = .suspended
+    
+    override func cancel() {
+        self.customState = .canceling
+    }
+    
+    override func suspend() {
+        self.customState = .suspended
+    }
+    
+    override func resume() {
+        self.customState = .running
+        
+        self.customState = .completed
+        self.resumeHandler?()
+    }
+    
+    override var state: URLSessionTask.State {
+        return self.customState
+    }
+}

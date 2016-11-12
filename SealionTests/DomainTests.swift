@@ -1,5 +1,5 @@
 //
-//  Sealion.h
+//  DomainTests.swift
 //  Sealion
 //
 //  Copyright (c) 2016 Dima Bart
@@ -30,10 +30,41 @@
 //  either expressed or implied, of the FreeBSD Project.
 //
 
-#import <UIKit/UIKit.h>
+import Foundation
 
-//! Project version number for Sealion.
-FOUNDATION_EXPORT double SealionVersionNumber;
+import XCTest
+import Sealion
 
-//! Project version string for Sealion.
-FOUNDATION_EXPORT const unsigned char SealionVersionString[];
+class DomainTests: ModelTestCase {
+    
+    // ----------------------------------
+    //  MARK: - JsonCreatable -
+    //
+    func testJsonCreation() {
+        let model: Domain = self.modelNamed(name: "domain")
+        
+        XCTAssertEqual(model.name, "example.com")
+        XCTAssertEqual(model.ttl,  1800)
+        
+        XCTAssertNotNil(model.zone)
+        XCTAssertTrue(model.zone!.characters.count > 0)
+    }
+    
+    func testEquality() {
+        self.assertEqualityForModelNamed(type: Domain.self, name: "domain")
+    }
+    
+    // ----------------------------------
+    //  MARK: - Create Request -
+    //
+    func testCreateRequest() {
+        let ip      = "12.12.12.12"
+        let name    = "example.com"
+        let request = Domain.CreateRequest(ip: ip, name: name)
+        
+        let json = request.json
+        
+        XCTAssertEqual(json["ip"]   as! String, ip)
+        XCTAssertEqual(json["name"] as! String, name)
+    }
+}

@@ -1,5 +1,5 @@
 //
-//  Sealion.h
+//  API+Backup.swift
 //  Sealion
 //
 //  Copyright (c) 2016 Dima Bart
@@ -30,10 +30,12 @@
 //  either expressed or implied, of the FreeBSD Project.
 //
 
-#import <UIKit/UIKit.h>
+import Foundation
 
-//! Project version number for Sealion.
-FOUNDATION_EXPORT double SealionVersionNumber;
-
-//! Project version string for Sealion.
-FOUNDATION_EXPORT const unsigned char SealionVersionString[];
+public extension API {
+    
+    public func backupsFor(droplet: Int, completion: @escaping (_ result: Result<[Snapshot]>) -> Void) -> Handle<[Snapshot]> {
+        let request = self.requestTo(endpoint: .backupsForDroplet(droplet), method: .get)
+        return self.taskWith(request: request, keyPath: "backups", completion: completion)
+    }
+}

@@ -1,5 +1,5 @@
 //
-//  Sealion.h
+//  ImageActionTests.swift
 //  Sealion
 //
 //  Copyright (c) 2016 Dima Bart
@@ -30,10 +30,28 @@
 //  either expressed or implied, of the FreeBSD Project.
 //
 
-#import <UIKit/UIKit.h>
+import XCTest
+import Sealion
 
-//! Project version number for Sealion.
-FOUNDATION_EXPORT double SealionVersionNumber;
-
-//! Project version string for Sealion.
-FOUNDATION_EXPORT const unsigned char SealionVersionString[];
+class ImageActionTests: XCTestCase {
+    
+    func testTrasfer() {
+        self.assertImageAction(action: .transferTo(region: "nyc3"), against: [
+            "type"   : "transfer",
+            "region" : "nyc3",
+        ])
+    }
+    
+    func testEnableBackups() {
+        self.assertImageAction(action: .convert, against: [
+            "type" : "convert",
+        ])
+    }
+    
+    // ----------------------------------
+    //  MARK: - Private -
+    //
+    private func assertImageAction(action: ImageAction, against expectation: Any) {
+        XCTAssertTrue(action.json == expectation as! JSON)
+    }
+}

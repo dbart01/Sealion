@@ -1,5 +1,5 @@
 //
-//  Sealion.h
+//  Region.swift
 //  Sealion
 //
 //  Copyright (c) 2016 Dima Bart
@@ -30,10 +30,32 @@
 //  either expressed or implied, of the FreeBSD Project.
 //
 
-#import <UIKit/UIKit.h>
+import Foundation
 
-//! Project version number for Sealion.
-FOUNDATION_EXPORT double SealionVersionNumber;
+public struct Region: JsonCreatable, Equatable {
+    
+    public let available: Bool
+    public let name:      String
+    public let slug:      String
+    public let sizes:     [String]
+    public let features:  [String]
+    
+    // ----------------------------------
+    //  MARK: - JsonCreatable -
+    //
+    public init(json: JSON) {
+        self.available = json["available"] as! Bool
+        self.name      = json["name"]      as! String
+        self.slug      = json["slug"]      as! String
+        self.sizes     = json["sizes"]     as! [String]
+        self.features  = json["features"]  as! [String]
+    }
+}
 
-//! Project version string for Sealion.
-FOUNDATION_EXPORT const unsigned char SealionVersionString[];
+public func ==(lhs: Region, rhs: Region) -> Bool {
+    return (lhs.available == rhs.available) &&
+        (lhs.name     == rhs.name) &&
+        (lhs.slug     == rhs.slug) &&
+        (lhs.sizes    == rhs.sizes) &&
+        (lhs.features == rhs.features)
+}

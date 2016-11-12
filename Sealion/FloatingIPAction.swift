@@ -1,5 +1,5 @@
 //
-//  Sealion.h
+//  FloatingIPAction.swift
 //  Sealion
 //
 //  Copyright (c) 2016 Dima Bart
@@ -30,10 +30,32 @@
 //  either expressed or implied, of the FreeBSD Project.
 //
 
-#import <UIKit/UIKit.h>
+import Foundation
 
-//! Project version number for Sealion.
-FOUNDATION_EXPORT double SealionVersionNumber;
-
-//! Project version string for Sealion.
-FOUNDATION_EXPORT const unsigned char SealionVersionString[];
+public enum FloatingIPAction: JsonConvertible {
+    
+    case assign(droplet: Int)
+    case unassign
+    
+    public var json: JSON {
+        var container: JSON = [
+            "type" : self.type,
+        ]
+        
+        switch self {
+        case .assign(let dropletID):
+            container["droplet_id"] = dropletID
+        default:
+            break
+        }
+        
+        return container
+    }
+    
+    internal var type: String {
+        switch self {
+        case .assign:   return "assign"
+        case .unassign: return "unassign"
+        }
+    }
+}

@@ -1,5 +1,5 @@
 //
-//  Sealion.h
+//  Sync.swift
 //  Sealion
 //
 //  Copyright (c) 2016 Dima Bart
@@ -30,10 +30,20 @@
 //  either expressed or implied, of the FreeBSD Project.
 //
 
-#import <UIKit/UIKit.h>
+import Foundation
 
-//! Project version number for Sealion.
-FOUNDATION_EXPORT double SealionVersionNumber;
+// ----------------------------------
+//  MARK: - Sync -
+//
+internal func sync(_ object: AnyObject, task: () -> Void) {
+    objc_sync_enter(object)
+    task()
+    objc_sync_exit(object)
+}
 
-//! Project version string for Sealion.
-FOUNDATION_EXPORT const unsigned char SealionVersionString[];
+internal func sync<T>(_ object: AnyObject, task: () -> T) -> T {
+    objc_sync_enter(object)
+    let value = task()
+    objc_sync_exit(object)
+    return value
+}

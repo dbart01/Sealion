@@ -1,5 +1,5 @@
 //
-//  Sealion.h
+//  DropletSizeTests.swift
 //  Sealion
 //
 //  Copyright (c) 2016 Dima Bart
@@ -30,10 +30,29 @@
 //  either expressed or implied, of the FreeBSD Project.
 //
 
-#import <UIKit/UIKit.h>
+import XCTest
+import Sealion
 
-//! Project version number for Sealion.
-FOUNDATION_EXPORT double SealionVersionNumber;
-
-//! Project version string for Sealion.
-FOUNDATION_EXPORT const unsigned char SealionVersionString[];
+class DropletSizeTests: ModelTestCase {
+    
+    // ----------------------------------
+    //  MARK: - JsonCreatable -
+    //
+    func testJsonCreation() {
+        let model: DropletSize = self.modelNamed(name: "size")
+        
+        XCTAssertEqual(model.slug,         "1gb")
+        XCTAssertEqual(model.available,    true)
+        XCTAssertEqual(model.memory,       1024)
+        XCTAssertEqual(model.vcpus,        1)
+        XCTAssertEqual(model.disk,         30)
+        XCTAssertEqual(model.transfer,     2)
+        XCTAssertEqual(model.priceMonthly, 10.0)
+        XCTAssertEqual(model.priceHourly,  0.01488)
+        XCTAssertEqual(model.regions,      ["nyc3", "tor1"])
+    }
+    
+    func testEquality() {
+        self.assertEqualityForModelNamed(type: DropletSize.self, name: "size")
+    }
+}

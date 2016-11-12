@@ -1,5 +1,5 @@
 //
-//  Sealion.h
+//  API+KernelTests.swift
 //  Sealion
 //
 //  Copyright (c) 2016 Dima Bart
@@ -30,10 +30,23 @@
 //  either expressed or implied, of the FreeBSD Project.
 //
 
-#import <UIKit/UIKit.h>
+import Foundation
 
-//! Project version number for Sealion.
-FOUNDATION_EXPORT double SealionVersionNumber;
+import XCTest
+import Sealion
 
-//! Project version string for Sealion.
-FOUNDATION_EXPORT const unsigned char SealionVersionString[];
+class API_KernelTests: APITestCase {
+    
+    func testKernels() {
+        let id     = 123
+        let handle = self.api.kernelsFor(droplet: id) { result in }
+        
+        self.assertType(handle, type: [Kernel].self)
+        self.assertMethod(handle, method: .get)
+        self.assertBody(handle, data: nil)
+        self.assertHeaders(handle)
+        self.assertEndpoint(handle, endpoint: .kernelsForDroplet(id))
+        self.assertKeyPath(handle, keyPath: "kernels")
+        self.assertParameters(handle, parameters: nil)
+    }
+}

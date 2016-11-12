@@ -1,5 +1,5 @@
 //
-//  Sealion.h
+//  RequestErrorTests.swift
 //  Sealion
 //
 //  Copyright (c) 2016 Dima Bart
@@ -30,10 +30,42 @@
 //  either expressed or implied, of the FreeBSD Project.
 //
 
-#import <UIKit/UIKit.h>
+import XCTest
+@testable import Sealion
 
-//! Project version number for Sealion.
-FOUNDATION_EXPORT double SealionVersionNumber;
+class RequestErrorTests: ModelTestCase {
+    
+    // ----------------------------------
+    //  MARK: - JsonCreatable -
+    //
+    func testJsonCreation() {
+        let model: RequestError = self.modelNamed(name: "error")
+        
+        XCTAssertEqual(model.code,        403)
+        XCTAssertEqual(model.id,          "request_id")
+        XCTAssertEqual(model.name,        "error_id")
+        XCTAssertEqual(model.description, "Error message")
+    }
+    
+    func testDefaultCreation() {
+        let id          = "request_id"
+        let name        = "error_id"
+        let description = "Error message"
+        
+        let error = RequestError(
+            code:        400,
+            id:          id,
+            name:        name,
+            description: description
+        )
 
-//! Project version string for Sealion.
-FOUNDATION_EXPORT const unsigned char SealionVersionString[];
+        XCTAssertEqual(error.code,        400)
+        XCTAssertEqual(error.id,          id)
+        XCTAssertEqual(error.name,        name)
+        XCTAssertEqual(error.description, description)
+    }
+    
+    func testEquality() {
+        self.assertEqualityForModelNamed(type: RequestError.self, name: "error")
+    }
+}

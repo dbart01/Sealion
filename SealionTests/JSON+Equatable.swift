@@ -1,5 +1,5 @@
 //
-//  Sealion.h
+//  Dictionary+Equatable.swift
 //  Sealion
 //
 //  Copyright (c) 2016 Dima Bart
@@ -30,10 +30,12 @@
 //  either expressed or implied, of the FreeBSD Project.
 //
 
-#import <UIKit/UIKit.h>
+import Foundation
+import Sealion
 
-//! Project version number for Sealion.
-FOUNDATION_EXPORT double SealionVersionNumber;
-
-//! Project version string for Sealion.
-FOUNDATION_EXPORT const unsigned char SealionVersionString[];
+func ==(lhs: JSON, rhs: JSON) -> Bool {
+    let lhsData = try! JSONSerialization.data(withJSONObject: lhs, options: [])
+    let rhsData = try! JSONSerialization.data(withJSONObject: rhs, options: [])
+    
+    return lhsData == rhsData
+}

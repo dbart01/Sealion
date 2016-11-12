@@ -1,5 +1,5 @@
 //
-//  Sealion.h
+//  API+Region.swift
 //  Sealion
 //
 //  Copyright (c) 2016 Dima Bart
@@ -30,10 +30,12 @@
 //  either expressed or implied, of the FreeBSD Project.
 //
 
-#import <UIKit/UIKit.h>
+import Foundation
 
-//! Project version number for Sealion.
-FOUNDATION_EXPORT double SealionVersionNumber;
-
-//! Project version string for Sealion.
-FOUNDATION_EXPORT const unsigned char SealionVersionString[];
+public extension API {
+    
+    public func regions(completion: @escaping (_ result: Result<[Region]>) -> Void) -> Handle<[Region]> {
+        let request = self.requestTo(endpoint: .regions, method: .get)
+        return self.taskWith(request: request, keyPath: "regions", completion: completion)
+    }
+}

@@ -1,0 +1,10 @@
+language: objective-c
+osx_image: xcode8.1sneakpeek
+
+xcode_project: Sealion.xcodeproj
+xcode_scheme: Sealion Test
+xcode_sdk: iphonesimulator10.1
+
+script:
+- set -o pipefail
+- xcodebuild test -project Sealion.xcodeproj -scheme Sealion -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 6,OS=10.1" | xcpretty -c

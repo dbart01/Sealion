@@ -1,5 +1,5 @@
 //
-//  Sealion.h
+//  AccountTests.swift
 //  Sealion
 //
 //  Copyright (c) 2016 Dima Bart
@@ -30,10 +30,26 @@
 //  either expressed or implied, of the FreeBSD Project.
 //
 
-#import <UIKit/UIKit.h>
+import XCTest
+import Sealion
 
-//! Project version number for Sealion.
-FOUNDATION_EXPORT double SealionVersionNumber;
-
-//! Project version string for Sealion.
-FOUNDATION_EXPORT const unsigned char SealionVersionString[];
+class AccountTests: ModelTestCase {
+    
+    // ----------------------------------
+    //  MARK: - JsonCreatable -
+    //
+    func testJsonCreation() {
+        let model: Account = self.modelNamed(name: "account")
+        
+        XCTAssertEqual(model.dropletLimit,    25)
+        XCTAssertEqual(model.floatingIPLimit, 3)
+        XCTAssertEqual(model.verified, true)
+        XCTAssertEqual(model.email,    "john.smith@gmail.com")
+        XCTAssertEqual(model.status,   "active")
+        XCTAssertEqual(model.message,  "Everything is okay")
+    }
+    
+    func testEquality() {
+        self.assertEqualityForModelNamed(type: Account.self, name: "account")
+    }
+}

@@ -1,5 +1,5 @@
 //
-//  Sealion.h
+//  SSHKey.swift
 //  Sealion
 //
 //  Copyright (c) 2016 Dima Bart
@@ -30,10 +30,59 @@
 //  either expressed or implied, of the FreeBSD Project.
 //
 
-#import <UIKit/UIKit.h>
+import Foundation
 
-//! Project version number for Sealion.
-FOUNDATION_EXPORT double SealionVersionNumber;
+public struct SSHKey: JsonCreatable, Equatable {
+    
+    public let id:          Int
+    public let name:        String
+    public let publicKey:   String
+    public let fingerprint: String
+    
+    // ----------------------------------
+    //  MARK: - JsonCreatable -
+    //
+    public init(json: JSON) {
+        self.id          = json["id"]          as! Int
+        self.name        = json["name"]        as! String
+        self.publicKey   = json["public_key"]  as! String
+        self.fingerprint = json["fingerprint"] as! String
+    }
+}
 
-//! Project version string for Sealion.
-FOUNDATION_EXPORT const unsigned char SealionVersionString[];
+public func ==(lhs: SSHKey, rhs: SSHKey) -> Bool {
+    return (lhs.id == rhs.id) &&
+        (lhs.name        == rhs.name) &&
+        (lhs.publicKey   == rhs.publicKey) &&
+        (lhs.fingerprint == rhs.fingerprint)
+}
+
+// ----------------------------------
+//  MARK: - Creation -
+//
+public extension SSHKey {
+    
+    public struct CreateRequest: JsonConvertible {
+        
+        public var name:        String
+        public var publicKey:   String
+        
+        // ----------------------------------
+        //  MARK: - Init -
+        //
+        public init(name: String, publicKey: String) {
+            self.name      = name
+            self.publicKey = publicKey
+        }
+        
+        // ----------------------------------
+        //  MARK: - JsonConvertible -
+        //
+        public var json: JSON {
+            return [
+                "name"       : self.name,
+                "public_key" : self.publicKey,
+            ]
+        }
+    }
+}

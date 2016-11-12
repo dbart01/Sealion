@@ -1,5 +1,5 @@
 //
-//  Sealion.h
+//  Method.swift
 //  Sealion
 //
 //  Copyright (c) 2016 Dima Bart
@@ -30,10 +30,11 @@
 //  either expressed or implied, of the FreeBSD Project.
 //
 
-#import <UIKit/UIKit.h>
+import Foundation
 
-//! Project version number for Sealion.
-FOUNDATION_EXPORT double SealionVersionNumber;
-
-//! Project version string for Sealion.
-FOUNDATION_EXPORT const unsigned char SealionVersionString[];
+public enum Method: String {
+    case get    = "GET"
+    case post   = "POST"
+    case put    = "PUT"
+    case delete = "DELETE"
+}

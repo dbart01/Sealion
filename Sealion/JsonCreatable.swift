@@ -1,5 +1,5 @@
 //
-//  Sealion.h
+//  JsonCreatable.swift
 //  Sealion
 //
 //  Copyright (c) 2016 Dima Bart
@@ -30,10 +30,27 @@
 //  either expressed or implied, of the FreeBSD Project.
 //
 
-#import <UIKit/UIKit.h>
+import Foundation
 
-//! Project version number for Sealion.
-FOUNDATION_EXPORT double SealionVersionNumber;
+public typealias JSON = [String : Any]
 
-//! Project version string for Sealion.
-FOUNDATION_EXPORT const unsigned char SealionVersionString[];
+public protocol JsonCreatable {
+    init(json: JSON)
+}
+
+public extension JsonCreatable {
+    
+    init?(json: JSON?) {
+        if let json = json {
+            self.init(json: json)
+        } else {
+            return nil
+        }
+    }
+    
+    static func collection(json: [JSON]) -> [Self] {
+        return json.map {
+            Self(json: $0)
+        }
+    }
+}

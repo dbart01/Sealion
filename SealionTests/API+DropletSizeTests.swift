@@ -1,5 +1,5 @@
 //
-//  Sealion.h
+//  API+DropletSizeTests.swift
 //  Sealion
 //
 //  Copyright (c) 2016 Dima Bart
@@ -30,10 +30,20 @@
 //  either expressed or implied, of the FreeBSD Project.
 //
 
-#import <UIKit/UIKit.h>
+import XCTest
+import Sealion
 
-//! Project version number for Sealion.
-FOUNDATION_EXPORT double SealionVersionNumber;
-
-//! Project version string for Sealion.
-FOUNDATION_EXPORT const unsigned char SealionVersionString[];
+class API_SizeTests: APITestCase {
+    
+    func testSizeList() {
+        let handle = self.api.sizes { result in }
+        
+        self.assertType(handle, type: [DropletSize].self)
+        self.assertMethod(handle, method: .get)
+        self.assertBody(handle, data: nil)
+        self.assertHeaders(handle)
+        self.assertEndpoint(handle, endpoint: .sizes)
+        self.assertKeyPath(handle, keyPath: "sizes")
+        self.assertParameters(handle, parameters: nil)
+    }
+}

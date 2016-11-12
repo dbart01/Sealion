@@ -1,5 +1,5 @@
 //
-//  Sealion.h
+//  DateFormatterTests.swift
 //  Sealion
 //
 //  Copyright (c) 2016 Dima Bart
@@ -30,10 +30,36 @@
 //  either expressed or implied, of the FreeBSD Project.
 //
 
-#import <UIKit/UIKit.h>
+import XCTest
+import Sealion
 
-//! Project version number for Sealion.
-FOUNDATION_EXPORT double SealionVersionNumber;
-
-//! Project version string for Sealion.
-FOUNDATION_EXPORT const unsigned char SealionVersionString[];
+class DateFormatterTests: XCTestCase {
+    
+    let validDateString   = "2016-10-07T12:08:02Z"
+    let invalidDateString = "2016-Jul-07-12:08:02"
+    
+    let validDate = Date(timeIntervalSince1970: 1475842082)
+    
+    // ----------------------------------
+    //  MARK: - String to Date -
+    //
+    func testValidStringToDate() {
+        let date = Date(ISOString: self.validDateString)
+        
+        XCTAssertNotNil(date)
+        XCTAssertEqual(date, self.validDate)
+    }
+    
+    func testInvalidStringToDate() {
+        let date = Date(ISOString: self.invalidDateString)
+        XCTAssertNil(date)
+    }
+    
+    // ----------------------------------
+    //  MARK: - Date to String -
+    //
+    func testValidDateToString() {
+        let dateString = self.validDate.ISOString
+        XCTAssertEqual(dateString, self.validDateString)
+    }
+}

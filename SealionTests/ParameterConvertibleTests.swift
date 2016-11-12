@@ -1,5 +1,5 @@
 //
-//  Sealion.h
+//  ParameterConvertibleTests.swift
 //  Sealion
 //
 //  Copyright (c) 2016 Dima Bart
@@ -30,10 +30,30 @@
 //  either expressed or implied, of the FreeBSD Project.
 //
 
-#import <UIKit/UIKit.h>
+import XCTest
+import Sealion
 
-//! Project version number for Sealion.
-FOUNDATION_EXPORT double SealionVersionNumber;
-
-//! Project version string for Sealion.
-FOUNDATION_EXPORT const unsigned char SealionVersionString[];
+class ParameterConvertibleTests: XCTestCase {
+    
+    // ----------------------------------
+    //  MARK: - Combinations -
+    //
+    func testCombination() {
+        let parameters1: Parameters = [
+            "id"   : "123",
+            "name" : "test",
+        ]
+        
+        let parameters2: Parameters = [
+            "page"     : "1",
+            "per_page" : "20",
+        ]
+        
+        let result = parameters1.combineWith(convertible: parameters2).parameters
+        
+        XCTAssertEqual(result["id"],       "123")
+        XCTAssertEqual(result["name"],     "test")
+        XCTAssertEqual(result["page"],     "1")
+        XCTAssertEqual(result["per_page"], "20")
+    }
+}

@@ -1,0 +1,255 @@
+{
+   "volume": {
+      "size_gigabytes": 1, 
+      "region": "###region", 
+      "description": "test volume", 
+      "id": "123", 
+      "droplet_ids": [
+         123
+      ], 
+      "created_at": "2016-10-07T12:08:02Z", 
+      "name": "test"
+   }, 
+   "kernel": {
+      "version": "generic", 
+      "id": 123, 
+      "name": "Ubuntu"
+   }, 
+   "account": {
+      "status": "active", 
+      "uuid": "123", 
+      "floating_ip_limit": 3, 
+      "email_verified": true, 
+      "droplet_limit": 25, 
+      "status_message": "Everything is okay", 
+      "email": "john.smith@gmail.com"
+   }, 
+   "droplet": {
+      "status": "active", 
+      "kernel": "###kernel", 
+      "volume_ids": [
+         567, 
+         678
+      ], 
+      "locked": false, 
+      "name": "some.droplet.com", 
+      "backup_ids": [
+         123, 
+         234
+      ], 
+      "created_at": "2015-08-07T19:50:26Z", 
+      "snapshot_ids": [
+         345, 
+         456
+      ], 
+      "size_slug": "1gb", 
+      "id": 123, 
+      "next_backup_window": "###backupWindow", 
+      "vcpus": 1, 
+      "features": [
+         "virtio"
+      ], 
+      "image": "###image", 
+      "memory": 1024, 
+      "region": "###region", 
+      "disk": 30, 
+      "networks": {
+         "v4": [
+            "###v4Network"
+         ], 
+         "v6": [
+            "###v6Network"
+         ]
+      }, 
+      "tags": [
+         "awesome"
+      ], 
+      "size": "###size"
+   },
+   "dropletCreated": {
+      "status": "active", 
+      "kernel": null, 
+      "volume_ids": [
+         567, 
+         678
+      ], 
+      "locked": false, 
+      "name": "some.droplet.com", 
+      "backup_ids": [
+         123, 
+         234
+      ], 
+      "created_at": "2015-08-07T19:50:26Z", 
+      "snapshot_ids": [
+         345, 
+         456
+      ], 
+      "size_slug": "1gb", 
+      "id": 123, 
+      "next_backup_window": null, 
+      "vcpus": 1, 
+      "features": [
+         "virtio"
+      ], 
+      "image": "###image", 
+      "memory": 1024, 
+      "region": "###region", 
+      "disk": 30, 
+      "networks": {
+         "v4": [
+            "###v4Network"
+         ], 
+         "v6": [
+            "###v6Network"
+         ]
+      }, 
+      "tags": [
+         "awesome"
+      ], 
+      "size": "###size"
+   }, 
+   "v4Network": {
+      "ip_address": "12.12.123.12", 
+      "netmask": "255.255.255.0", 
+      "type": "public", 
+      "gateway": "12.12.192.1"
+   }, 
+   "region": {
+      "available": true, 
+      "features": [
+         "backups", 
+         "ipv6"
+      ], 
+      "slug": "nyc3", 
+      "name": "New York 3", 
+      "sizes": [
+         "2gb", 
+         "4gb", 
+         "8gb"
+      ]
+   }, 
+   "domain": {
+      "name": "example.com",
+      "ttl": 1800,
+      "zone_file": "$ORIGIN example.com.\n$TTL 1800\nexample.com. IN SOA ns1.digitalocean.com. hostmaster.example.com. 1415982609 10800 3600 604800 1800\nexample.com. 1800 IN NS ns1.digitalocean.com.\nexample.com. 1800 IN NS ns2.digitalocean.com.\nexample.com. 1800 IN NS ns3.digitalocean.com.\nexample.com. 1800 IN A 1.2.3.4\n"
+    },
+    "record": {
+      "id": 123,
+      "type": "MX",
+      "name": "@",
+      "data": "mail.example.com",
+      "priority": 1,
+      "port": 80,
+      "weight": 10
+    },
+    "recordWithNull": {
+      "id": 123,
+      "type": "A",
+      "name": "@",
+      "data": "example.com",
+      "priority": null,
+      "port": null,
+      "weight": null
+    },
+   "floatingIPWithoutDroplet": {
+      "ip": "12.12.12.12", 
+      "region": "###region", 
+      "droplet": null
+   }, 
+   "v6Network": {
+      "type": "public", 
+      "netmask": 64, 
+      "ip_address": "2604:AAAA:0000:0000:0000:0000:0000:0000", 
+      "gateway": "2604:AAAA:0000:0000:0000:0000:0000:0000"
+   }, 
+   "floatingIPWithDroplet": {
+      "ip": "12.12.12.12", 
+      "region": "###region", 
+      "droplet": "###droplet"
+   }, 
+   "tagWithDroplet": {
+      "name": "some-tag", 
+      "resources": {
+         "droplets": {
+            "count": 1, 
+            "last_tagged": "###droplet"
+         }
+      }
+   }, 
+   "tagWithoutDroplet": {
+      "name": "some-tag", 
+      "resources": {
+         "droplets": {
+            "count": 0, 
+            "last_tagged": null
+         }
+      }
+   }, 
+   "snapshot": {
+      "min_disk_size": 20, 
+      "name": "test-snapshot", 
+      "resource_id": 234, 
+      "created_at": "2016-09-10T18:06:25Z", 
+      "regions": [
+         "tor1"
+      ], 
+      "id": 123, 
+      "resource_type": "droplet", 
+      "size_gigabytes": 0.5
+   }, 
+   "key": {
+      "public_key": "ssh-rsa AB3", 
+      "fingerprint": "b7:40", 
+      "id": 123, 
+      "name": "john@John-Smiths-MBP"
+   }, 
+   "error": {
+      "message": "Error message", 
+      "code": 403, 
+      "id": "error_id", 
+      "request_id": "request_id"
+   }, 
+   "action": {
+      "status": "completed", 
+      "resource_id": 456, 
+      "region": "nyc3", 
+      "region_slug": "nyc3", 
+      "completed_at": "2016-09-30T19:52:21Z", 
+      "started_at": "2016-09-30T19:52:21Z", 
+      "type": "image_destroy", 
+      "id": 123, 
+      "resource_type": "image"
+   }, 
+   "image": {
+      "min_disk_size": 30, 
+      "name": "some-image", 
+      "created_at": "2015-08-07T19:44:51Z", 
+      "slug": "ubuntu", 
+      "regions": [
+         "nyc3"
+      ], 
+      "public": false, 
+      "distribution": "Ubuntu", 
+      "type": "snapshot", 
+      "id": 123, 
+      "size_gigabytes": 3.62
+   }, 
+   "backupWindow": {
+      "start": "2016-09-26T00:00:00Z", 
+      "end": "2016-09-26T23:00:00Z"
+   }, 
+   "size": {
+      "price_monthly": 10, 
+      "available": true, 
+      "transfer": 2, 
+      "price_hourly": 0.01488, 
+      "regions": [
+         "nyc3", 
+         "tor1"
+      ], 
+      "vcpus": 1, 
+      "memory": 1024, 
+      "disk": 30, 
+      "slug": "1gb"
+   }
+}

@@ -1,5 +1,5 @@
 //
-//  Sealion.h
+//  FloatingIPActionTests.swift
 //  Sealion
 //
 //  Copyright (c) 2016 Dima Bart
@@ -30,10 +30,28 @@
 //  either expressed or implied, of the FreeBSD Project.
 //
 
-#import <UIKit/UIKit.h>
+import XCTest
+import Sealion
 
-//! Project version number for Sealion.
-FOUNDATION_EXPORT double SealionVersionNumber;
-
-//! Project version string for Sealion.
-FOUNDATION_EXPORT const unsigned char SealionVersionString[];
+class FloatingIPActionTests: XCTestCase {
+    
+    func testPasswordReset() {
+        self.assertFloatingIPAction(action: .assign(droplet: 123), against: [
+            "type"       : "assign",
+            "droplet_id" : 123,
+        ])
+    }
+    
+    func testEnableBackups() {
+        self.assertFloatingIPAction(action: .unassign, against: [
+            "type" : "unassign",
+        ])
+    }
+    
+    // ----------------------------------
+    //  MARK: - Private -
+    //
+    private func assertFloatingIPAction(action: FloatingIPAction, against expectation: Any) {
+        XCTAssertTrue(action.json == expectation as! JSON)
+    }
+}

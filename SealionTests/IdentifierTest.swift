@@ -1,5 +1,5 @@
 //
-//  Sealion.h
+//  IdentifierTest.swift
 //  Sealion
 //
 //  Copyright (c) 2016 Dima Bart
@@ -30,10 +30,29 @@
 //  either expressed or implied, of the FreeBSD Project.
 //
 
-#import <UIKit/UIKit.h>
+import XCTest
+import Sealion
 
-//! Project version number for Sealion.
-FOUNDATION_EXPORT double SealionVersionNumber;
-
-//! Project version string for Sealion.
-FOUNDATION_EXPORT const unsigned char SealionVersionString[];
+class IdentifierTests: XCTestCase {
+    
+    // ----------------------------------
+    //  MARK: - Json Creation -
+    //
+    func testIdentifierAsInteger() {
+        let id:   Identifier = 123
+        let json: JSON       = [
+            "id" : id,
+        ]
+        
+        XCTAssertEqual(json["id"] as! Int, 123)
+    }
+    
+    func testIdentifierAsString() {
+        let id:   Identifier = "123"
+        let json: JSON       = [
+            "id" : id,
+        ]
+        
+        XCTAssertEqual(json["id"] as! String, "123")
+    }
+}

@@ -1,5 +1,5 @@
 //
-//  Sealion.h
+//  Person.swift
 //  Sealion
 //
 //  Copyright (c) 2016 Dima Bart
@@ -30,10 +30,16 @@
 //  either expressed or implied, of the FreeBSD Project.
 //
 
-#import <UIKit/UIKit.h>
+import Foundation
+import Sealion
 
-//! Project version number for Sealion.
-FOUNDATION_EXPORT double SealionVersionNumber;
-
-//! Project version string for Sealion.
-FOUNDATION_EXPORT const unsigned char SealionVersionString[];
+struct Person: JsonCreatable {
+    
+    let firstName: String
+    let lastName:  String
+    
+    init(json: JSON) {
+        self.firstName = json["firstName"] as! String
+        self.lastName  = json["lastName"]  as! String
+    }
+}
